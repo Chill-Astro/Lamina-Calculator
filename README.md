@@ -153,6 +153,7 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
 - [Microsoft Calculator](https://github.com/microsoft/calculator) : For Square Root and Cube Root Button Icons. Also this inspired me to make this app.
 - [Advanced Installer Free](https://www.advancedinstaller.com) : For Creating an Installer for it's Complex Structure.
 - [ExchangeRate-API](https://app.exchangerate-api.com) : For Currency Conversion. [ Free Plan, so Currency Conversion is Limited ]
+- [Wallpaper by Anni Roenkae at Pexels](https://www.pexels.com/photo/abstract-painting-3276035/) : Wallpaper used for Promo Art.
 
 ---
 
