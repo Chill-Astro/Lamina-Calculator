@@ -1,6 +1,6 @@
 <p align="center">
   <kbd>
-  <img width="1080" alt="Lamina Promo" src="https://github.com/user-attachments/assets/ee854962-4297-485f-944a-9a416f49c84c" />
+    <img width="1920" height="1080" alt="Lamina Promo" src="https://github.com/user-attachments/assets/284ba1ee-c554-4ef0-b0ac-679cedca0e0a" /><p align="center">  
   </kbd>
 </p>
 
