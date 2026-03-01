@@ -145,6 +145,8 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
 
 - Buid and Run the Application as shown above.
 
+---
+
 ## Icon Sources and Credits :
 
 - [Icons8](https://icons8.com) : For all the Mensuration and Quadratic Equation Solver Menu Logos, 
@@ -167,6 +169,26 @@ Please be aware: There are fraudulent repositories on GitHub that are cloning th
 I am trying my best to report these people.
 
 ---
+## ⚠️ Smoking Gun for Danger :
+
+<details>
+<summary><b>View Details</b></summary>
+  
+**If your download contains any of the following, DELETE IT IMMEDIATELY:**
+
+* **Suspicious Windows Executables:** Files ending in `.exe`, `.bat`, or `.dll` (e.g., `luau.exe`, `StartApp.bat`).
+* **Compressed Archives:** This project is distributed as an **MSIX**, never as a `.zip` or `.7z` containing Windows binaries.
+* **Hidden Scripts:** Text files like `asm.txt` used to execute malicious code on your PC.
+* The Following Folder Structure is used by Malware (Shown in a VM) :
+
+![Screenshot_2026-03-01-18-52-39-337_com clone android dual space](https://github.com/user-attachments/assets/be691c9f-7def-4e8b-982c-c7ca2e9a067d)
+
+![Screenshot_2026-03-01-18-53-09-759_com clone android dual space](https://github.com/user-attachments/assets/1c75031d-95be-4716-9347-b762e3dad5b8)
+
+</details>
+
+---
+
 
 ## Note from Developer :
 
