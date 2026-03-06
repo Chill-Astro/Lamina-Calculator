@@ -5,6 +5,7 @@
 Lamina-Cache
 Lamina-SetupFiles
 Lamina-Installer
+appsettings.json
 
 # User-specific files
 *.rsuser
