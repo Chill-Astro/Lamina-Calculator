@@ -8,7 +8,7 @@
   
 Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is **Elevated with Powerful Scripted Actions**. This utility combines a modern, clean interface with the ability to perform complex calculations across **Mensuration, Finance, and Unit Conversions**, making it significantly more powerful than standard calculators.
   
-**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.12.0**
+**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.13.0** ( In Development from 26th March 2026 )
 
 **App Execution Aliases**
 
@@ -42,14 +42,13 @@ Please note that certain buttons here such as "Copy" will exist as icons.
 
 ---
 
-## Scripted Actions Included [ as of v11.26100.12.0 ] :
+## Scripted Actions Included ( in v11.26100.13.0 ) :
 
-- Base Calculator UI.
-- Scientific Calculator UI [ "Possibility" for v11.26100.13.0 ]
+- Base Calculator UI + Scientific Calculator.
+- Programming
 - Convertors :
   * Unit Convertor
   * Currency Convertor
-  * Base Convertor
 - Mensuration :
   * Heron's Formula
   * Perimeter Calculator
@@ -64,13 +63,8 @@ Please note that certain buttons here such as "Copy" will exist as icons.
   * Simple Interest
   * Compound Interest
   * Discounted Price Calculator
-- Extras :
-  * Age Calculator
-  * Date Difference Calculator
-  * Factorial Calculator
-  * Approximation
-  * Prime No. Checker
-  * Right Triangle Checker
+
+---
 
 ## Key Features :
 
@@ -86,7 +80,7 @@ Please note that certain buttons here such as "Copy" will exist as icons.
 
 ---
 
-## Install Lamina [ Installer ] from Winget :
+## Install Lamina ( Installer ) from Winget :
       
       winget install Lamina.unp
 
@@ -111,14 +105,14 @@ https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
 3.  Install the `.msix` file.
 
 <p align="center">
-  ---------------------[ OR ]---------------------
+  --------------------- OR ---------------------
 </p>
 
 -  Download the `Lamina-Setup.exe` to install the app easily.
 
 ---
 
-## Building from Source [ Screenshots are from Visual Studio 2022 ]  :
+## Building from Source [ TO BE UPDATED ]  :
 
 - Install Visual Studio 2026 with **WinUI Application Development** and **.NET Desktop Development** workloads. [ Visual Studio 2022 can also be used ].
   - Windows 11.
@@ -147,7 +141,7 @@ Lamina is now Deployed and now it shall appear in the Start Menu.
 
 ## Adding Currency Convertor :
 
-Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currency conversion. An API key must be mannualy added in the region indicated.
+Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currency conversion. An API key must be manually added in the region indicated.
 
 - Open `appsettings.json` : Paste the Code into here.
 
