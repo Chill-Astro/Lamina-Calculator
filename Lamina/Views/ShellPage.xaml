@@ -60,6 +60,11 @@
                         <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe900;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem x:Uid="Shell_BaseConverter" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.BaseConverterViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe918;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItemHeader Content="Converters" />
                 <NavigationViewItem x:Uid="Shell_UnitConverter" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.UnitConverterViewModel">
                     <NavigationViewItem.Icon>
@@ -69,11 +74,6 @@
                 <NavigationViewItem x:Uid="Shell_Currency" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.CurrencyViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe90e;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_BaseConverter" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.BaseConverterViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe918;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItemHeader Content="Mensuration" />
@@ -132,37 +132,6 @@
                 <NavigationViewItem x:Uid="Shell_Dicount" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.DicountViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe915;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItemHeader Content="Extras" />
-                <NavigationViewItem x:Uid="Shell_AgeCalc" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.AgeCalcViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe912;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_DateDifference" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.DateDifferenceViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe916;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_Factorial" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.FactorialViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe904;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_Approx" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.ApproxViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe905;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_PrimeCheck" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.PrimeCheckViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe911;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_RTCheck" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.RTCheckViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource icomoonFontFamily}" Glyph="&#xe914;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>

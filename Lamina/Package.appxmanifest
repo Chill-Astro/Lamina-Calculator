@@ -38,8 +38,8 @@
 		  Executable="$targetnametoken$.exe"
 		  EntryPoint="$targetentrypoint$">
 			<uap:VisualElements
-			  DisplayName="Lamina"
-			  Description="Math on a Sheet of Glass"
+			  DisplayName="Lamina ✦"
+			  Description="Math on a Sheet of Glass!"
 			  BackgroundColor="transparent"
 			  Square150x150Logo="Assets\Square150x150Logo.png"
 			  Square44x44Logo="Assets\Square44x44Logo.png">

@@ -158,7 +158,7 @@
             Click="HistoryButton_Click"
             Content="&#xe81c;"
             CornerRadius="3"
-            FontFamily="ms-appx:///Assets/Fonts/Segoe.ttf#Segoe Fluent Icons"
+            FontFamily="Segoe Fluent Icons"
             FontSize="16"
             KeyDown="CalculatorPage_KeyDown">
             <Button.KeyboardAccelerators>
@@ -230,7 +230,7 @@
                     Margin="2"
                     Click="PercentButton_Click"
                     Content="&#xe94c;"
-                    FontFamily="ms-appx:///Assets/Fonts/Segoe.ttf#Segoe Fluent Icons"
+                    FontFamily="Segoe Fluent Icons"
                     FontSize="15"
                     KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource CalculatorButtonStyle}" />
@@ -257,7 +257,7 @@
                     Margin="2"
                     Click="BackspaceButton_Click"
                     Content="&#xe750;"
-                    FontFamily="ms-appx:///Assets/Fonts/Segoe.ttf#Segoe Fluent Icons"
+                    FontFamily="Segoe Fluent Icons"
                     FontSize="17"
                     KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource CalculatorButtonStyle}" />
@@ -293,7 +293,7 @@
                     Margin="2"
                     Click="OperatorButton_Click"
                     Content="&#xE94A;"
-                    FontFamily="ms-appx:///Assets/Fonts/Segoe.ttf#Segoe Fluent Icons"
+                    FontFamily="Segoe Fluent Icons"
                     FontSize="14"
                     KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource CalculatorButtonStyle}" />
@@ -330,7 +330,7 @@
                     Margin="2"
                     Click="OperatorButton_Click"
                     Content="&#xE947;"
-                    FontFamily="ms-appx:///Assets/Fonts/Segoe.ttf#Segoe Fluent Icons"
+                    FontFamily="Segoe Fluent Icons"
                     FontSize="14"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
@@ -366,7 +366,7 @@
                     Margin="2"
                     Click="OperatorButton_Click"
                     Content="&#xE949;"
-                    FontFamily="ms-appx:///Assets/Fonts/Segoe.ttf#Segoe Fluent Icons"
+                    FontFamily="Segoe Fluent Icons"
                     FontSize="14"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
@@ -402,7 +402,7 @@
                     Margin="2"
                     Click="OperatorButton_Click"
                     Content="&#xE948;"
-                    FontFamily="ms-appx:///Assets/Fonts/Segoe.ttf#Segoe Fluent Icons"
+                    FontFamily="Segoe Fluent Icons"
                     FontSize="14"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
@@ -437,7 +437,7 @@
                     Margin="2"
                     Click="EqualsButton_Click"
                     Content="&#xe94e;"
-                    FontFamily="ms-appx:///Assets/Fonts/Segoe.ttf#Segoe Fluent Icons"
+                    FontFamily="Segoe Fluent Icons"
                     FontSize="15"
                     KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource AccentButtonStyle}" />

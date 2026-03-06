@@ -150,9 +150,6 @@
   <data name="Settings_Theme_Default.Content" xml:space="preserve">
     <value>Default</value>
   </data>
-  <data name="Shell_Factorial.Content" xml:space="preserve">
-    <value>Factorial Calculator</value>
-  </data>
   <data name="Shell_Approx.Content" xml:space="preserve">
     <value>Approximation</value>
   </data>
@@ -171,14 +168,8 @@
   <data name="Shell_Perimeter.Content" xml:space="preserve">
     <value>Perimeter Calculator</value>
   </data>
-  <data name="Shell_PrimeCheck.Content" xml:space="preserve">
-    <value>Prime no. Checker</value>
-  </data>
   <data name="Shell_AgeCalc.Content" xml:space="preserve">
     <value>Age Calculator</value>
-  </data>
-  <data name="Shell_RTCheck.Content" xml:space="preserve">
-    <value>Right Triangle Checker</value>
   </data>
   <data name="Shell_CSurfaceArea.Content" xml:space="preserve">
     <value>Curved Surface Area</value>
@@ -186,14 +177,11 @@
   <data name="Shell_Dicount.Content" xml:space="preserve">
     <value>Dicounted Price Calculator</value>
   </data>
-  <data name="Shell_DateDifference.Content" xml:space="preserve">
-    <value>Date Difference Calculator</value>
-  </data>
   <data name="Shell_UnitConverter.Content" xml:space="preserve">
     <value>Unit Converter</value>
   </data>
   <data name="Shell_BaseConverter.Content" xml:space="preserve">
-    <value>Base Converter</value>
+    <value>Programming</value>
   </data>
   <data name="Shell_QuadEqn.Content" xml:space="preserve">
     <value>Quadratic Equation Solver</value>
