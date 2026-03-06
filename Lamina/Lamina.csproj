@@ -22,12 +22,14 @@
 	  <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
 	  <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
 	  <GenerateTestArtifacts>True</GenerateTestArtifacts>
+	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	  <WindowsAppSDKBootstrapAutoInitializeOptions_OnNoMatch_ShowUI>false</WindowsAppSDKBootstrapAutoInitializeOptions_OnNoMatch_ShowUI>
 	  <AppxBundle>Never</AppxBundle>
 	  <AppxPackageDir>C:\Users\Master\Downloads\</AppxPackageDir>
 	  <PlatformTarget>x64</PlatformTarget>
 	  <WindowsPackageType>MSIX</WindowsPackageType>
-	  <Version>11.26100.12.0</Version>
-	  <AssemblyVersion>11.26100.12.0</AssemblyVersion>
+	  <Version>11.26100.13.0</Version>
+	  <AssemblyVersion>11.26100.13.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
