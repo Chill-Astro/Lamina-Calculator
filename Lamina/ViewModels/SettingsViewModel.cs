@@ -36,7 +36,7 @@ public partial class SettingsViewModel : ObservableRecipient
     private bool _isMicaAltEnabled;
 
     // Default version if not found
-    private static readonly Version DefaultVersion = new Version(11, 26100, 10, 0);
+    private static readonly Version DefaultVersion = new Version(11, 26100, 13, 0);
     public static Version AppVersion { get; private set; } = DefaultVersion;
 
     public ICommand SwitchThemeCommand
@@ -112,6 +112,6 @@ public partial class SettingsViewModel : ObservableRecipient
             }
         }
         AppVersion = version;
-        return $"Lamina - v{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        return $"Lamina ✦ - v{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
     }
 }

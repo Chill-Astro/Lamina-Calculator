@@ -6,19 +6,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{x:Null}"
     IsTabStop="True"
-    KeyDown="CalculatorPage_KeyDown"
     Loaded="CalculatorPage_Loaded"
+    PreviewKeyDown="CalculatorPage_PreviewKeyDown"
     mc:Ignorable="d">
+
     <Page.Resources>
         <Style x:Key="CalculatorButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
             <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Padding" Value="2" />
-            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="8" />
+            <Setter Property="Margin" Value="2" />
             <Setter Property="CornerRadius" Value="7" />
             <Setter Property="FontWeight" Value="Normal" />
-            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontSize" Value="16" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -65,14 +66,6 @@
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 To="#30888888"
                                                 Duration="0" />
-                                            <DoubleAnimation
-                                                Storyboard.TargetName="ScaleTransform"
-                                                Storyboard.TargetProperty="ScaleX"
-                                                Duration="0:0:0.1" />
-                                            <DoubleAnimation
-                                                Storyboard.TargetName="ScaleTransform"
-                                                Storyboard.TargetProperty="ScaleY"
-                                                Duration="0:0:0.1" />
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -82,75 +75,31 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
         <Style
             x:Key="NumberButtonStyle"
             BasedOn="{StaticResource CalculatorButtonStyle}"
             TargetType="Button">
-            <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="FontWeight" Value="Normal" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
+
         <Style
             x:Key="AccentButtonStyle"
             BasedOn="{StaticResource CalculatorButtonStyle}"
             TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource AccentButtonBackground}" />
             <Setter Property="Foreground" Value="{ThemeResource AccentButtonForeground}" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="FontWeight" Value="Normal" />
-            <Setter Property="CornerRadius" Value="7" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="OuterBorder" Background="Transparent">
-                            <Border
-                                x:Name="Border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}">
-                                <ContentPresenter
-                                    x:Name="ContentPresenter"
-                                    Margin="{TemplateBinding Padding}"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Content="{TemplateBinding Content}"
-                                    ContentTemplate="{TemplateBinding ContentTemplate}" />
-                            </Border>
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal" />
-                                    <VisualState x:Name="PointerOver">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonHoverBackground}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonPressedBackground}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="FontSize" Value="18" />
         </Style>
     </Page.Resources>
+
     <Grid>
         <Button
             Width="35"
             Height="35"
             Margin="0,-52,1,0"
-            Padding="2"
+            Padding="1"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Background="Transparent"
@@ -159,44 +108,37 @@
             Content="&#xe81c;"
             CornerRadius="3"
             FontFamily="Segoe Fluent Icons"
-            FontSize="16"
-            KeyDown="CalculatorPage_KeyDown">
+            FontSize="16">
             <Button.KeyboardAccelerators>
                 <KeyboardAccelerator Key="H" Modifiers="Control" />
             </Button.KeyboardAccelerators>
         </Button>
+
         <Grid
             x:Name="ContentGrid"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Background="Transparent"
-            RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <TranslateTransform X="0" Y="0" />
-            </Grid.RenderTransform>
+            IsTabStop="False">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="100" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+
             <Viewbox
                 Grid.Row="1"
                 MaxHeight="120"
                 Margin="0,-10,0,0"
-                HorizontalAlignment="Right"
-                Stretch="Uniform"
-                StretchDirection="Both">
-                <StackPanel
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Orientation="Vertical">
+                HorizontalAlignment="Right">
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <TextBlock
                         x:Name="OperationTextBlock"
                         Margin="12,-2,5,-5"
                         HorizontalAlignment="Right"
                         FontSize="7"
                         Opacity="0.7"
-                        Text=""
+                        Text="{x:Bind ViewModel.OperationText, Mode=OneWay}"
                         TextAlignment="Right" />
                     <TextBlock
                         x:Name="DisplayTextBlock"
@@ -205,7 +147,7 @@
                         FontSize="14"
                         FontWeight="SemiBold"
                         IsTextSelectionEnabled="True"
-                        Text="0"
+                        Text="{x:Bind ViewModel.DisplayText, Mode=OneWay}"
                         TextAlignment="Right" />
                 </StackPanel>
             </Viewbox>
@@ -224,222 +166,198 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
+
                 <Button
                     Grid.Row="0"
                     Grid.Column="0"
-                    Margin="2"
-                    Click="PercentButton_Click"
+                    Command="{x:Bind ViewModel.PercentCommand}"
                     Content="&#xe94c;"
                     FontFamily="Segoe Fluent Icons"
-                    FontSize="15"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
+                    x:Name="BtnCE"
                     Grid.Row="0"
                     Grid.Column="1"
-                    Margin="2"
-                    Click="ClearEntryButton_Click"
+                    Command="{x:Bind ViewModel.ClearEntryCommand}"
                     Content="CE"
-                    FontSize="16"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
+                    x:Name="BtnC"
                     Grid.Row="0"
                     Grid.Column="2"
-                    Margin="2"
-                    Click="ClearButton_Click"
+                    Command="{x:Bind ViewModel.ClearAllCommand}"
                     Content="C"
-                    FontSize="16"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
+                    x:Name="BtnBackspace"
                     Grid.Row="0"
                     Grid.Column="3"
-                    Margin="2"
-                    Click="BackspaceButton_Click"
+                    Command="{x:Bind ViewModel.BackspaceCommand}"
                     Content="&#xe750;"
                     FontFamily="Segoe Fluent Icons"
-                    FontSize="17"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource CalculatorButtonStyle}" />
+
                 <Button
                     Grid.Row="1"
                     Grid.Column="0"
-                    Margin="2"
-                    Click="SquareButton_Click"
+                    Command="{x:Bind ViewModel.SquareCommand}"
                     Content="𝑥²"
-                    FontSize="16"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Margin="2"
-                    Click="SquareRootButton_Click"
-                    Content="&#xe90b;"
-                    FontFamily="/Assets/Fonts/icomoon.ttf#icomoon"
-                    FontSize="19"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="1"
-                    Margin="2"
-                    Click="CubeRootButton_Click"
+                    Command="{x:Bind ViewModel.CubeRootCommand}"
                     Content="&#xe90c;"
                     FontFamily="/Assets/Fonts/icomoon.ttf#icomoon"
-                    FontSize="19"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
                     Grid.Row="1"
+                    Grid.Column="2"
+                    Command="{x:Bind ViewModel.SquareRootCommand}"
+                    Content="&#xe90b;"
+                    FontFamily="/Assets/Fonts/icomoon.ttf#icomoon"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnDivide"
+                    Grid.Row="1"
                     Grid.Column="3"
-                    Margin="2"
-                    Click="OperatorButton_Click"
+                    Command="{x:Bind ViewModel.SetOperatorCommand}"
+                    CommandParameter="÷"
                     Content="&#xE94A;"
                     FontFamily="Segoe Fluent Icons"
-                    FontSize="14"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource CalculatorButtonStyle}" />
+
                 <Button
+                    x:Name="Btn7"
                     Grid.Row="2"
                     Grid.Column="0"
-                    Margin="2"
-                    Click="NumberButton_Click"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="7"
                     Content="7"
-                    FontSize="18"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="Btn8"
                     Grid.Row="2"
                     Grid.Column="1"
-                    Margin="2"
-                    Click="NumberButton_Click"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="8"
                     Content="8"
-                    FontSize="18"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="Btn9"
                     Grid.Row="2"
                     Grid.Column="2"
-                    Margin="2"
-                    Click="NumberButton_Click"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="9"
                     Content="9"
-                    FontSize="18"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="BtnMultiply"
                     Grid.Row="2"
                     Grid.Column="3"
-                    Margin="2"
-                    Click="OperatorButton_Click"
+                    Command="{x:Bind ViewModel.SetOperatorCommand}"
+                    CommandParameter="×"
                     Content="&#xE947;"
                     FontFamily="Segoe Fluent Icons"
-                    FontSize="14"
                     Style="{StaticResource CalculatorButtonStyle}" />
+
                 <Button
+                    x:Name="Btn4"
                     Grid.Row="3"
                     Grid.Column="0"
-                    Margin="2"
-                    Click="NumberButton_Click"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="4"
                     Content="4"
-                    FontSize="18"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="Btn5"
                     Grid.Row="3"
                     Grid.Column="1"
-                    Margin="2"
-                    Click="NumberButton_Click"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="5"
                     Content="5"
-                    FontSize="18"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="Btn6"
                     Grid.Row="3"
                     Grid.Column="2"
-                    Margin="2"
-                    Click="NumberButton_Click"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="6"
                     Content="6"
-                    FontSize="18"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="BtnSubtract"
                     Grid.Row="3"
                     Grid.Column="3"
-                    Margin="2"
-                    Click="OperatorButton_Click"
+                    Command="{x:Bind ViewModel.SetOperatorCommand}"
+                    CommandParameter="-"
                     Content="&#xE949;"
                     FontFamily="Segoe Fluent Icons"
-                    FontSize="14"
                     Style="{StaticResource CalculatorButtonStyle}" />
+
                 <Button
+                    x:Name="Btn1"
                     Grid.Row="4"
                     Grid.Column="0"
-                    Margin="2"
-                    Click="NumberButton_Click"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="1"
                     Content="1"
-                    FontSize="18"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="Btn2"
                     Grid.Row="4"
                     Grid.Column="1"
-                    Margin="2"
-                    Click="NumberButton_Click"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="2"
                     Content="2"
-                    FontSize="18"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="Btn3"
                     Grid.Row="4"
                     Grid.Column="2"
-                    Margin="2"
-                    Click="NumberButton_Click"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="3"
                     Content="3"
-                    FontSize="18"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="BtnAdd"
                     Grid.Row="4"
                     Grid.Column="3"
-                    Margin="2"
-                    Click="OperatorButton_Click"
+                    Command="{x:Bind ViewModel.SetOperatorCommand}"
+                    CommandParameter="+"
                     Content="&#xE948;"
                     FontFamily="Segoe Fluent Icons"
-                    FontSize="14"
                     Style="{StaticResource CalculatorButtonStyle}" />
+
                 <Button
                     Grid.Row="5"
                     Grid.Column="0"
-                    Margin="2"
-                    Click="PowerButton_Click"
+                    Command="{x:Bind ViewModel.SetOperatorCommand}"
+                    CommandParameter="^"
                     Content="𝑥ʸ"
-                    FontSize="18"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
+                    x:Name="Btn0"
                     Grid.Row="5"
                     Grid.Column="1"
-                    Margin="2"
-                    Click="NumberButton_Click"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="0"
                     Content="0"
-                    FontSize="18"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="BtnDecimal"
                     Grid.Row="5"
                     Grid.Column="2"
-                    Margin="2"
-                    Click="DecimalButton_Click"
+                    Command="{x:Bind ViewModel.InputDecimalCommand}"
                     Content="."
-                    FontSize="24"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
+                    x:Name="BtnEqual"
                     Grid.Row="5"
                     Grid.Column="3"
-                    Margin="2"
-                    Click="EqualsButton_Click"
+                    Command="{x:Bind ViewModel.CalculateCommand}"
                     Content="&#xe94e;"
                     FontFamily="Segoe Fluent Icons"
-                    FontSize="15"
-                    KeyDown="CalculatorPage_KeyDown"
                     Style="{StaticResource AccentButtonStyle}" />
             </Grid>
         </Grid>
