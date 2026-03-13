@@ -42,9 +42,10 @@ Please note that certain buttons here such as "Copy" will exist as icons.
 
 ---
 
-## Scripted Actions Included ( in v11.26100.13.0 ) :
+## Scripted Actions Included ( v11.26100.13.0 ) :
 
 - Base Calculator UI + Scientific Calculator.
+- Date Calculator
 - Programming
 - Convertors :
   * Unit Convertor
@@ -52,17 +53,51 @@ Please note that certain buttons here such as "Copy" will exist as icons.
 - Mensuration :
   * Heron's Formula
   * Perimeter Calculator
+      * Equilateral Triangle
+      * Isosceles Triangle
+      * Square / Rhombus
+      * Rectangle / Parallelogram
+      * Circle
+      * Semi-circle
   * Area Calculator
+      * Equilateral Triangle
+      * Isosceles Triangle
+      * Standard Triangle
+      * Square
+      * Rectangle / Parallelogram
+      * Rhombus
+      * Circle
+      * Semi-circle
+      * Room
   * Volume Calculator
+      * Cube
+      * Cuboid
+      * Cylinder
+      * Cone
+      * Sphere
   * Total Surface Area
-  * Curved Surface Area
+      * Cube
+      * Cuboid
+      * Cylinder
+      * Cone
+      * Sphere
+  * Curved Surface Area      
+      * Cylinder
+      * Cone
+      * Sphere
   * Diagonal Calculator
+      * Square
+      * Rectangle
+      * Cube
+      * Cuboid
 - Algebra :
   * Quadratic Equation Solver  
 - Finance :
-  * Simple Interest
-  * Compound Interest
-  * Discounted Price Calculator
+  * Financial Calculator
+       * Simple Interest
+       * Compund Interest
+       * Recurring Deposit
+       * Fixed Deposit
 
 ---
 
@@ -143,7 +178,7 @@ Lamina is now Deployed and now it shall appear in the Start Menu.
 
 Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currency conversion. An API key must be manually added in the region indicated.
 
-- Open `appsettings.json` : Paste the Code into here.
+- Add `appsettings.json` under Lamina/ : Paste the Code into here.
 
         {
           "LocalSettingsOptions": {
@@ -169,16 +204,6 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
 
 ---
 
-## ⚠️ IMPORTANT NOTICE ⚠️
-
-Please be aware: There are fraudulent repositories on GitHub that are cloning this project's name and using AI-generated readmes, but they contain **completely random and unrelated files in each release**. These are NOT official versions of this project.
-
-**ALWAYS ensure you are downloading or cloning this project ONLY from its official and legitimate source:**
-`https://github.com/Chill-Astro/Lamina`
-
-I am trying my best to report these people.
-
----
 ## HALL OF FAME 👍 : 
 
 // Will add Forked Repos which are genuinely good. 🤩 I will list everything Good about them.
@@ -196,6 +221,17 @@ I am trying my best to report these people.
 // Includes Clones who are working against the MIT Licence and Distributing Malware. All Flaws are mentioned. 😑
 
 - Lamina previously Calculator has undergone Malware Attacks.
+
+---
+
+## ⚠️ IMPORTANT NOTICE ⚠️
+
+Please be aware: There are fraudulent repositories on GitHub that are cloning this project's name and using AI-generated readmes, but they contain **completely random and unrelated files in each release**. These are NOT official versions of this project.
+
+**ALWAYS ensure you are downloading or cloning this project ONLY from its official and legitimate source:**
+`https://github.com/Chill-Astro/Lamina-Calculator`
+
+I am trying my best to report these people.
 
 ---
 
