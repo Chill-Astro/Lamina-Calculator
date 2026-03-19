@@ -208,14 +208,14 @@
                     Grid.Column="1"
                     Command="{x:Bind ViewModel.CubeRootCommand}"
                     Content="&#xe90c;"
-                    FontFamily="/Assets/Fonts/icomoon.ttf#icomoon"
+                    FontFamily="/Assets/Fonts/Lamina_Fonts.ttf#Lamina_Fonts"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="2"
                     Command="{x:Bind ViewModel.SquareRootCommand}"
                     Content="&#xe90b;"
-                    FontFamily="/Assets/Fonts/icomoon.ttf#icomoon"
+                    FontFamily="/Assets/Fonts/Lamina_Fonts.ttf#Lamina_Fonts"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
                     x:Name="BtnDivide"
@@ -334,7 +334,8 @@
                     Grid.Column="0"
                     Command="{x:Bind ViewModel.SetOperatorCommand}"
                     CommandParameter="^"
-                    Content="𝑥ʸ"
+                    Content="&#xE90D;"
+                    FontFamily="/Assets/Fonts/Lamina_Fonts.ttf#Lamina_Fonts"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
                     x:Name="Btn0"

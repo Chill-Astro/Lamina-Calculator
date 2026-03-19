@@ -1,8 +1,9 @@
-﻿using Lamina.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+using Lamina.Contracts.Services;
+using Lamina.ViewModels;
 using Lamina.Views;
 
-using CommunityToolkit.Mvvm.ComponentModel;
-using Lamina.Contracts.Services;
 using Microsoft.UI.Xaml.Controls;
 
 namespace Lamina.Services;
@@ -56,12 +57,13 @@ public class PageService : IPageService
         Configure<CSurfaceAreaViewModel, CSurfaceAreaPage>();
         Configure<CylinderCSAViewModel, CylinderCSAPage>();
         Configure<ConeCSAViewModel, ConeCSAPage>();
-        Configure<SphereCSAViewModel, SphereCSAPage>();
-        Configure<DicountViewModel, DiscountPage>();        
+        Configure<SphereCSAViewModel, SphereCSAPage>();           
         Configure<UnitConverterViewModel, UnitConverterPage>();
         Configure<BaseConverterViewModel, BaseConverterPage>();
         Configure<QuadEqnViewModel, QuadEqnPage>();
         Configure<CurrencyViewModel, CurrencyPage>();
+        Configure<DateCalculatorViewModel, DateCalculatorPage>();
+        Configure<FinanceCalculatorViewModel, FinanceCalculatorPage>();
     }
 
     public Type GetPageType(string key)

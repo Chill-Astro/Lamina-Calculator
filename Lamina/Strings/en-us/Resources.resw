@@ -150,9 +150,6 @@
   <data name="Settings_Theme_Default.Content" xml:space="preserve">
     <value>Default</value>
   </data>
-  <data name="Shell_Approx.Content" xml:space="preserve">
-    <value>Approximation</value>
-  </data>
   <data name="Shell_Area.Content" xml:space="preserve">
     <value>Area Calculator</value>
   </data>
@@ -168,9 +165,6 @@
   <data name="Shell_Perimeter.Content" xml:space="preserve">
     <value>Perimeter Calculator</value>
   </data>
-  <data name="Shell_AgeCalc.Content" xml:space="preserve">
-    <value>Age Calculator</value>
-  </data>
   <data name="Shell_CSurfaceArea.Content" xml:space="preserve">
     <value>Curved Surface Area</value>
   </data>
@@ -181,12 +175,18 @@
     <value>Unit Converter</value>
   </data>
   <data name="Shell_BaseConverter.Content" xml:space="preserve">
-    <value>Programming</value>
+    <value>Programming Calculator</value>
   </data>
   <data name="Shell_QuadEqn.Content" xml:space="preserve">
     <value>Quadratic Equation Solver</value>
   </data>
   <data name="Shell_Currency.Content" xml:space="preserve">
     <value>Currency Convertor</value>
+  </data>
+  <data name="Shell_DateCalculator.Content" xml:space="preserve">
+    <value>Date Calculator</value>
+  </data>
+  <data name="Shell_FinanceCalculator.Content" xml:space="preserve">
+    <value>Finance Calculator</value>
   </data>
 </root>

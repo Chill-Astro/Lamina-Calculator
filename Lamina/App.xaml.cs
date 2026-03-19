@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+
+using Lamina.Activation;
+using Lamina.Contracts.Services;
 using Lamina.Core.Contracts.Services;
 using Lamina.Core.Services;
+using Lamina.Models;
+using Lamina.Services;
 using Lamina.ViewModels;
 using Lamina.Views;
 
@@ -12,10 +17,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
-using Lamina.Models;
-using Lamina.Contracts.Services;
-using Lamina.Services;
-using Lamina.Activation;
 
 namespace Lamina
 {
@@ -68,6 +69,10 @@ namespace Lamina
                 services.AddSingleton<IFileService, FileService>();
 
                 // Views and ViewModels
+                services.AddTransient<FinanceCalculatorViewModel>();
+                services.AddTransient<FinanceCalculatorPage>();
+                services.AddTransient<DateCalculatorViewModel>();
+                services.AddTransient<DateCalculatorPage>();
                 services.AddTransient<CurrencyViewModel>();
                 services.AddTransient<CurrencyPage>();
                 services.AddTransient<QuadEqnViewModel>();
@@ -77,8 +82,7 @@ namespace Lamina
                 services.AddTransient<UnitConverterViewModel>();
                 services.AddTransient<UnitConverterPage>();
                 services.AddTransient<DateDifferenceViewModel>();                
-                services.AddTransient<DicountViewModel>();
-                services.AddTransient<DiscountPage>();
+                services.AddTransient<DicountViewModel>();                
                 services.AddTransient<SphereCSAViewModel>();
                 services.AddTransient<SphereCSAPage>();
                 services.AddTransient<ConeCSAViewModel>();
@@ -88,11 +92,9 @@ namespace Lamina
                 services.AddTransient<CSurfaceAreaViewModel>();
                 services.AddTransient<CSurfaceAreaPage>();
                 services.AddTransient<RoomAreaViewModel>();
-                services.AddTransient<RoomAreaPage>();
-                services.AddTransient<RTCheckViewModel>();                
+                services.AddTransient<RoomAreaPage>();                              
                 services.AddTransient<TriAreaViewModel>();
-                services.AddTransient<TriAreaPage>();
-                services.AddTransient<AgeCalcViewModel>();                
+                services.AddTransient<TriAreaPage>();                              
                 services.AddTransient<PrimeCheckViewModel>();
                 services.AddTransient<CuboidDiagViewModel>();
                 services.AddTransient<CuboidDiagPage>();
@@ -105,8 +107,7 @@ namespace Lamina
                 services.AddTransient<SCirclePermViewModel>();
                 services.AddTransient<SCirclePermPage>();
                 services.AddTransient<CirclePermViewModel>();
-                services.AddTransient<CirclePermPage>();
-                services.AddTransient<RhombusPermViewModel>();                
+                services.AddTransient<CirclePermPage>();                           
                 services.AddTransient<RectPermViewModel>();
                 services.AddTransient<RectPermPage>();
                 services.AddTransient<SquarePermViewModel>();
@@ -158,8 +159,7 @@ namespace Lamina
                 services.AddTransient<ETAreaViewModel>();
                 services.AddTransient<ETAreaPage>();
                 services.AddTransient<AreaViewModel>();
-                services.AddTransient<AreaPage>();
-                services.AddTransient<ApproxViewModel>();                
+                services.AddTransient<AreaPage>();                                
                 services.AddTransient<FactorialViewModel>();                
                 services.AddTransient<SettingsViewModel>();
                 services.AddTransient<SettingsPage>();

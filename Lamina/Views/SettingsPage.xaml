@@ -59,13 +59,13 @@
             </StackPanel>
             <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="About" />
             <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                <HyperlinkButton Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" NavigateUri="https://github.com/Chill-Astro/Lamina/releases/latest">
+                <HyperlinkButton Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" NavigateUri="https://github.com/Chill-Astro/Lamina-Calculator/releases/latest">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
                             VerticalAlignment="Center"
-                            FontFamily="ms-appx:///Assets/Fonts/icomoon.ttf#icomoon"
+                            FontFamily="/Assets/Fonts/Lamina_Fonts.ttf#Lamina_Fonts"
                             FontSize="18"
-                            Text="&#xe900;" />
+                            Text="&#xe230;" />
                         <TextBlock
                             Margin="5,0,0,0"
                             VerticalAlignment="Center"
@@ -76,7 +76,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
                             VerticalAlignment="Center"
-                            FontFamily="ms-appx:///Assets/Fonts/icomoon.ttf#icomoon"
+                            FontFamily="/Assets/Fonts/Lamina_Fonts.ttf#Lamina_Fonts"
                             FontSize="18"
                             Text="&#xe90a;" />
                         <TextBlock
