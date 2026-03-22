@@ -22,7 +22,7 @@ Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is
 
 ## NOTICE :
 
-I am currently unable to update and maintain this project due to my upcoming ICSE Exams. Don't worry the project isn't abandoned. It will be updated after ICSE 2026 Examinations are over. Also there are plans to publish this app to Microsoft Store. I am excited to show this to you!
+As ICSE 2026 ends on 23rd March 2026 for me, I would like to reveal some plans for the next release.
 
 Also btw I have plans for the next Update! (Mockups for UI) :
 
@@ -34,7 +34,7 @@ Also btw I have plans for the next Update! (Mockups for UI) :
 
 <img width="480" height="500" alt="Lamina Settings(1)" src="https://github.com/user-attachments/assets/fd326b4b-bc68-49a5-9748-580f8e10637d" />
 
-- New Scripted Actions Design
+- New Scripted Actions Design (WIP)
 
 <img width="480" height="500" alt="Upcoming Revamp" src="https://github.com/user-attachments/assets/8fb2bfeb-1ff1-48d9-bc32-5f2c98f58eee" />
 
@@ -42,7 +42,7 @@ Please note that certain buttons here such as "Copy" will exist as icons.
 
 ---
 
-## Scripted Actions Included ( v11.26100.13.0 ) :
+## Scripted Actions Included ( for v11.26100.13.0 ) :
 
 - Base Calculator UI + Scientific Calculator.
 - Date Calculator
@@ -168,7 +168,7 @@ https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
 
 ![image](https://github.com/user-attachments/assets/d343c12f-03c0-4e52-95d8-925c5262f304)
 
-Lamina is now Deployed and now it shall appear in the Start Menu.
+Lamina ✦ is now Deployed and now it shall appear in the Start Menu.
 
 ![image](https://github.com/user-attachments/assets/99678fdb-c955-4818-a7bf-5d58fdfa1cfd)
 
