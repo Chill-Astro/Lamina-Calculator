@@ -1,6 +1,6 @@
 <p align="center">
   <kbd>
-    <img width="1920" height="1080" alt="Lamina Promo" src="https://github.com/user-attachments/assets/284ba1ee-c554-4ef0-b0ac-679cedca0e0a" /><p align="center">  
+    <img width="1920" height="1080" alt="Lamina Promo" src="https://github.com/user-attachments/assets/5c483dca-ca62-4a1a-b836-df5a05e355d0" />
   </kbd>
 </p>
 
@@ -8,7 +8,7 @@
   
 Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is **Elevated with Powerful Scripted Actions**. This utility combines a modern, clean interface with the ability to perform complex calculations across **Mensuration, Finance, and Unit Conversions**, making it significantly more powerful than standard calculators.
   
-**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.13.0** ( In Development from 26th March 2026 )
+**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.13.0** ( In Development from 28th March 2026 )
 
 **App Execution Aliases**
 
@@ -20,11 +20,7 @@ Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is
 
 ---
 
-## NOTICE :
-
-As ICSE 2026 ends on 23rd March 2026 for me, I would like to reveal some plans for the next release.
-
-Also btw I have plans for the next Update! (Mockups for UI) :
+## PLANS :
 
 - A Simple Scientific Calculator Addon in Main UI
 
@@ -42,7 +38,7 @@ Please note that certain buttons here such as "Copy" will exist as icons.
 
 ---
 
-## Scripted Actions Included ( for v11.26100.13.0 ) :
+## Scripted Actions Planned ( for v11.26100.13.0 ) :
 
 - Base Calculator UI + Scientific Calculator.
 - Date Calculator
