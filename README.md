@@ -8,7 +8,7 @@
   
 Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is **Elevated with Powerful Scripted Actions**. This utility combines a modern, clean interface with the ability to perform complex calculations across **Mensuration, Finance, and Unit Conversions**, making it significantly more powerful than standard calculators.
   
-**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.13.0** ( In Development from 28th March 2026 )
+**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.13.0**
 
 **App Execution Aliases**
 
@@ -38,7 +38,7 @@ Please note that certain buttons here such as "Copy" will exist as icons.
 
 ---
 
-## Scripted Actions Planned ( for v11.26100.13.0 ) :
+## Scripted Actions Planned ( for v11.26100.14.0 ) :
 
 - Base Calculator UI + Scientific Calculator.
 - Date Calculator
