@@ -92,8 +92,6 @@ Please note that certain buttons here such as "Copy" will exist as icons.
   * Financial Calculator
        * Simple Interest
        * Compund Interest
-       * Recurring Deposit
-       * Fixed Deposit
 
 ---
 
