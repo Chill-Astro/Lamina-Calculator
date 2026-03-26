@@ -100,7 +100,7 @@ public sealed partial class CalculatorPage : Page
         else
         {
             switch (e.Key)
-            {
+            {                 
                 case VirtualKey.Add:
                 case (VirtualKey)187 when shift: // '+' key
                     ViewModel.SetOperatorCommand.Execute("+");
@@ -135,11 +135,15 @@ public sealed partial class CalculatorPage : Page
                     ViewModel.BackspaceCommand.Execute(null);
                     targetButton = BtnBackspace;
                     break;
-
-                case VirtualKey.Escape:
-                case VirtualKey.C:
+                
+                case VirtualKey.C when !shift:
                     ViewModel.ClearAllCommand.Execute(null);
                     targetButton = BtnC;
+                    break;
+
+                case VirtualKey.C when shift:
+                    ViewModel.ClearEntryCommand.Execute(null);
+                    targetButton = BtnCE;
                     break;
 
                 case VirtualKey.Decimal:
@@ -153,7 +157,10 @@ public sealed partial class CalculatorPage : Page
                     // Maps to the history button in the top right
                     targetButton = this.FindName("HistoryButton") as Button;
                     break;
-
+                case VirtualKey.Number5 when shift:                                               
+                    ViewModel.PercentCommand.Execute(null);
+                    targetButton = BtnPercent; 
+                    break;
                 default:
                     handled = false;
                     break;

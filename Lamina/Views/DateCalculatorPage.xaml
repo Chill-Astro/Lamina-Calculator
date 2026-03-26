@@ -5,8 +5,44 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid x:Name="ContentArea">
-        
+    <Grid Background="Transparent">
+        <StackPanel
+            Margin="0,20,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Spacing="10">
+            <TextBlock
+                HorizontalAlignment="Center"
+                Style="{StaticResource BaseTextBlockStyle}"
+                Text="Select Start Date:" />
+            <DatePicker
+                x:Name="StartDatePicker"
+                Width="300"
+                HorizontalAlignment="Center" />
+            <TextBlock Height="1" FontSize="1" />
+            <TextBlock
+                HorizontalAlignment="Center"
+                Style="{StaticResource BaseTextBlockStyle}"
+                Text="Select End Date:" />
+            <DatePicker
+                x:Name="EndDatePicker"
+                Width="300"
+                HorizontalAlignment="Center" />
+            <TextBlock Height="1" FontSize="1" />
+            <Button
+                Margin="0,0,0,0"
+                HorizontalAlignment="Center"
+                Click="CalculateButton_Click"
+                Content="Calculate"
+                Style="{StaticResource AccentButtonStyle}" />
+            <TextBlock
+                x:Name="ResultTextBlock"
+                HorizontalAlignment="Center"
+                FontSize="12"
+                FontWeight="SemiBold"
+                IsTextSelectionEnabled="True"
+                Style="{StaticResource BodyTextBlockStyle}"
+                Text="OUTPUT AREA" />
+        </StackPanel>
     </Grid>
 </Page>

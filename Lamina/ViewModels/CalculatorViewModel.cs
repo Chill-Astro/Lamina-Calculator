@@ -134,12 +134,40 @@ public partial class CalculatorViewModel : ObservableRecipient
         UpdateCurrentNumber();
     }
 
-    // Add these to your CalculatorViewModel class
     [RelayCommand]
     private void Percent()
     {
-        if (double.TryParse(DisplayText, out double value))
-            DisplayText = (value / 100).ToString();
+        if (!double.TryParse(DisplayText.Replace(",", ""), out double value)) return;
+     
+        if (!string.IsNullOrEmpty(_currentOperator))
+        {
+            // For Addition and Subtraction: Calculate percentage relative to the first number
+            // Example: 50 - 2% -> becomes 50 - (50 * 0.02) = 50 - 1
+            if (_currentOperator == "+" || _currentOperator == "-")
+            {
+                _currentNumber = _previousNumber * (value / 100.0);
+            }
+            // For Multiplication and Division: Just treat it as a decimal
+            // Example: 50 × 10% -> becomes 50 × 0.1
+            else if (_currentOperator == "×" || _currentOperator == "÷")
+            {
+                _currentNumber = value / 100.0;
+            }
+
+            // Update the display and operation string to show the calculated value
+            DisplayText = _currentNumber.ToString("G15");
+            OperationText = $"{_previousNumber} {_currentOperator} {DisplayText}";
+        }
+        else
+        {
+            // If no operator is active, just turn the current number into its decimal form
+            // Example: 50% -> 0.5
+            _currentNumber = value / 100.0;
+            DisplayText = _currentNumber.ToString("G15");
+            OperationText = $"{value}%";
+        }
+
+        _isNewNumberInput = true; // Ready for the next number or Equals
     }
 
     [RelayCommand]
