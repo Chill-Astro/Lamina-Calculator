@@ -177,21 +177,45 @@ public partial class CalculatorViewModel : ObservableRecipient
     private void Square()
     {
         if (double.TryParse(DisplayText, out double value))
-            DisplayText = (value * value).ToString();
+        {
+            double result = value * value;
+            OperationText = $"sqr({value})"; 
+            DisplayText = result.ToString("G15");
+            _currentNumber = result;
+            _isNewNumberInput = true;
+        }
     }
 
     [RelayCommand]
     private void SquareRoot()
     {
         if (double.TryParse(DisplayText, out double value))
-            DisplayText = Math.Sqrt(value).ToString();
+        {
+            if (value < 0)
+            {
+                DisplayText = "Invalid Input";
+                OperationText = $"sqrt({value})";
+                return;
+            }
+            double result = Math.Sqrt(value);
+            OperationText = $"sqrt({value})"; 
+            DisplayText = result.ToString("G15");
+            _currentNumber = result;
+            _isNewNumberInput = true;
+        }
     }
 
     [RelayCommand]
     private void CubeRoot()
     {
         if (double.TryParse(DisplayText, out double value))
-            DisplayText = Math.Pow(value, 1.0 / 3.0).ToString();
+        {
+            double result = Math.Pow(value, 1.0 / 3.0);
+            OperationText = $"cbrt({value})"; 
+            DisplayText = result.ToString("G15");
+            _currentNumber = result;
+            _isNewNumberInput = true;
+        }
     }
 
     private void UpdateCurrentNumber()
