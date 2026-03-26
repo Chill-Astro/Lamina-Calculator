@@ -1,6 +1,6 @@
 <p align="center">
   <kbd>
-    <img width="1920" height="1080" alt="Lamina Promo" src="https://github.com/user-attachments/assets/284ba1ee-c554-4ef0-b0ac-679cedca0e0a" /><p align="center">  
+    <img width="1920" height="1080" alt="Lamina Promo" src="https://github.com/user-attachments/assets/5c483dca-ca62-4a1a-b836-df5a05e355d0" />
   </kbd>
 </p>
 
@@ -8,7 +8,7 @@
   
 Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is **Elevated with Powerful Scripted Actions**. This utility combines a modern, clean interface with the ability to perform complex calculations across **Mensuration, Finance, and Unit Conversions**, making it significantly more powerful than standard calculators.
   
-**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.13.0** ( In Development from 26th March 2026 )
+**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.13.0**
 
 **App Execution Aliases**
 
@@ -20,11 +20,7 @@ Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is
 
 ---
 
-## NOTICE :
-
-I am currently unable to update and maintain this project due to my upcoming ICSE Exams. Don't worry the project isn't abandoned. It will be updated after ICSE 2026 Examinations are over. Also there are plans to publish this app to Microsoft Store. I am excited to show this to you!
-
-Also btw I have plans for the next Update! (Mockups for UI) :
+## PLANS :
 
 - A Simple Scientific Calculator Addon in Main UI
 
@@ -34,7 +30,7 @@ Also btw I have plans for the next Update! (Mockups for UI) :
 
 <img width="480" height="500" alt="Lamina Settings(1)" src="https://github.com/user-attachments/assets/fd326b4b-bc68-49a5-9748-580f8e10637d" />
 
-- New Scripted Actions Design
+- New Scripted Actions Design (WIP)
 
 <img width="480" height="500" alt="Upcoming Revamp" src="https://github.com/user-attachments/assets/8fb2bfeb-1ff1-48d9-bc32-5f2c98f58eee" />
 
@@ -42,7 +38,7 @@ Please note that certain buttons here such as "Copy" will exist as icons.
 
 ---
 
-## Scripted Actions Included ( v11.26100.13.0 ) :
+## Scripted Actions Planned ( for v11.26100.14.0 ) :
 
 - Base Calculator UI + Scientific Calculator.
 - Date Calculator
@@ -96,8 +92,6 @@ Please note that certain buttons here such as "Copy" will exist as icons.
   * Financial Calculator
        * Simple Interest
        * Compund Interest
-       * Recurring Deposit
-       * Fixed Deposit
 
 ---
 
@@ -168,7 +162,7 @@ https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
 
 ![image](https://github.com/user-attachments/assets/d343c12f-03c0-4e52-95d8-925c5262f304)
 
-Lamina is now Deployed and now it shall appear in the Start Menu.
+Lamina ✦ is now Deployed and now it shall appear in the Start Menu.
 
 ![image](https://github.com/user-attachments/assets/99678fdb-c955-4818-a7bf-5d58fdfa1cfd)
 
