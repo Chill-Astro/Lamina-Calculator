@@ -10,13 +10,12 @@ Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is
   
 **Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.13.0**
 
-**App Execution Aliases**
-
-**Msix Release:** `lamina.exe` & `lmna.exe` 
-
-**Installer Release:** `lamina.exe`
+**App Execution Aliases :** `lamina.exe` & `lmna.exe` 
 
 </div>
+
+> [!NOTE]
+> Lamina ✦ uses Project [Trust My Msix!](https://github.com/Chill-Astro/Trust-My-Msix) for Installing the `.msix` using an Inno Setup Installer Wrapper to Inject its certificate to `Trusted Root Certification Authourities Store`. A copy is given in [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) for Usage.
 
 ---
 
@@ -48,7 +47,7 @@ Please note that certain buttons here such as "Copy" will exist as icons.
 
 ---
 
-## Install Lamina ( Installer ) from Winget :
+## Install Lamina ✦ from Winget :
       
       winget install Lamina.unp
 
@@ -66,7 +65,7 @@ https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
 
 ---
 
-## Scripted Actions Planned :
+## Scripted Actions :
 
 > [!NOTE]
 > A Scientific Calculator will be added onto the Main Calculator UI.
@@ -131,20 +130,25 @@ https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
 ## Installation : 
 
 1.  Download the `.msix` and `.cer` files from the [latest release.](https://github.com/Chill-Astro/Lamina/releases/latest)
-2.  Import the `.cer` file to the `Trusted Root Certificates` Store. [ ONLY ON FIRST RUN! ].
+2.  Import the `.cer` file to the `Trusted Root Certificates` Store. ( First Run ONLY! )
+
+    Alternatively use this Command after Downloading `TMM.exe` from [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) :
+
+         .\tmm --i <Certificate>
+    
 3.  Install the `.msix` file.
 
 <p align="center">
   --------------------- OR ---------------------
 </p>
 
--  Download the `Lamina-Setup.exe` to install the app easily.
+-  Download the `Setup.exe` that does the Importing and Installation FOR YOU!
 
 ---
 
-## Building from Source [ TO BE UPDATED ]  :
+## Building from Source :
 
-- Install Visual Studio 2026 with **WinUI Application Development** and **.NET Desktop Development** workloads. [ Visual Studio 2022 can also be used ].
+- Install Visual Studio 2026 with **WinUI Application Development** and **.NET Desktop Development** workloads.
   - Windows 11.
   - [XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler) is recommended for contributing.
   - .NET 10.0 Runtime LTS is must.
@@ -152,20 +156,20 @@ https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
   - Community Edition is sufficient for contributing and testing. Pro and Enterprise Editions can also be used.
   - Github Copilot and Live Share can be skipped for Storage Saving.
  
-![image](https://github.com/user-attachments/assets/0a18b87a-de85-40f9-80bc-ef2575dc221c)
+<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/1f2705e2-de7d-41d5-8dbd-8138d1812730" />
 
 - Get the Code :
   
-      git clone https://github.com/Chill-Astro/Lamina.git
+      git clone https://github.com/Chill-Astro/Lamina-Calculator.git
 
 - Open [Lamina.sln](/Lamina.sln) in Visual Studio.
-- Hit Deploy as shown in Screenshot. [Building is Automatically Done while Deploying.]
+- Hit Deploy as shown in Screenshot. ( Building is Automatically Done while Deploying ). 
 
-![image](https://github.com/user-attachments/assets/d343c12f-03c0-4e52-95d8-925c5262f304)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/69bff8d4-5724-4854-b558-62484ddb6bea" />
 
-Lamina ✦ is now Deployed and now it shall appear in the Start Menu.
+Lamina ✦ is now Deployed and now it shall appear in the Start Menu. Enjoy! :)
 
-![image](https://github.com/user-attachments/assets/99678fdb-c955-4818-a7bf-5d58fdfa1cfd)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/65cc1ddb-da33-472c-941b-3a3e55c5073e" />
 
 ---
 
@@ -192,10 +196,10 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
 - [Icons8](https://icons8.com) : For all the Mensuration and Quadratic Equation Solver Menu Logos, 
 - [SVG REPO](https://www.svgrepo.com/) : For Calculator Menu Logo, Unit Convertor, Heron's Formula, and most of the icons.
 - [Icomoon](https://icomoon.io/) : For the Base Calculator Icon and Produce the `.ttf` file for the Icons.
+- [Inno Setup by JRSoftware](https://jrsoftware.org/isinfo.php) : Literally the Installer is possible THANKS to them!
 - [Microsoft Calculator](https://github.com/microsoft/calculator) : For Square Root and Cube Root Button Icons. Also this inspired me to make this app.
-- [Advanced Installer Free](https://www.advancedinstaller.com) : For Creating an Installer for it's Complex Structure.
-- [ExchangeRate-API](https://app.exchangerate-api.com) : For Currency Conversion. [ Free Plan, so Currency Conversion is Limited ]
-- [Wallpaper by Anni Roenkae at Pexels](https://www.pexels.com/photo/abstract-painting-3276035/) : Wallpaper used for Promo Art.
+- [ExchangeRate-API](https://app.exchangerate-api.com) : For Currency Conversion. ( Free Plan, so Currency Conversion is Limited! -_- )
+- [@Lisa on Pexels](https://www.pexels.com/photo/pink-flowers-photograph-1083822/) : For Wallpaper for Promo Art.
 
 ---
 
