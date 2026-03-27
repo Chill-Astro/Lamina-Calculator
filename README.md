@@ -20,15 +20,11 @@ Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is
 
 ---
 
-## PLANS :
+## PLANS for v11.26100.14.0 :
 
 - A Simple Scientific Calculator Addon in Main UI
 
 <img width="480" height="500" alt="Lamina" src="https://github.com/user-attachments/assets/816e7a2d-0f90-48f0-b3ef-dc260077c5f7" />
-
-- New Settings Page (inspired from FOSS-Root-Checker)
-
-<img width="480" height="500" alt="Lamina Settings(1)" src="https://github.com/user-attachments/assets/fd326b4b-bc68-49a5-9748-580f8e10637d" />
 
 - New Scripted Actions Design (WIP)
 
