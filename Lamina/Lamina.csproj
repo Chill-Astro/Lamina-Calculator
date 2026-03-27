@@ -17,7 +17,7 @@
 	  <SelfContained>true</SelfContained>
 	  <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
 	  <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-	  <PackageCertificateKeyFile>Calculator_TemporaryKey.pfx</PackageCertificateKeyFile>
+	  <PackageCertificateKeyFile>Lamina_TemporaryKey.pfx</PackageCertificateKeyFile>
 	  <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
 	  <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
 	  <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
