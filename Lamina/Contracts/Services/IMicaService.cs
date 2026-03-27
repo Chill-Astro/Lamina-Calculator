@@ -1,18 +1,13 @@
-﻿// File: Contracts/Services/IMicaService.cs
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Composition.SystemBackdrops;
 
 namespace Lamina.Contracts.Services;
 
 public interface IMicaService
 {
-    bool IsMicaAltEnabled
-    {
-        get; set;
-    }
+    // The main method for our ComboBox logic
+    void SetBackdrop(int index);
 
-    void ApplyMica(ElementTheme currentTheme);
-
-    Task SaveMicaSettingAsync(bool isMicaAltEnabled);
-
+    // Persistence
+    Task SaveMicaSettingAsync(int index);
     Task LoadMicaSettingAsync();
 }

@@ -185,33 +185,45 @@ namespace Lamina
         }
 
         protected async override void OnLaunched(LaunchActivatedEventArgs args)
-        {
-            base.OnLaunched(args);
+{
+    base.OnLaunched(args);
 
-            // Load Mica setting
-            var micaService = App.GetService<IMicaService>();
-            await micaService.LoadMicaSettingAsync();
+    // 1. Load Mica
+    var micaService = App.GetService<IMicaService>();
+    await micaService.LoadMicaSettingAsync();
 
-            // Display the splash screen Page
-            var splashScreen = new SplashPage(); // Instantiate your SplashPage
-            MainWindow.Content = splashScreen;
-            MainWindow.Activate();
+    // 2. CHECK THE TOGGLE FIRST (Before creating any UI)
+    var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+    bool showSplash = localSettings.Values["ShowSplash"] as bool? ?? true;
 
-            // Wait for the specified delay
-            await Task.Delay(1300);
+    if (!showSplash)
+    {
+        // TARGET: INSTANT START
+        var shellViewModel = App.GetService<ShellViewModel>();
+        MainWindow.Content = new ShellPage(shellViewModel);
+        
+        // Activate immediately and exit this method
+        MainWindow.Activate();
+        await App.GetService<IActivationService>().ActivateAsync(args);
+        return; 
+    }
 
-            // Start the fade-out animation
-            var fadeOutStoryboard = (Storyboard)splashScreen.Resources["FadeOutStoryboard"];
-            fadeOutStoryboard.Begin();
+    // 3. TARGET: BRANDED START (Only runs if showSplash is true)
+    var splashScreen = new SplashPage();
+    MainWindow.Content = splashScreen;
+    MainWindow.Activate();
 
-            // Wait for the duration of the fade-out animation
-            await Task.Delay(400);
+    await Task.Delay(1300);
 
-            // Navigate to the main page and activate
-            var shellViewModel = App.GetService<ShellViewModel>();
-            MainWindow.Content = new ShellPage(shellViewModel);
-            await App.GetService<IActivationService>().ActivateAsync(args);
-        }
+    var fadeOutStoryboard = (Storyboard)splashScreen.Resources["FadeOutStoryboard"];
+    fadeOutStoryboard.Begin();
+
+    await Task.Delay(400);
+
+    var shellViewModelNormal = App.GetService<ShellViewModel>();
+    MainWindow.Content = new ShellPage(shellViewModelNormal);
+    await App.GetService<IActivationService>().ActivateAsync(args);
+}
 
         private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {       

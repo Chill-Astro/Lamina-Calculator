@@ -1,117 +1,150 @@
-﻿// File: ViewModels/SettingsViewModel.cs
-using System.ComponentModel;
+﻿using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
+using System.Net.Http;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Lamina.Contracts.Services;
-using Lamina.Helpers;
-using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using Windows.ApplicationModel;
-using WinUIEx;
 
 namespace Lamina.ViewModels;
-
-public enum MicaEffectType
-{
-    None, Mica, MicaAlt
-}
 
 public partial class SettingsViewModel : ObservableRecipient
 {
     private readonly IThemeSelectorService _themeSelectorService;
-    private readonly IMicaService _micaService; // Inject IMicaService
+    private readonly IMicaService _micaService;
+    private readonly ILocalSettingsService _localSettingsService;
+    private static readonly HttpClient _httpClient = new();
 
-    [ObservableProperty]
-    private ElementTheme _elementTheme;
+    // Safety guard to prevent multiple popups if the button is spammed
+    private bool _isCheckingUpdates;
 
-    [ObservableProperty]
-    private string _versionDescription;
+    [ObservableProperty] private string _appVersionText;
+    [ObservableProperty] private int _selectedThemeIndex;
+    [ObservableProperty] private int _selectedBackdropIndex;
 
-    [ObservableProperty]
-    private bool _isMicaAltEnabled;
-
-    // Default version if not found
-    private static readonly Version DefaultVersion = new Version(11, 26100, 13, 0);
-    public static Version AppVersion { get; private set; } = DefaultVersion;
-
-    public ICommand SwitchThemeCommand
-    {
-        get;
-    }
-    public ICommand SetMicaEffectCommand
-    {
-        get;
-    }
-
-    public SettingsViewModel(IThemeSelectorService themeSelectorService, IMicaService micaService) // Update constructor
+    public SettingsViewModel(IThemeSelectorService themeSelectorService, IMicaService micaService, ILocalSettingsService localSettingsService)
     {
         _themeSelectorService = themeSelectorService;
         _micaService = micaService;
-        _elementTheme = _themeSelectorService.Theme;
-        _versionDescription = GetVersionDescription();
-        IsMicaAltEnabled = _micaService.IsMicaAltEnabled; // Load initial state
+        _localSettingsService = localSettingsService;
 
-        SwitchThemeCommand = new RelayCommand<ElementTheme>(
-            async (param) =>
+        _selectedThemeIndex = (int)_themeSelectorService.Theme;
+
+        Task.Run(async () => {
+            var savedIndex = await _localSettingsService.ReadSettingAsync<int?>("AppBackdropIndex") ?? 0;
+            App.MainWindow.DispatcherQueue.TryEnqueue(() => { SelectedBackdropIndex = savedIndex; });
+        });
+
+        var v = Assembly.GetExecutingAssembly().GetName().Version;
+        AppVersionText = v != null ? $" v{v.Major}.{v.Minor}.{v.Build}.{v.Revision}" : "v11.26100.13.0";
+    }
+
+    partial void OnSelectedThemeIndexChanged(int value) => _themeSelectorService.SetThemeAsync((ElementTheme)value);
+
+    partial void OnSelectedBackdropIndexChanged(int value)
+    {
+        _micaService.SetBackdrop(value);
+        _ = _micaService.SaveMicaSettingAsync(value);
+    }
+
+    [RelayCommand]
+    private async Task OpenRepo() => await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Calculator"));
+
+    [RelayCommand]
+    private async Task OpenProfile() =>
+    await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro"));
+
+    [RelayCommand]
+    private async Task ShowLicense()
+    {
+        var licenseDialog = new ContentDialog
+        {
+            Title = "MIT License",
+            CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
+            Content = new ScrollViewer
             {
-                if (ElementTheme != param)
+                MaxHeight = 200,
+                Content = new TextBlock
                 {
-                    ElementTheme = param;
-                    await _themeSelectorService.SetThemeAsync(param);                    
+                    Text = "MIT License\n\nCopyright (c) 2025 Dev. Chill-Astro\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+                    TextWrapping = TextWrapping.Wrap,
+                    FontSize = 13
                 }
-            });
-
-        SetMicaEffectCommand = new RelayCommand(SaveMicaSetting);
-
-        this.PropertyChanged += SettingsViewModel_PropertyChanged;
+            },
+            CloseButtonText = "Close",
+            XamlRoot = App.MainWindow.Content.XamlRoot
+        };
+        await licenseDialog.ShowAsync();
     }
 
-    private void SettingsViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    [RelayCommand]
+    private async Task CheckForUpdates()
     {
-        if (e.PropertyName == nameof(IsMicaAltEnabled))
+        if (_isCheckingUpdates) return;
+        _isCheckingUpdates = true;
+
+        string message = "";
+        try
         {
-            SaveMicaSetting();
+            string gistUrl = "https://gist.githubusercontent.com/Chill-Astro/ac961f2e3f9a2de6b358de9be9a2bfc1/raw/LMNA_V";
+            string response = await _httpClient.GetStringAsync(gistUrl);
+
+            if (Version.TryParse(response.Trim().Replace("v", ""), out var latestVersion))
+            {
+                Version currentVersion = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
+
+                if (latestVersion > currentVersion)
+                {
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Calculator/releases"));
+                    _isCheckingUpdates = false;
+                    return; // Stop here if we're sending them to the browser
+                }
+                else
+                {
+                    message = "Lamina ✦ is UP TO DATE! 🎉";
+                }
+            }
+            else
+            {
+                message = "This is a DEV. Build of Lamina ✦ ! ⚠️";
+            }
         }
+        catch
+        {
+            message = "Please Verify your Internet Connection! ❌";
+        }
+
+        // Only one block here now!
+        if (!string.IsNullOrEmpty(message))
+        {
+            var updateDialog = new ContentDialog
+            {
+                Title = "Update Check",
+                Content = message,
+                CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
+                CloseButtonText = "Close",
+                XamlRoot = App.MainWindow.Content.XamlRoot
+            };
+            await updateDialog.ShowAsync();
+        }
+
+        _isCheckingUpdates = false;
     }
-
-    private async void SaveMicaSetting()
+    public bool IsSplashEnabled
     {
-        await _micaService.SaveMicaSettingAsync(IsMicaAltEnabled);
-    }
-
-    private static string GetVersionDescription()
-    {
-        Version version;
-
-        if (RuntimeHelper.IsMSIX)
+        get
         {
-            try
-            {
-                var packageVersion = Windows.ApplicationModel.Package.Current.Id.Version;
-                version = new Version(packageVersion.Major, packageVersion.Minor, packageVersion.Build, packageVersion.Revision);
-            }
-            catch
-            {
-                version = DefaultVersion;
-            }
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            // If the setting doesn't exist yet, return true (Default is On)
+            return localSettings.Values["ShowSplash"] as bool? ?? true;
         }
-        else
+        set
         {
-            try
-            {
-                version = Assembly.GetExecutingAssembly().GetName().Version ?? DefaultVersion;
-            }
-            catch
-            {
-                version = DefaultVersion;
-            }
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["ShowSplash"] = value;
+            OnPropertyChanged(nameof(IsSplashEnabled));
         }
-        AppVersion = version;
-        return $"Lamina ✦ - v{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
     }
 }

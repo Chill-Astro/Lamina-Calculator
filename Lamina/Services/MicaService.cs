@@ -1,20 +1,13 @@
-﻿// File: Services/MicaService.cs
-using Lamina;
-using Lamina.Contracts.Services;
+﻿using Lamina.Contracts.Services;
 using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using WinUIEx;
 
 namespace Lamina.Services;
 
 public class MicaService : IMicaService
 {
-    private const string MicaSettingsKey = "AppMicaAltEnabled";
-
-    public bool IsMicaAltEnabled { get; set; } = true; // Default to Mica Alt
-
+    private const string MicaSettingsKey = "AppBackdropIndex";
     private readonly ILocalSettingsService _localSettingsService;
 
     public MicaService(ILocalSettingsService localSettingsService)
@@ -22,38 +15,29 @@ public class MicaService : IMicaService
         _localSettingsService = localSettingsService;
     }
 
-    public void ApplyMica(ElementTheme currentTheme)
+    public void SetBackdrop(int index)
     {
         if (App.MainWindow == null) return;
 
-        if (IsMicaSupported() && IsMicaAltEnabled)
+        // 0: Mica Alt, 1: Mica, 2: Acrylic, 3: None
+        App.MainWindow.SystemBackdrop = index switch
         {
-            App.MainWindow.SystemBackdrop = new MicaBackdrop { Kind = MicaKind.BaseAlt };
-
-        }
-        else
-        {
-            App.MainWindow.SystemBackdrop = new DesktopAcrylicBackdrop();
-        }
+            0 => new MicaBackdrop { Kind = MicaKind.BaseAlt },
+            1 => new MicaBackdrop { Kind = MicaKind.Base },
+            2 => new DesktopAcrylicBackdrop(),
+            3 => null, // Removes backdrop
+            _ => new MicaBackdrop { Kind = MicaKind.BaseAlt }
+        };
     }
 
-    private bool IsMicaSupported()
+    public async Task SaveMicaSettingAsync(int index)
     {
-        // Implement the logic to check if Mica is supported
-        // This is a placeholder implementation
-        return true;
-    }
-
-    public async Task SaveMicaSettingAsync(bool isMicaAltEnabled)
-    {
-        IsMicaAltEnabled = isMicaAltEnabled;
-        await _localSettingsService.SaveSettingAsync(MicaSettingsKey, isMicaAltEnabled);
-        ApplyMica(App.MainWindow?.Content is FrameworkElement rootElement ? rootElement.RequestedTheme : ElementTheme.Default); // Apply on save
+        await _localSettingsService.SaveSettingAsync(MicaSettingsKey, index);
     }
 
     public async Task LoadMicaSettingAsync()
     {
-        IsMicaAltEnabled = await _localSettingsService.ReadSettingAsync<bool?>(MicaSettingsKey) ?? true; // Default to true
-        ApplyMica(App.MainWindow?.Content is FrameworkElement rootElement ? rootElement.RequestedTheme : ElementTheme.Default); // Apply on load
+        var savedIndex = await _localSettingsService.ReadSettingAsync<int?>(MicaSettingsKey) ?? 0;
+        SetBackdrop(savedIndex);
     }
 }
