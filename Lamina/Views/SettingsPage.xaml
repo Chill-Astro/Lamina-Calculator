@@ -74,76 +74,29 @@
                                 Text="{x:Bind ViewModel.AppVersionText, Mode=OneWay}" />
                         </StackPanel>
                     </Button>
+                </StackPanel>
 
-                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-                        <Button
-                            Grid.Column="0"
-                            Height="40"
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind ViewModel.OpenRepoCommand}"
-                            Content="Repository"
-                            CornerRadius="8"
-                            Style="{StaticResource AccentButtonStyle}" />
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <Button
+                        Grid.Column="0"
+                        Height="40"
+                        HorizontalAlignment="Stretch"
+                        Command="{x:Bind ViewModel.OpenRepoCommand}"
+                        Content="Repository"
+                        CornerRadius="8"
+                        Style="{StaticResource AccentButtonStyle}" />
 
-                        <Button
-                            Grid.Column="1"
-                            Height="40"
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind ViewModel.ShowLicenseCommand}"
-                            Content="MIT License"
-                            CornerRadius="8"
-                            Style="{StaticResource AccentButtonStyle}" />
-                    </Grid>
+                    <Button
+                        Grid.Column="1"
+                        Height="40"
+                        HorizontalAlignment="Stretch"
+                        Command="{x:Bind ViewModel.ShowLicenseCommand}"
+                        Content="MIT License"
+                        CornerRadius="8"
+                        Style="{StaticResource AccentButtonStyle}" />
+                </Grid>
 
-                    <Grid HorizontalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Border
-                            Grid.Row="0"
-                            Margin="0,0,0,4"
-                            Padding="16"
-                            HorizontalAlignment="Stretch"
-                            Background="{ThemeResource CardBackgroundFillColorDefault}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefault}"
-                            BorderThickness="1"
-                            CornerRadius="8">
-                            <Grid ColumnDefinitions="*,Auto">
-                                <TextBlock VerticalAlignment="Center" Text="Theme" />
-                                <ComboBox
-                                    Grid.Column="1"
-                                    MinWidth="150"
-                                    SelectedIndex="{x:Bind ViewModel.SelectedThemeIndex, Mode=TwoWay}">
-                                    <ComboBoxItem Content="System" />
-                                    <ComboBoxItem Content="Light" />
-                                    <ComboBoxItem Content="Dark" />
-                                </ComboBox>
-                            </Grid>
-                        </Border>
-
-                        <Border
-                            Grid.Row="1"
-                            Padding="16"
-                            HorizontalAlignment="Stretch"
-                            Background="{ThemeResource CardBackgroundFillColorDefault}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefault}"
-                            BorderThickness="1"
-                            CornerRadius="8">
-                            <Grid ColumnDefinitions="*,Auto">
-                                <TextBlock VerticalAlignment="Center" Text="Backdrop" />
-                                <ComboBox
-                                    Grid.Column="1"
-                                    MinWidth="150"
-                                    SelectedIndex="{x:Bind ViewModel.SelectedBackdropIndex, Mode=TwoWay}">
-                                    <ComboBoxItem Content="Mica Alt" />
-                                    <ComboBoxItem Content="Mica" />
-                                    <ComboBoxItem Content="Acrylic" />
-                                </ComboBox>
-                            </Grid>
-                        </Border>
-                    </Grid>
+                <StackPanel HorizontalAlignment="Stretch" Spacing="4">
 
                     <Border
                         Padding="16"
@@ -152,11 +105,74 @@
                         BorderBrush="{ThemeResource CardStrokeColorDefault}"
                         BorderThickness="1"
                         CornerRadius="8">
-                        <Grid ColumnDefinitions="*,Auto">
-                            <TextBlock VerticalAlignment="Center" Text="Splash Screen" />
-
-                            <ToggleSwitch
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <FontIcon
+                                Margin="0,0,12,0"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                Glyph="&#xE790;" />
+                            <TextBlock
                                 Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="Theme" />
+                            <ComboBox
+                                Grid.Column="2"
+                                MinWidth="150"
+                                SelectedIndex="{x:Bind ViewModel.SelectedThemeIndex, Mode=TwoWay}">
+                                <ComboBoxItem Content="System" />
+                                <ComboBoxItem Content="Light" />
+                                <ComboBoxItem Content="Dark" />
+                            </ComboBox>
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Padding="16"
+                        HorizontalAlignment="Stretch"
+                        Background="{ThemeResource CardBackgroundFillColorDefault}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefault}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <FontIcon
+                                Margin="0,0,12,0"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                Glyph="&#xEB42;" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="Backdrop" />
+                            <ComboBox
+                                Grid.Column="2"
+                                MinWidth="150"
+                                SelectedIndex="{x:Bind ViewModel.SelectedBackdropIndex, Mode=TwoWay}">
+                                <ComboBoxItem Content="Mica Alt" />
+                                <ComboBoxItem Content="Mica" />
+                                <ComboBoxItem Content="Acrylic" />
+                            </ComboBox>
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Padding="16"
+                        HorizontalAlignment="Stretch"
+                        Background="{ThemeResource CardBackgroundFillColorDefault}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefault}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <FontIcon
+                                Margin="0,0,12,0"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                Glyph="&#xE78B;" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="Splash Screen" />
+                            <ToggleSwitch
+                                Grid.Column="2"
                                 MinWidth="0"
                                 Margin="0,-6,0,-6"
                                 VerticalAlignment="Center"
@@ -165,22 +181,24 @@
                                 OnContent="" />
                         </Grid>
                     </Border>
-
-                    <StackPanel Margin="0,10,0,20" Spacing="12">
-                        <Button
-                            Padding="30,10"
-                            HorizontalAlignment="Center"
-                            Command="{x:Bind ViewModel.CheckForUpdatesCommand}"
-                            Content="Check for Updates"
-                            CornerRadius="5"
-                            Style="{StaticResource AccentButtonStyle}" />
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            FontSize="12"
-                            Opacity="0.5"
-                            Text="Made with 💖 by Chill-Astro" />
-                    </StackPanel>
                 </StackPanel>
+
+                <StackPanel Margin="0,10,0,20" Spacing="12">
+                    <Button
+                        Padding="30,10"
+                        HorizontalAlignment="Center"
+                        Command="{x:Bind ViewModel.CheckForUpdatesCommand}"
+                        Content="Check for Updates"
+                        CornerRadius="8"
+                        Style="{StaticResource AccentButtonStyle}" />
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Opacity="0.5"
+                        Text="Made with 💖 by Chill-Astro" />
+                </StackPanel>
+
             </StackPanel>
         </Grid>
     </ScrollViewer>
