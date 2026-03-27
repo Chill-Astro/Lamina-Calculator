@@ -4,36 +4,38 @@ using Lamina.Helpers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-
 using Windows.System;
 
 namespace Lamina.Views;
 
 public sealed partial class ShellPage : Page
 {
-    public ShellViewModel ViewModel
-    {
-        get;
-    }
+    public ShellViewModel ViewModel { get; }
 
     public ShellPage(ShellViewModel viewModel)
     {
         ViewModel = viewModel;
         InitializeComponent();
 
+        // 1. Link the services to the XAML elements
         ViewModel.NavigationService.Frame = NavigationFrame;
         ViewModel.NavigationViewService.Initialize(NavigationViewControl);
+
+        // 2. Setup the TitleBar
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
-        App.MainWindow.Activated += MainWindow_Activated;
         AppTitleBarText.Text = "Lamina ✦";
+
+        // 3. THE FIX: Trigger the initial navigation so the UI isn't blank
+        // We use the ViewModel name to tell the service where to go
+        ViewModel.NavigationService.NavigateTo(typeof(CalculatorViewModel).FullName);
+
+        App.MainWindow.Activated += MainWindow_Activated;
     }
 
-    private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private void OnLoaded(object sender, RoutedEventArgs e)
     {
         TitleBarHelper.UpdateTitleBar(RequestedTheme);
-
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
     }
@@ -57,23 +59,14 @@ public sealed partial class ShellPage : Page
     private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
     {
         var keyboardAccelerator = new KeyboardAccelerator() { Key = key };
-
-        if (modifiers.HasValue)
-        {
-            keyboardAccelerator.Modifiers = modifiers.Value;
-        }
-
+        if (modifiers.HasValue) keyboardAccelerator.Modifiers = modifiers.Value;
         keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
-
         return keyboardAccelerator;
     }
 
     private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
         var navigationService = App.GetService<INavigationService>();
-
-        var result = navigationService.GoBack();
-
-        args.Handled = result;
+        args.Handled = navigationService.GoBack();
     }
 }
