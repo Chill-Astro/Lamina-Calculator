@@ -1,5 +1,9 @@
-First, disable MSIX Packaging in Lamina Properties in Visual Studio.
+To Export 
 
-Export using this code :
+STEP 1 : Create a Folder -> Chill-Astro/Lamina-Installer
 
-dotnet publish -c Release -r win-x64 --self-contained true
+STEP 2 : Add Trust My Msix! (TMM.exe) to this Folder.
+
+STEP 3 : Add the .msix and .cer files you built. ( Double Check the Names! )
+
+Enjoy :)
