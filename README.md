@@ -20,7 +20,7 @@ Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is
 
 ---
 
-## PLANS for v11.26100.14.0 :
+## PLANS for v11.26100.14.0 & 11.26100.15.0! :
 
 - A Simple Scientific Calculator Addon in Main UI
 
@@ -34,7 +34,44 @@ Please note that certain buttons here such as "Copy" will exist as icons.
 
 ---
 
-## Scripted Actions Planned ( for v11.26100.14.0 ) :
+## Key Features :
+
+- Simple and Clean GUI. ✅
+- Dozens of calculation options. ✅
+- Fast and Error-Proof Calculations. ✅
+- High Precision for decimals. ✅
+- Modern UI with Fluid Animations and Transitions. ✅
+- History Support for the Base Calculator UI. ✅
+- Theme switching built in. ✅
+- Backdrop switching built in. [ B/w Mica Alt and Acrylic ] ✅
+- Available in both Msix & Installer Variants. ✅
+
+---
+
+## Install Lamina ( Installer ) from Winget :
+      
+      winget install Lamina.unp
+
+---
+
+## Video Previews :
+
+- New Onboarding Experience and Reveamped Settings Menu!!!!
+
+https://github.com/user-attachments/assets/1a737f20-3497-4105-91b6-d23a1321b3ce
+
+- Scripted Actions Preview [ TO BE UPDATED IN NEXT RELEASE ] :
+
+https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
+
+---
+
+## Scripted Actions Planned :
+
+> [!NOTE]
+> A Scientific Calculator will be added onto the Main Calculator UI.
+> 
+> These Scripted Actions Will be Redesigned in v11.26100.15.0!
 
 - Base Calculator UI + Scientific Calculator.
 - Date Calculator
@@ -88,38 +125,6 @@ Please note that certain buttons here such as "Copy" will exist as icons.
   * Financial Calculator
        * Simple Interest
        * Compund Interest
-
----
-
-## Key Features :
-
-- Simple and Clean GUI. ✅
-- Dozens of calculation options. ✅
-- Fast and Error-Proof Calculations. ✅
-- High Precision for decimals. ✅
-- Modern UI with Fluid Animations and Transitions. ✅
-- History Support for the Base Calculator UI. ✅
-- Theme switching built in. ✅
-- Backdrop switching built in. [ B/w Mica Alt and Acrylic ] ✅
-- Available in both Msix & Installer Variants. ✅
-
----
-
-## Install Lamina ( Installer ) from Winget :
-      
-      winget install Lamina.unp
-
----
-
-## Video Previews :
-
-- History Preview [ TO BE UPDATED ] :
-
-https://github.com/user-attachments/assets/624ade09-6050-4a4e-965d-7ef7938f4c1e
-
-- Scripted Actions Preview [ TO BE UPDATED ] :
-
-https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
 
 ---
 
