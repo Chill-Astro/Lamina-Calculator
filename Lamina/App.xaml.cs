@@ -60,6 +60,8 @@ namespace Lamina
                 services.AddSingleton<IFileService, FileService>();
 
                 // Views and ViewModels
+                services.AddTransient<RDViewModel>();
+                services.AddTransient<RDPage>();
                 services.AddTransient<OnboardingViewModel>();
                 services.AddTransient<OnboardingPage>();
                 services.AddTransient<FinanceCalculatorViewModel>();

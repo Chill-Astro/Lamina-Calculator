@@ -126,6 +126,7 @@ https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
   * Financial Calculator
        * Simple Interest
        * Compund Interest
+       * Recurring Deposit
 
 ---
 

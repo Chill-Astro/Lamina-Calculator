@@ -192,4 +192,7 @@
   <data name="Shell_Onboarding.Content" xml:space="preserve">
     <value>Onboarding</value>
   </data>
+  <data name="Shell_RD.Content" xml:space="preserve">
+    <value>RD</value>
+  </data>
 </root>

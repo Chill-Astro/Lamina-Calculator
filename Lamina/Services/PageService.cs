@@ -65,6 +65,7 @@ public class PageService : IPageService
         Configure<DateCalculatorViewModel, DateCalculatorPage>();
         Configure<FinanceCalculatorViewModel, FinanceCalculatorPage>();
         Configure<OnboardingViewModel, OnboardingPage>();
+        Configure<RDViewModel, RDPage>();
     }
 
     public Type GetPageType(string key)

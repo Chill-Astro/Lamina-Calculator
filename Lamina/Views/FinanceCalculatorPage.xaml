@@ -21,6 +21,7 @@
                 SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBoxItem Content="Simple Interest" />
                 <ComboBoxItem Content="Compound Interest" />
+                <ComboBoxItem Content="Recurring Deposit" />
             </ComboBox>
         </StackPanel>
         <ScrollViewer

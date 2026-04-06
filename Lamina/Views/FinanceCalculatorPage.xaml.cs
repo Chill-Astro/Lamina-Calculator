@@ -37,7 +37,10 @@ public sealed partial class FinanceCalculatorPage : Page
                     break;
                 case "Compound Interest":
                     ContentFrame.Navigate(typeof(CIPage));
-                    break;                
+                    break;
+                case "Recurring Deposit":
+                    ContentFrame.Navigate(typeof(RDPage));
+                    break;
             }
         }
     }
