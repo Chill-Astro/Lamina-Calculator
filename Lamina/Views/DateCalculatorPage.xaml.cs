@@ -8,59 +8,80 @@ public sealed partial class DateCalculatorPage : Page
 {
     public DateCalculatorPage()
     {
-        InitializeComponent();
+        this.InitializeComponent();
+
+        // Initialize with today's date
+        var today = DateTimeOffset.Now;
+        FromDateDiff.Date = ToDateDiff.Date = StartDateAdd.Date = today;
+
+        // Wire up events for real-time updates
+        FromDateDiff.DateChanged += (s, e) => LiveUpdateDiff();
+        ToDateDiff.DateChanged += (s, e) => LiveUpdateDiff();
+        StartDateAdd.DateChanged += (s, e) => LiveUpdateAdd(null, null);
+
+        LiveUpdateDiff();
+        LiveUpdateAdd(null, null);
     }
 
-    private void CalculateButton_Click(object sender, RoutedEventArgs e)
+    private void ModeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (StartDatePicker.SelectedDate.HasValue && EndDatePicker.SelectedDate.HasValue)
-        {
-            DateTime startDate = StartDatePicker.SelectedDate.Value.Date;
-            DateTime endDate = EndDatePicker.SelectedDate.Value.Date;
-
-            TimeSpan difference = endDate - startDate;
-            int daysDifference = (int)difference.TotalDays;
-
-            if (daysDifference > 365)
-            {
-                string formattedDifference = CalculateAgeDifference(startDate, endDate);
-                ResultTextBlock.Text = $"Difference: {formattedDifference}".ToUpper();
-            }
-            else if (daysDifference > 30)
-            {
-                int months = (int)(daysDifference / 30.44); // Average days in a month
-                int remainingDays = daysDifference % 30;
-                ResultTextBlock.Text = $"Difference: {months} Months {remainingDays} Days".ToUpper();
-            }
-            else
-            {
-                ResultTextBlock.Text = $"Difference: {daysDifference} Days".ToUpper();
-            }
-        }
-        else
-        {
-            ResultTextBlock.Text = "PLEASE SELECT BOTH START AND END DATES".ToUpper();
-        }
+        if (DifferenceSection == null || AddSubtractSection == null) return;
+        bool isDiffMode = ModeSelector.SelectedIndex == 0;
+        DifferenceSection.Visibility = isDiffMode ? Visibility.Visible : Visibility.Collapsed;
+        AddSubtractSection.Visibility = isDiffMode ? Visibility.Collapsed : Visibility.Visible;
     }
 
-    private string CalculateAgeDifference(DateTime startDate, DateTime endDate)
+    private void LiveUpdateDiff()
     {
-        int years = endDate.Year - startDate.Year;
-        int months = endDate.Month - startDate.Month;
-        int days = endDate.Day - startDate.Day;
+        if (!FromDateDiff.Date.HasValue || !ToDateDiff.Date.HasValue) return;
+
+        DateTime start = FromDateDiff.Date.Value.DateTime;
+        DateTime end = ToDateDiff.Date.Value.DateTime;
+
+        if (start == end) { DiffResultText.Text = "Same dates"; return; }
+
+        // Ensure we always calculate from earlier to later
+        if (start > end) { var temp = start; start = end; end = temp; }
+
+        int years = end.Year - start.Year;
+        int months = end.Month - start.Month;
+        int days = end.Day - start.Day;
 
         if (days < 0)
         {
             months--;
-            days += DateTime.DaysInMonth(endDate.Year, endDate.Month == 1 ? 12 : endDate.Month - 1);
+            days += DateTime.DaysInMonth(start.Year, start.Month);
         }
-
         if (months < 0)
         {
             years--;
             months += 12;
         }
 
-        return $"{years} Years {months} Months {days} Days";
+        string result = "";
+        if (years > 0) result += $"{years} year{(years > 1 ? "s" : "")}, ";
+        if (months > 0) result += $"{months} month{(months > 1 ? "s" : "")}, ";
+        if (days > 0) result += $"{days} day{(days > 1 ? "s" : "")}";
+
+        DiffResultText.Text = result.TrimEnd(',', ' ');
+    }
+
+    private void LiveUpdateAdd(object sender, object e)
+    {
+        if (StartDateAdd == null || !StartDateAdd.Date.HasValue) return;
+
+        DateTime start = StartDateAdd.Date.Value.DateTime;
+        int y = (int)YearsInput.Value;
+        int m = (int)MonthsInput.Value;
+        int d = (int)DaysInput.Value;
+
+        int direction = (SubtractRadio.IsChecked == true) ? -1 : 1;
+
+        try
+        {
+            DateTime result = start.AddYears(y * direction).AddMonths(m * direction).AddDays(d * direction);
+            AddResultText.Text = result.ToString("dddd, MMMM d, yyyy");
+        }
+        catch { AddResultText.Text = "Out of range"; }
     }
 }

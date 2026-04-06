@@ -2,47 +2,114 @@
     x:Class="Lamina.Views.DateCalculatorPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-    <Grid Background="Transparent">
+    Background="Transparent">
+
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
         <StackPanel
-            Margin="0,20,0,0"
+            Margin="0,0,0,0"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Spacing="10">
-            <TextBlock
-                HorizontalAlignment="Center"
-                Style="{StaticResource BaseTextBlockStyle}"
-                Text="Select Start Date:" />
-            <DatePicker
-                x:Name="StartDatePicker"
+            Spacing="24">
+
+            <ComboBox
+                x:Name="ModeSelector"
                 Width="300"
-                HorizontalAlignment="Center" />
-            <TextBlock Height="1" FontSize="1" />
-            <TextBlock
-                HorizontalAlignment="Center"
-                Style="{StaticResource BaseTextBlockStyle}"
-                Text="Select End Date:" />
-            <DatePicker
-                x:Name="EndDatePicker"
-                Width="300"
-                HorizontalAlignment="Center" />
-            <TextBlock Height="1" FontSize="1" />
-            <Button
-                Margin="0,0,0,0"
-                HorizontalAlignment="Center"
-                Click="CalculateButton_Click"
-                Content="Calculate"
-                Style="{StaticResource AccentButtonStyle}" />
-            <TextBlock
-                x:Name="ResultTextBlock"
-                HorizontalAlignment="Center"
-                FontSize="12"
-                FontWeight="SemiBold"
-                IsTextSelectionEnabled="True"
-                Style="{StaticResource BodyTextBlockStyle}"
-                Text="OUTPUT AREA" />
+                Background="Transparent"
+                BorderThickness="0"
+                SelectedIndex="0"
+                SelectionChanged="ModeSelector_SelectionChanged">
+                <ComboBoxItem Content="Difference between dates" />
+                <ComboBoxItem Content="Add or subtract days" />
+            </ComboBox>
+
+            <StackPanel x:Name="DifferenceSection" Spacing="16">
+                <CalendarDatePicker
+                    x:Name="FromDateDiff"
+                    Width="300"
+                    HorizontalAlignment="Left"
+                    Header="From" />
+                <CalendarDatePicker
+                    x:Name="ToDateDiff"
+                    Width="300"
+                    HorizontalAlignment="Left"
+                    Header="To" />
+
+                <StackPanel Margin="0,12,0,0" Spacing="4">
+                    <TextBlock
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        Text="Difference" />
+                    <TextBlock
+                        x:Name="DiffResultText"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Text="Same dates" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel
+                x:Name="AddSubtractSection"
+                Spacing="16"
+                Visibility="Collapsed">
+                <CalendarDatePicker
+                    x:Name="StartDateAdd"
+                    Width="300"
+                    HorizontalAlignment="Left"
+                    Header="From" />
+
+                <StackPanel
+                    Margin="0,0,0,0"
+                    Orientation="Horizontal"
+                    Spacing="20">
+                    <RadioButton
+                        x:Name="AddRadio"
+                        Checked="LiveUpdateAdd"
+                        Content="Add"
+                        IsChecked="True" />
+                    <RadioButton
+                        x:Name="SubtractRadio"
+                        Checked="LiveUpdateAdd"
+                        Content="Subtract" />
+                </StackPanel>
+
+                <Grid ColumnSpacing="8">
+                    <NumberBox
+                        x:Name="YearsInput"
+                        Width="95"
+                        Header="Years"
+                        SpinButtonPlacementMode="Compact"
+                        ValueChanged="LiveUpdateAdd"
+                        Value="0" />
+                    <NumberBox
+                        x:Name="MonthsInput"
+                        Grid.Column="1"
+                        Width="95"
+                        Header="Months"
+                        SpinButtonPlacementMode="Compact"
+                        ValueChanged="LiveUpdateAdd"
+                        Value="0" />
+                    <NumberBox
+                        x:Name="DaysInput"
+                        Grid.Column="2"
+                        Width="95"
+                        Header="Days"
+                        SpinButtonPlacementMode="Compact"
+                        ValueChanged="LiveUpdateAdd"
+                        Value="0" />
+                </Grid>
+
+                <StackPanel Margin="0,12,0,0" Spacing="4">
+                    <TextBlock
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        Text="Date" />
+                    <TextBlock
+                        x:Name="AddResultText"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Text="---" />
+                </StackPanel>
+            </StackPanel>
+
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Page>
