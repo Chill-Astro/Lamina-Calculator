@@ -6,19 +6,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Grid Background="Transparent">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Spacing="8">
-            <ComboBox x:Name="ShapeComboBox" Width="230" HorizontalAlignment="Stretch" SelectedIndex="0" Background="Transparent" BorderThickness ="0" SelectionChanged="ShapeComboBox_SelectionChanged">
-                <ComboBoxItem Content="Equilateral Triangle"/>
-                <ComboBoxItem Content="Isosceles Triangle"/>
-                <ComboBoxItem Content="Standard Triangle"/>
-                <ComboBoxItem Content="Square"/>
-                <ComboBoxItem Content="Rectangle / Parallelogram"/>
-                <ComboBoxItem Content="Rhombus"/>
-                <ComboBoxItem Content="Circle"/>
-                <ComboBoxItem Content="Semi-circle"/>
-                <ComboBoxItem Content="Room"/>
+        <StackPanel
+            Margin="0,0,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Spacing="8">
+            <ComboBox
+                x:Name="ShapeComboBox"
+                Width="300"
+                HorizontalAlignment="Stretch"
+                Background="Transparent"
+                BorderThickness="0"
+                SelectedIndex="0"
+                SelectionChanged="ShapeComboBox_SelectionChanged">
+                <ComboBoxItem Content="Equilateral Triangle" />
+                <ComboBoxItem Content="Isosceles Triangle" />
+                <ComboBoxItem Content="Standard Triangle" />
+                <ComboBoxItem Content="Square" />
+                <ComboBoxItem Content="Rectangle / Parallelogram" />
+                <ComboBoxItem Content="Rhombus" />
+                <ComboBoxItem Content="Circle" />
+                <ComboBoxItem Content="Semi-circle" />
+                <ComboBoxItem Content="Room" />
             </ComboBox>
         </StackPanel>
-        <Frame x:Name="ContentFrame" Margin="10,50,10,10"/>
+        <Frame x:Name="ContentFrame" Margin="10,50,10,10" />
     </Grid>
 </Page>
