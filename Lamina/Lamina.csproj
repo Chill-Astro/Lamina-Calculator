@@ -28,8 +28,8 @@
 	  <AppxPackageDir>C:\Users\Master\Downloads\</AppxPackageDir>
 	  <PlatformTarget>x64</PlatformTarget>
 	  <WindowsPackageType>MSIX</WindowsPackageType>
-	  <Version>11.26100.13.0</Version>
-	  <AssemblyVersion>11.26100.13.0</AssemblyVersion>
+	  <Version>11.26100.14.0</Version>
+	  <AssemblyVersion>11.26100.14.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
