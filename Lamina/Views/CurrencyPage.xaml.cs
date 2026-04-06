@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Lamina.Views;
 
@@ -17,7 +18,6 @@ public sealed partial class CurrencyPage : Page
     public CurrencyPage()
     {
         InitializeComponent();
-        // Read API key from configuration
         var config = new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -30,7 +30,8 @@ public sealed partial class CurrencyPage : Page
     {
         public string Code { get; set; }
         public string Name { get; set; }
-        public override string ToString() => $"{Code} - {Name}";
+        // Short Names: This ensures the ComboBox only shows the Code
+        public override string ToString() => Code;
     }
 
     private async Task LoadCurrenciesAsync()
@@ -44,16 +45,12 @@ public sealed partial class CurrencyPage : Page
             var json = await response.Content.ReadAsStringAsync();
             using var doc = JsonDocument.Parse(json);
             var codes = doc.RootElement.GetProperty("supported_codes");
-            var currencyList = new List<CurrencyItem>();
-            foreach (var code in codes.EnumerateArray())
-            {
-                currencyList.Add(new CurrencyItem
-                {
-                    Code = code[0].GetString(),
-                    Name = code[1].GetString()
-                });
-            }
-            currencyList.Sort((a, b) => string.Compare(a.Code, b.Code, StringComparison.Ordinal));
+
+            var currencyList = codes.EnumerateArray()
+                .Select(c => new CurrencyItem { Code = c[0].GetString(), Name = c[1].GetString() })
+                .OrderBy(c => c.Code)
+                .ToList();
+
             FromCurrencyComboBox.ItemsSource = currencyList;
             ToCurrencyComboBox.ItemsSource = currencyList;
             FromCurrencyComboBox.SelectedItem = currencyList.Find(c => c.Code == "USD");
@@ -61,34 +58,9 @@ public sealed partial class CurrencyPage : Page
         }
         catch
         {
-            // Fallback: major world currencies with names
-            var fallback = new List<CurrencyItem>
-            {
-                new CurrencyItem { Code = "USD", Name = "United States Dollar" },
-                new CurrencyItem { Code = "EUR", Name = "Euro" },
-                new CurrencyItem { Code = "GBP", Name = "British Pound Sterling" },
-                new CurrencyItem { Code = "INR", Name = "Indian Rupee" },
-                new CurrencyItem { Code = "JPY", Name = "Japanese Yen" },
-                new CurrencyItem { Code = "CNY", Name = "Chinese Yuan" },
-                new CurrencyItem { Code = "AUD", Name = "Australian Dollar" },
-                new CurrencyItem { Code = "CAD", Name = "Canadian Dollar" },
-                new CurrencyItem { Code = "CHF", Name = "Swiss Franc" },
-                new CurrencyItem { Code = "SGD", Name = "Singapore Dollar" },
-                new CurrencyItem { Code = "ZAR", Name = "South African Rand" },
-                new CurrencyItem { Code = "BRL", Name = "Brazilian Real" },
-                new CurrencyItem { Code = "RUB", Name = "Russian Ruble" },
-                new CurrencyItem { Code = "KRW", Name = "South Korean Won" },
-                new CurrencyItem { Code = "MXN", Name = "Mexican Peso" },
-                new CurrencyItem { Code = "HKD", Name = "Hong Kong Dollar" },
-                new CurrencyItem { Code = "NZD", Name = "New Zealand Dollar" },
-                new CurrencyItem { Code = "SEK", Name = "Swedish Krona" },
-                new CurrencyItem { Code = "TRY", Name = "Turkish Lira" },
-                new CurrencyItem { Code = "SAR", Name = "Saudi Riyal" }
-            };
+            var fallback = new List<CurrencyItem> { new() { Code = "USD", Name = "United States Dollar" }, new() { Code = "EUR", Name = "Euro" } };
             FromCurrencyComboBox.ItemsSource = fallback;
             ToCurrencyComboBox.ItemsSource = fallback;
-            FromCurrencyComboBox.SelectedItem = fallback.Find(c => c.Code == "USD");
-            ToCurrencyComboBox.SelectedItem = fallback.Find(c => c.Code == "EUR");
         }
         finally
         {
@@ -99,35 +71,62 @@ public sealed partial class CurrencyPage : Page
     private void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
         _ = LoadCurrenciesAsync();
-        ResultTextBlock.Text = "Currency list refreshed.";
     }
 
     private async void ConvertButton_Click(object sender, RoutedEventArgs e)
     {
-        if (decimal.TryParse(InputTextBox.Text, out decimal amount))
-        {
-            var fromItem = FromCurrencyComboBox.SelectedItem as CurrencyItem;
-            var toItem = ToCurrencyComboBox.SelectedItem as CurrencyItem;
-            var from = fromItem?.Code ?? "USD";
-            var to = toItem?.Code ?? "USD";
-            try
-            {
-                string url = $"https://v6.exchangerate-api.com/v6/{_apiKey}/pair/{from}/{to}/{amount}";
-                var response = await _httpClient.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                var json = await response.Content.ReadAsStringAsync();
-                using var doc = JsonDocument.Parse(json);
-                var result = doc.RootElement.GetProperty("conversion_result").GetDecimal();
-                ResultTextBlock.Text = $"{amount} {from} = {result} {to}";
-            }
-            catch (Exception ex)
-            {
-                ResultTextBlock.Text = $"Error: {ex.Message}";
-            }
-        }
-        else
+        double amount = InputNumberBox.Value;
+        if (double.IsNaN(amount))
         {
             ResultTextBlock.Text = "Invalid amount.";
+            return;
         }
+
+        var from = (FromCurrencyComboBox.SelectedItem as CurrencyItem)?.Code ?? "USD";
+        var to = (ToCurrencyComboBox.SelectedItem as CurrencyItem)?.Code ?? "EUR";
+
+        LoadingProgressBar.Visibility = Visibility.Visible;
+        try
+        {
+            string url = $"https://v6.exchangerate-api.com/v6/{_apiKey}/pair/{from}/{to}/{amount}";
+            var response = await _httpClient.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
+            using var doc = JsonDocument.Parse(json);
+            var result = doc.RootElement.GetProperty("conversion_result").GetDouble();
+
+            // Restored original output style
+            ResultTextBlock.Text = $"{amount} {from} = {result:N2} {to}";
+        }
+        catch (Exception ex)
+        {            
+        }
+        finally
+        {
+            LoadingProgressBar.Visibility = Visibility.Collapsed;
+        }
+    }
+    private void SwapButton_Click(object sender, RoutedEventArgs e)
+    {
+        var temp = FromCurrencyComboBox.SelectedIndex;
+        FromCurrencyComboBox.SelectedIndex = ToCurrencyComboBox.SelectedIndex;
+        ToCurrencyComboBox.SelectedIndex = temp;
+
+        // Auto-convert on swap if there is a value
+        if (!double.IsNaN(InputNumberBox.Value))
+        {
+            ConvertButton_Click(null, null);
+        }
+    }
+    private void CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrEmpty(ResultTextBlock.Text) || ResultTextBlock.Text == "---") return;
+
+        var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
+        dataPackage.SetText(ResultTextBlock.Text);
+        Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);
+
+        // Optional: Visual feedback that it was copied
+        VisualStateManager.GoToState(CopyButton, "Normal", true);
     }
 }

@@ -5,16 +5,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
         <ToolTipService.ToolTip>
-            <ToolTip Content="Currency rates are provided by exchangerate-api.com. Use the refresh button to update the list."/>
+            <ToolTip Content="Currency rates are provided by exchangerate-api.com. Use the refresh button to update the list." />
         </ToolTipService.ToolTip>
 
         <Button
+            x:Name="RefreshButton"
             Width="35"
             Height="35"
             Margin="0,-52,1,0"
@@ -29,69 +32,132 @@
             FontFamily="ms-appx:///Assets/Fonts/Segoe.ttf#Segoe Fluent Icons"
             FontSize="16">
             <ToolTipService.ToolTip>
-                <ToolTip Content="Refresh currency list"/>
+                <ToolTip Content="Refresh currency list" />
             </ToolTipService.ToolTip>
         </Button>
 
         <StackPanel
-            Margin="0,20,0,0"
+            Grid.Row="0"
+            Width="300"
+            Margin="0,40,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Spacing="10"
-            Grid.Row="0">
-            <TextBlock
-                HorizontalAlignment="Center"
-                Style="{StaticResource BaseTextBlockStyle}"
-                Text="Enter Amount:" />
-            <TextBox
-                x:Name="InputTextBox"
-                Width="250"
-                HorizontalAlignment="Stretch" />
+            Spacing="24">
 
-            <TextBlock
-                HorizontalAlignment="Center"
-                Style="{StaticResource BaseTextBlockStyle}"
-                Text="From Currency:" />
-            <ComboBox
-                x:Name="FromCurrencyComboBox"
-                Width="250"
-                HorizontalAlignment="Stretch"
-                SelectedIndex="0" />
+            <Border
+                Padding="24"
+                Background="{ThemeResource LayerFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="12">
 
-            <TextBlock
-                HorizontalAlignment="Center"
-                Style="{StaticResource BaseTextBlockStyle}"
-                Text="To Currency:" />
-            <ComboBox
-                x:Name="ToCurrencyComboBox"
-                Width="250"
-                HorizontalAlignment="Stretch"
-                SelectedIndex="0" />
+                <StackPanel Spacing="20">
+                    <NumberBox
+                        x:Name="InputNumberBox"
+                        HorizontalAlignment="Stretch"
+                        Header="Amount"
+                        PlaceholderText="Enter amount..."
+                        SpinButtonPlacementMode="Compact"
+                        Value="1.00" />
 
-            <Button
-                Margin="0,15,0,0"
-                HorizontalAlignment="Center"
-                Click="ConvertButton_Click"
-                Content="Convert"
-                Style="{StaticResource AccentButtonStyle}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-            <TextBlock
-                x:Name="ResultTextBlock"
-                HorizontalAlignment="Center"
-                FontSize="12"
-                FontWeight="SemiBold"
-                IsTextSelectionEnabled="True"
-                Style="{StaticResource BodyTextBlockStyle}"
-                Text="OUTPUT AREA" />
+                        <ComboBox
+                            x:Name="FromCurrencyComboBox"
+                            Grid.Column="0"
+                            HorizontalAlignment="Stretch"
+                            Header="From" />
+
+                        <Button
+                            Grid.Column="1"
+                            Margin="8,24,8,0"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="SwapButton_Click"
+                            Content="&#xE8AB;"
+                            FontFamily="Segoe Fluent Icons"
+                            Style="{StaticResource SubtleButtonStyle}">
+                            <ToolTipService.ToolTip>
+                                <ToolTip Content="Swap currencies" />
+                            </ToolTipService.ToolTip>
+                        </Button>
+
+                        <ComboBox
+                            x:Name="ToCurrencyComboBox"
+                            Grid.Column="2"
+                            HorizontalAlignment="Stretch"
+                            Header="To" />
+                    </Grid>
+
+                    <Button
+                        x:Name="ConvertButton"
+                        Height="40"
+                        HorizontalAlignment="Stretch"
+                        Click="ConvertButton_Click"
+                        Content="Convert"
+                        Style="{StaticResource AccentButtonStyle}" />
+                </StackPanel>
+            </Border>
+
+            <StackPanel Spacing="8">
+                <TextBlock
+                    x:Name="ResultLabel"
+                    HorizontalAlignment="Center"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Style="{StaticResource CaptionTextBlockStyle}"
+                    Text="Result" />
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        x:Name="ResultTextBlock"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        FontSize="28"
+                        FontWeight="Bold"
+                        Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                        IsTextSelectionEnabled="True"
+                        Text="---" />
+
+                    <Button
+                        x:Name="CopyButton"
+                        Grid.Column="1"
+                        Margin="12,0,0,0"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="CopyButton_Click"
+                        Content="&#xE8C8;"
+                        FontFamily="Segoe Fluent Icons"
+                        FontSize="14"
+                        Style="{StaticResource SubtleButtonStyle}"
+                        Visibility="Collapsed">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Copy to clipboard" />
+                        </ToolTipService.ToolTip>
+                    </Button>
+                </Grid>
+            </StackPanel>
         </StackPanel>
 
-        <ProgressBar x:Name="LoadingProgressBar"
-                     Grid.Row="1"
-                     Height="4"
-                     HorizontalAlignment="Stretch"
-                     VerticalAlignment="Bottom"
-                     Margin="0"
-                     IsIndeterminate="True"
-                     Visibility="Collapsed"/>
+        <ProgressBar
+            x:Name="LoadingProgressBar"
+            Grid.Row="1"
+            Height="4"
+            Margin="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Bottom"
+            IsIndeterminate="True"
+            Visibility="Collapsed" />
     </Grid>
 </Page>
