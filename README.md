@@ -69,14 +69,15 @@ https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
 ## Scripted Actions :
 
 > [!NOTE]
-> A Scientific Calculator will be added onto the Main Calculator UI.
+> A Scientific Calculator will be added onto the Main Calculator UI in v11.26100.15.0
 > 
-> These Scripted Actions Will be Redesigned in v11.26100.15.0!
+> These Scripted Actions Will be Redesigned in THE NEXT UPDATE!
 
-- Base Calculator UI + Scientific Calculator.
+- Base Calculator UI
+- Scientific Calculator ( v11.26100.15.0 )
 - Date Calculator
-- Programming
 - Convertors :
+  * Base Converter
   * Unit Convertor
   * Currency Convertor
 - Mensuration :

@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using System;
 using Windows.ApplicationModel.DataTransfer;
 
@@ -7,94 +8,67 @@ namespace Lamina.Views;
 
 public sealed partial class BaseConverterPage : Page
 {
-    public BaseConverterPage()
+    static string temp = "";
+    public BaseConverterPage() => this.InitializeComponent();
+
+    private async void ConvertButton_Click(object sender, RoutedEventArgs e)
     {
-        InitializeComponent();
-    }
+        string input = InputTextBox.Text?.Trim().ToUpper();
 
-    private void ConvertButton_Click(object sender, RoutedEventArgs e)
-    {
-        if (string.IsNullOrEmpty(InputTextBox.Text) || FromBaseComboBox.SelectedItem == null || ToBaseComboBox.SelectedItem == null)
+        if (string.IsNullOrEmpty(input))
         {
-            ResultTextBlock.Text = "Please enter a number and select both bases.";
+            await ShowResultPopup("Input Issue :", "Please Enter a Number", false);
             return;
         }
-
-        if (!(FromBaseComboBox.SelectedItem is ComboBoxItem fromBaseItem) || !(ToBaseComboBox.SelectedItem is ComboBoxItem toBaseItem))
-        {
-            ResultTextBlock.Text = "Error in base selection.";
-            return;
-        }
-
-        // Extract the base number from the ComboBoxItem content (assuming format like "Binary (2)")
-        // Added null checks and improved parsing robustness slightly
-        int fromBase;
-        string fromBaseContent = fromBaseItem.Content?.ToString();
-        if (string.IsNullOrEmpty(fromBaseContent) || !TryExtractBase(fromBaseContent, out fromBase))
-        {
-            ResultTextBlock.Text = "Invalid 'From' base format.";
-            return;
-        }
-
-        int toBase;
-        string toBaseContent = toBaseItem.Content?.ToString();
-        if (string.IsNullOrEmpty(toBaseContent) || !TryExtractBase(toBaseContent, out toBase))
-        {
-            ResultTextBlock.Text = "Invalid 'To' base format.";
-            return;
-        }
-
-
-        string inputNumber = InputTextBox.Text.ToUpper(); // Handle hexadecimal A-F
 
         try
         {
-            // Use Convert.ToInt64 to convert from the source base to decimal (long)
-            long decimalValue = Convert.ToInt64(inputNumber, fromBase);
-            // Use Convert.ToString to convert from decimal (long) to the target base
-            string result = Convert.ToString(decimalValue, toBase).ToUpper();
-            ResultTextBlock.Text = result;
+            int fromBase = int.Parse((FromBaseComboBox.SelectedItem as ComboBoxItem).Tag.ToString());
+            int toBase = int.Parse((ToBaseComboBox.SelectedItem as ComboBoxItem).Tag.ToString());
+
+            // Convert input to decimal first, then to target base
+            long decimalValue = Convert.ToInt64(input, fromBase);
+            temp = Convert.ToString(decimalValue, toBase).ToUpper();
+
+            string toBaseName = (ToBaseComboBox.SelectedItem as ComboBoxItem).Content.ToString().Split(' ')[0];
+            await ShowResultPopup($"{toBaseName} Value =", temp, true);
         }
         catch (FormatException)
         {
-            // Catch FormatException specifically for invalid input characters for the given base
-            ResultTextBlock.Text = $"Invalid input '{InputTextBox.Text}' for base {fromBase}.";
+            await ShowResultPopup("Issue :", "Invalid Digits for Selected Base ", false);
         }
         catch (OverflowException)
         {
-            // Catch OverflowException if the number is too large for long
-            ResultTextBlock.Text = $"Input number is too large for conversion.";
-        }
-        catch (ArgumentOutOfRangeException)
-        {
-            // Catch ArgumentOutOfRangeException if base is less than 2 or greater than 36
-            ResultTextBlock.Text = $"Invalid base value. Bases must be between 2 and 36.";
-        }
-        catch (Exception ex)
-        {
-            // Catch any other unexpected errors
-            ResultTextBlock.Text = $"An unexpected error occurred: {ex.Message}";
-        }
-    }
-
-    // Helper method to safely extract the base number from the ComboBoxItem content
-    private bool TryExtractBase(string content, out int baseValue)
-    {
-        baseValue = 0;
-        try
-        {
-            int startIndex = content.LastIndexOf('(');
-            int endIndex = content.LastIndexOf(')');
-            if (startIndex != -1 && endIndex != -1 && endIndex > startIndex)
-            {
-                string baseString = content.Substring(startIndex + 1, endIndex - startIndex - 1);
-                return int.TryParse(baseString, out baseValue);
-            }
+            await ShowResultPopup("Issue :", "Number too Large", false);
         }
         catch (Exception)
         {
-            // Ignore exceptions during parsing, just return false
+            await ShowResultPopup("Issue :", "Conversion Failed", false);
         }
-        return false;
+    }
+
+    private async System.Threading.Tasks.Task ShowResultPopup(string label, string value, bool isSuccess)
+    {
+        ResultLabel.Text = label;
+        ResultValueText.Text = value;
+
+        // Only show copy button on success
+        CopyButton.Visibility = isSuccess ? Visibility.Visible : Visibility.Collapsed;
+
+        // Apply Red color for errors, Standard color for success
+        ResultValueText.Foreground = isSuccess
+            ? (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
+            : (Brush)Application.Current.Resources["SystemFillColorCriticalBrush"]; // This makes it red
+
+        ResultDialog.XamlRoot = this.Content.XamlRoot;
+        await ResultDialog.ShowAsync();
+    }
+
+    private void CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrEmpty(temp)) return;
+        var dp = new DataPackage();
+        dp.SetText(temp);
+        Clipboard.SetContent(dp);
     }
 }
