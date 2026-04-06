@@ -319,4 +319,11 @@ public sealed partial class UnitConverterPage : Page
         if (from == to) return value;
         return from == "Degrees" ? value * Math.PI / 180 : value * 180 / Math.PI;
     }
+    private void SwapButton_Click(object sender, RoutedEventArgs e)
+    {
+        // Swap the selected indices
+        int tempIndex = FromUnitComboBox.SelectedIndex;
+        FromUnitComboBox.SelectedIndex = ToUnitComboBox.SelectedIndex;
+        ToUnitComboBox.SelectedIndex = tempIndex;        
+    }
 }
