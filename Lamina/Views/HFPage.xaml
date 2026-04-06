@@ -15,7 +15,7 @@
             Spacing="12">
 
             <InfoBar
-                Title="Heron's Formula"
+                Title="Formula"
                 IsClosable="False"
                 IsIconVisible="True"
                 IsOpen="True"
