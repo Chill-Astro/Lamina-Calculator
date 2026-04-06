@@ -5,18 +5,36 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-	<Grid Background="Transparent">
-		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Spacing="8">
-			<TextBlock Text="Enter Eq. Side's Length [a] :" Style="{StaticResource BaseTextBlockStyle}"/>
-			<TextBox x:Name="EqualSideTextBox" Width="200" HorizontalAlignment="Stretch"/>
-			<TextBlock Text="Enter Base's Length [b] :" Style="{StaticResource BaseTextBlockStyle}"/>
-			<TextBox x:Name="NonEqualSideTextBox" Width="200" HorizontalAlignment="Stretch"/>
-			<Button Content="Calculate"
-                    Click="CalculateButton_Click"
-                    HorizontalAlignment="Center"
-                    Margin="0,15,0,0"
-                    Style="{StaticResource AccentButtonStyle}" />
-            <TextBlock x:Name="ResultTextBlock" IsTextSelectionEnabled="True" Text="OUTPUT AREA" FontWeight="SemiBold" FontSize="12" Style="{StaticResource BodyTextBlockStyle}" HorizontalAlignment="Center"/>
-		</StackPanel>
-	</Grid>
+    <Grid Background="Transparent">
+        <StackPanel
+            Margin="0,20,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Spacing="8">
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Enter Eq. Side's Length [a] :" />
+            <TextBox
+                x:Name="EqualSideTextBox"
+                Width="200"
+                HorizontalAlignment="Stretch" />
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Enter Base's Length [b] :" />
+            <TextBox
+                x:Name="NonEqualSideTextBox"
+                Width="200"
+                HorizontalAlignment="Stretch" />
+            <Button
+                Margin="0,15,0,0"
+                HorizontalAlignment="Center"
+                Click="CalculateButton_Click"
+                Content="Calculate"
+                Style="{StaticResource AccentButtonStyle}" />
+            <TextBlock
+                x:Name="ResultTextBlock"
+                HorizontalAlignment="Center"
+                FontSize="12"
+                FontWeight="SemiBold"
+                IsTextSelectionEnabled="True"
+                Style="{StaticResource BodyTextBlockStyle}"
+                Text="OUTPUT AREA" />
+        </StackPanel>
+    </Grid>
 </Page>

@@ -12,16 +12,16 @@
             </ResourceDictionary.MergedDictionaries>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
-                    <SolidColorBrush x:Key="AccentButtonBackground" Color="{ThemeResource SystemAccentColorDark1}"/>
-                    <SolidColorBrush x:Key="AccentButtonHoverBackground" Color="{ThemeResource SystemAccentColorDark2}"/>
-                    <SolidColorBrush x:Key="AccentButtonPressedBackground" Color="{ThemeResource SystemAccentColorDark3}"/>
-                    <SolidColorBrush x:Key="AccentButtonForeground" Color="Black"/>
+                    <SolidColorBrush x:Key="AccentButtonBackground" Color="{ThemeResource SystemAccentColorDark1}" />
+                    <SolidColorBrush x:Key="AccentButtonHoverBackground" Color="{ThemeResource SystemAccentColorDark2}" />
+                    <SolidColorBrush x:Key="AccentButtonPressedBackground" Color="{ThemeResource SystemAccentColorDark3}" />
+                    <SolidColorBrush x:Key="AccentButtonForeground" Color="Black" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
-                    <SolidColorBrush x:Key="AccentButtonBackground" Color="{ThemeResource SystemAccentColorLight3}"/>
-                    <SolidColorBrush x:Key="AccentButtonHoverBackground" Color="{ThemeResource SystemAccentColorLight3}"/>
-                    <SolidColorBrush x:Key="AccentButtonPressedBackground" Color="{ThemeResource SystemAccentColorLight1}"/>
-                    <SolidColorBrush x:Key="AccentButtonForeground" Color="White"/>
+                    <SolidColorBrush x:Key="AccentButtonBackground" Color="{ThemeResource SystemAccentColorLight3}" />
+                    <SolidColorBrush x:Key="AccentButtonHoverBackground" Color="{ThemeResource SystemAccentColorLight3}" />
+                    <SolidColorBrush x:Key="AccentButtonPressedBackground" Color="{ThemeResource SystemAccentColorLight1}" />
+                    <SolidColorBrush x:Key="AccentButtonForeground" Color="White" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>

@@ -4,27 +4,104 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{x:Null}">
+    Background="{x:Null}"
+    mc:Ignorable="d">
+
     <Grid Background="Transparent">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,20,0,0" Spacing="8">
-            <TextBlock Text="First Side [a] :" Style="{StaticResource BaseTextBlockStyle}"/>
-            <TextBox x:Name="SideATextBox" Width="200"  HorizontalAlignment="Stretch"/>
-            <TextBlock Text="Second Side [b] :" Style="{StaticResource BaseTextBlockStyle}"/>
-            <TextBox x:Name="SideBTextBox" Width="200" HorizontalAlignment="Stretch"/>
-            <TextBlock Text="Third Side [c] :" Style="{StaticResource BaseTextBlockStyle}"/>
-            <TextBox x:Name="SideCTextBox" Width="200" HorizontalAlignment="Stretch"/>
-            <Button Content="Calculate"
-        x:Name="CalculateButton"
-        Click="CalculateButton_Click"
-        HorizontalAlignment="Center"
-        Margin="0,15,0,0"
-        Style="{StaticResource AccentButtonStyle}">
+        <StackPanel
+            Margin="0,20,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Spacing="12">
+
+            <InfoBar
+                Title="Heron's Formula"
+                IsClosable="False"
+                IsIconVisible="True"
+                IsOpen="True"
+                Message="s = ( a + b + c ) / 2&#10;Area = √[s(s-a)(s-b)(s-c)]"
+                Severity="Informational" />
+
+            <NumberBox
+                x:Name="SideANumberBox"
+                Width="300"
+                Header="First Side (a)"
+                PlaceholderText="0.00"
+                SpinButtonPlacementMode="Compact" />
+
+            <NumberBox
+                x:Name="SideBNumberBox"
+                Width="300"
+                Header="Second Side (b)"
+                PlaceholderText="0.00"
+                SpinButtonPlacementMode="Compact" />
+
+            <NumberBox
+                x:Name="SideCNumberBox"
+                Width="300"
+                Header="Third Side (c)"
+                PlaceholderText="0.00"
+                SpinButtonPlacementMode="Compact" />
+
+            <Button
+                x:Name="CalculateButton"
+                Margin="0,15,0,0"
+                HorizontalAlignment="Center"
+                Click="CalculateButton_Click"
+                Content="Calculate"
+                Style="{StaticResource AccentButtonStyle}">
                 <Button.KeyboardAccelerators>
                     <KeyboardAccelerator Key="Enter" />
                 </Button.KeyboardAccelerators>
             </Button>
-            <TextBlock x:Name="AreaTextBlock" IsTextSelectionEnabled="True" Text="OUTPUT AREA" Style="{StaticResource BodyTextBlockStyle}" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="12"/>
+
+            <TextBlock
+                x:Name="ErrorMessageText"
+                Margin="0,10,0,0"
+                HorizontalAlignment="Center"
+                Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
         </StackPanel>
+
+        <ContentDialog
+            x:Name="ResultDialog"
+            Title="Result"
+            DefaultButton="Primary"
+            PrimaryButtonText="Close">
+            <StackPanel Margin="0,10,0,0" Spacing="10">
+                <TextBlock
+                    x:Name="ResultLabel"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Style="{StaticResource CaptionTextBlockStyle}"
+                    Text="Area =" />
+
+                <Grid x:Name="ResultValueContainer">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        x:Name="ResultValueText"
+                        Grid.Column="0"
+                        MaxWidth="400"
+                        VerticalAlignment="Center"
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        TextTrimming="CharacterEllipsis"
+                        TextWrapping="Wrap" />
+
+                    <Button
+                        x:Name="CopyButton"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Click="CopyButton_Click"
+                        Style="{StaticResource SubtleButtonStyle}"
+                        ToolTipService.ToolTip="Copy to clipboard">
+                        <FontIcon Glyph="&#xE8C8;" />
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </ContentDialog>
+
     </Grid>
 </Page>
