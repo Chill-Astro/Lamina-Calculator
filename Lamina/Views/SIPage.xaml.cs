@@ -1,44 +1,65 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using System;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace Lamina.Views
 {
     public sealed partial class SIPage : Page
     {
-        public SIPage()
+        static string temp = "";
+        public SIPage() => this.InitializeComponent();
+
+        private async void CalculateSIButton_Click(object sender, RoutedEventArgs e)
         {
-            this.InitializeComponent();
-        }
+            double p = PrincipalNumberBox.Value;
+            double r = RateNumberBox.Value;
+            double t = TimeNumberBox.Value;
 
-        private void CalculateSIButton_Click(object sender, RoutedEventArgs e)
-        {
-            string principalString = PrincipalTextBox.Text;
-            string rateString = RateTextBox.Text;
-            string timeString = TimeTextBox.Text;
-
-            double principal, rate, time, simpleInterest;
-            SimpleInterestTextBlock.Text = ""; // Clear previous result
-
-            if (double.TryParse(principalString, out principal) &&
-                double.TryParse(rateString, out rate) &&
-                double.TryParse(timeString, out time))
+            if (double.IsNaN(p) || double.IsNaN(r) || double.IsNaN(t))
             {
-                if (principal < 0 || rate < 0 || time < 0) // Principal, Rate, Time should be non-negative
-                {
-                    SimpleInterestTextBlock.Text = "VALUES MUST BE +VE";
-                }
-                else
-                {
-                    simpleInterest = (principal * rate * time) / 100.0; // SI Formula
+                temp = "";
+                await ShowResultPopup("Input Issue:", "Please fill all fields", false);
+                return;
+            }
 
-                    SimpleInterestTextBlock.Text = simpleInterest.ToString("C"); // Display SI in Currency format
-                }
+            if (p < 0 || r < 0 || t < 0)
+            {
+                temp = "";
+                await ShowResultPopup("Invalid Input:", "Values must be +ve", false);
             }
             else
             {
-                SimpleInterestTextBlock.Text = "INVALID INPUTS";
+                double si = (p * r * t) / 100.0;
+                double total = p + si;
+
+                // Using N2 for clean number formatting (1,234.56)
+                temp = si.ToString("N2");
+                await ShowResultPopup("Interest Accrued:", $"{temp} (Total: {total:N2})", true);
             }
+        }
+
+        private async System.Threading.Tasks.Task ShowResultPopup(string context, string result, bool isSuccess)
+        {
+            ResultLabel.Text = context;
+            ResultValueText.Text = result;
+            CopyButton.Visibility = isSuccess ? Visibility.Visible : Visibility.Collapsed;
+
+            ResultValueText.Foreground = isSuccess
+                ? (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
+                : (Brush)Application.Current.Resources["SystemFillColorCriticalBrush"];
+
+            ResultDialog.XamlRoot = this.Content.XamlRoot;
+            await ResultDialog.ShowAsync();
+        }
+
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(temp)) return;
+            var dp = new DataPackage();
+            dp.SetText(temp);
+            Clipboard.SetContent(dp);
         }
     }
 }

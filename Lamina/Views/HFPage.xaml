@@ -9,7 +9,7 @@
 
     <Grid Background="Transparent">
         <StackPanel
-            Margin="0,20,0,0"
+            Margin="0,0,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Spacing="12">

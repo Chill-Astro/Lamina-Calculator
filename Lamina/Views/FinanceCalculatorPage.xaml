@@ -13,7 +13,7 @@
             Spacing="8">
             <ComboBox
                 x:Name="ComboBox"
-                Width="230"
+                Width="300"
                 HorizontalAlignment="Stretch"
                 Background="Transparent"
                 BorderThickness="0"
@@ -23,6 +23,11 @@
                 <ComboBoxItem Content="Compound Interest" />
             </ComboBox>
         </StackPanel>
-        <Frame x:Name="ContentFrame" Margin="10,50,10,10" />
+        <ScrollViewer
+            Margin="0,40,0,0"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Hidden">
+            <Frame x:Name="ContentFrame" />
+        </ScrollViewer>
     </Grid>
 </Page>
