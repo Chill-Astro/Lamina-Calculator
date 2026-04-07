@@ -15,57 +15,22 @@ public class PageService : IPageService
     public PageService()
     {
         Configure<CalculatorViewModel, CalculatorPage>();
-        Configure<HFViewModel, HFPage>();
-        Configure<SIViewModel, SIPage>();
-        Configure<CIViewModel, CIPage>();
+        Configure<HFViewModel, HFPage>();                
         Configure<SettingsViewModel, SettingsPage>();
         Configure<SplashViewModel, SplashPage>();              
         Configure<AreaViewModel, AreaPage>();
-        Configure<ETAreaViewModel, ETAreaPage>();
-        Configure<ITAreaViewModel, ITAreaPage>();
-        Configure<SquareAreaViewModel, SquareAreaPage>();
-        Configure<RectAreaViewModel, RectAreaPage>();
-        Configure<RhombusAreaViewModel, RhombusAreaPage>();
-        Configure<CircleAreaViewModel, CircleAreaPage>();
-        Configure<SCircleAreaViewModel, SCircleAreaPage>();
         Configure<VolumeViewModel, VolumePage>();
         Configure<SurfaceAreaViewModel, SurfaceAreaPage>();
-        Configure<CubeVolumeViewModel, CubeVolumePage>();
-        Configure<CuboidVolumeViewModel, CuboidVolumePage>();
-        Configure<CylinderVolumeViewModel, CylinderVolumePage>();
-        Configure<ConeVolumeViewModel, ConeVolumePage>();
-        Configure<SphereViewModel, SpherePage>();
-        Configure<CubeSAViewModel, CubeSAPage>();
-        Configure<CuboidSAViewModel, CuboidSAPage>();
-        Configure<CylinderSAViewModel, CylinderSAPage>();
-        Configure<ConeSAViewModel, ConeSAPage>();
-        Configure<SphereSAViewModel, SphereSAPage>();
         Configure<DiagonalViewModel, DiagonalPage>();
         Configure<PerimeterViewModel, PerimeterPage>();
-        Configure<ETPermViewModel, ETPermPage>();
-        Configure<ITPermViewModel, ITPermPage>();
-        Configure<SquarePermViewModel, SquarePermPage>();
-        Configure<RectPermViewModel, RectPermPage>();        
-        Configure<CirclePermViewModel, CirclePermPage>();
-        Configure<SCirclePermViewModel, SCirclePermPage>();
-        Configure<SquareDiagViewModel, SquareDiagPage>();
-        Configure<RectDiagViewModel, RectDiagPage>();
-        Configure<CubeDiagViewModel, CubeDiagPage>();
-        Configure<CuboidDiagViewModel, CuboidDiagPage>();                
-        Configure<TriAreaViewModel, TriAreaPage>();      
-        Configure<RoomAreaViewModel, RoomAreaPage>();
-        Configure<CSurfaceAreaViewModel, CSurfaceAreaPage>();
-        Configure<CylinderCSAViewModel, CylinderCSAPage>();
-        Configure<ConeCSAViewModel, ConeCSAPage>();
-        Configure<SphereCSAViewModel, SphereCSAPage>();           
+        Configure<CSurfaceAreaViewModel, CSurfaceAreaPage>();        
         Configure<UnitConverterViewModel, UnitConverterPage>();
         Configure<BaseConverterViewModel, BaseConverterPage>();
         Configure<QuadEqnViewModel, QuadEqnPage>();
         Configure<CurrencyViewModel, CurrencyPage>();
         Configure<DateCalculatorViewModel, DateCalculatorPage>();
         Configure<FinanceCalculatorViewModel, FinanceCalculatorPage>();
-        Configure<OnboardingViewModel, OnboardingPage>();
-        Configure<RDViewModel, RDPage>();
+        Configure<OnboardingViewModel, OnboardingPage>();        
     }
 
     public Type GetPageType(string key)

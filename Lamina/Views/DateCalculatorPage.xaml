@@ -72,9 +72,13 @@
                 </StackPanel>
 
                 <Grid ColumnSpacing="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
                     <NumberBox
                         x:Name="YearsInput"
-                        Width="95"
                         Header="Years"
                         SpinButtonPlacementMode="Compact"
                         ValueChanged="LiveUpdateAdd"
@@ -82,7 +86,6 @@
                     <NumberBox
                         x:Name="MonthsInput"
                         Grid.Column="1"
-                        Width="95"
                         Header="Months"
                         SpinButtonPlacementMode="Compact"
                         ValueChanged="LiveUpdateAdd"
@@ -90,7 +93,6 @@
                     <NumberBox
                         x:Name="DaysInput"
                         Grid.Column="2"
-                        Width="95"
                         Header="Days"
                         SpinButtonPlacementMode="Compact"
                         ValueChanged="LiveUpdateAdd"
