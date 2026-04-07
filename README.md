@@ -6,7 +6,7 @@
 
 <div align="center">
   
-Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is **Elevated with Powerful Scripted Actions**. This utility combines a modern, clean interface with the ability to perform complex calculations across **Mensuration, Finance, and Unit Conversions**, making it significantly more powerful than standard calculators.
+Lamina ✦ is a `WinUI 3 calculator` that is NOT ONLY includes a Regular Calculator BUT ALSO something called `"Scripties"`. She supports **Mensuration, Finance, Currency Conversion, Unit Conversions AND MORE**, making her VERY POWERFUL AND EXTENDABLE.
   
 **Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.14.0**
 
@@ -19,18 +19,9 @@ Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is
 
 ---
 
-## PLANS :
+## What are Scripties?
 
-- New UI for Scripted Actions ( Coming Soon ) :
-<kbd>
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/92b8217e-18b9-4fd5-bb94-5b4988a884db" />
-</kbd>
-
-- Scientific Calculator Addon in Main UI ( Coming Later ) :
-
-<kbd>
-<img width="480" height="500" alt="Lamina" src="https://github.com/user-attachments/assets/816e7a2d-0f90-48f0-b3ef-dc260077c5f7" />
-</kbd>
+Scripties are High Performance GUI equivalents of Console Scripts, that are Reliable and Easy to Make.
 
 ---
 
@@ -43,7 +34,7 @@ Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is
 - Modern UI with Fluid Animations and Transitions. ✅
 - History Support for the Base Calculator UI. ✅
 - Theme switching built in. ✅
-- Backdrop switching built in. [ B/w Mica Alt and Acrylic ] ✅
+- Backdrop switching betwwen Mica Alt, Mica and Acrylic! ✅
 - Available in both Msix & Installer Variants. ✅
 
 ---
@@ -60,13 +51,13 @@ Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is
 
 https://github.com/user-attachments/assets/1a737f20-3497-4105-91b6-d23a1321b3ce
 
-- Scripted Actions Preview [ TO BE UPDATED IN NEXT RELEASE ] :
+- BRAND NEW REVAMPED SCRIPTIES!!!!!
 
-https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
+https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
 
 ---
 
-## Scripted Actions :
+## Features + Scripties :
 
 > [!NOTE]
 > A Scientific Calculator WILL BE ADDED onto the Main Calculator UI in v11.26100.15.0
