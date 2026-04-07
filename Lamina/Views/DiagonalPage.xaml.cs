@@ -1,50 +1,112 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
+using System;
+using Windows.ApplicationModel.DataTransfer;
 
-namespace Lamina.Views;
-
-public sealed partial class DiagonalPage : Page
+namespace Lamina.Views
 {
-    public DiagonalPage()
+    public sealed partial class DiagonalPage : Page
     {
-        InitializeComponent();
-    }
-
-    protected override void OnNavigatedTo(NavigationEventArgs e)
-    {
-        base.OnNavigatedTo(e);
-        // Load the Square diagonal page by default
-        ContentFrame.Navigate(typeof(SquareDiagPage));
-    }
-
-    private void ShapeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (ShapeComboBox.SelectedItem is ComboBoxItem selectedItem)
+        public DiagonalPage()
         {
-            string shape = selectedItem.Content.ToString();
+            this.InitializeComponent();
+            this.Loaded += Page_Loaded;
+        }
 
-            if (ContentFrame == null)
-            {
-                System.Diagnostics.Debug.WriteLine("ContentFrame is null.");
-                return;
-            }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ShapeComboBox.SelectedIndex = 0;
+            UpdateUI();
+        }
+
+        private void ShapeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            if (ShapeComboBox == null || InputA == null || FormulaInfoBar == null) return;
+
+            InputA.Visibility = InputB.Visibility = InputC.Visibility = Visibility.Collapsed;
+            string shape = (ShapeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
 
             switch (shape)
             {
                 case "Square":
-                    ContentFrame.Navigate(typeof(SquareDiagPage));
+                    FormulaInfoBar.Message = "d = a√2";
+                    SetInputs("Side (a)");
                     break;
                 case "Rectangle":
-                    ContentFrame.Navigate(typeof(RectDiagPage));
+                    FormulaInfoBar.Message = "d = √(L² + W²)";
+                    SetInputs("Length (L)", "Width (W)");
                     break;
                 case "Cube":
-                    ContentFrame.Navigate(typeof(CubeDiagPage));
+                    FormulaInfoBar.Message = "d = a√3";
+                    SetInputs("Side (a)");
                     break;
                 case "Cuboid":
-                    ContentFrame.Navigate(typeof(CuboidDiagPage));
+                    FormulaInfoBar.Message = "d = √(l² + w² + h²)";
+                    SetInputs("Length (l)", "Width (w)", "Height (h)");
                     break;
             }
+        }
+
+        private void SetInputs(string a, string b = null, string c = null)
+        {
+            InputA.Header = a; InputA.Visibility = Visibility.Visible;
+            if (b != null) { InputB.Header = b; InputB.Visibility = Visibility.Visible; }
+            if (c != null) { InputC.Header = c; InputC.Visibility = Visibility.Visible; }
+        }
+
+        private async void CalculateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.Content.XamlRoot == null) return;
+            ResultDialog.XamlRoot = this.Content.XamlRoot;
+
+            string shape = (ShapeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            double a = InputA.Value;
+            double b = InputB.Value;
+            double c = InputC.Value;
+            double diagonal = 0;
+
+            if (double.IsNaN(a) ||
+               (InputB.Visibility == Visibility.Visible && double.IsNaN(b)) ||
+               (InputC.Visibility == Visibility.Visible && double.IsNaN(c)))
+            {
+                ResultLabel.Text = "Error:";
+                ResultValueText.Text = "Invalid inputs.";
+                await ResultDialog.ShowAsync();
+                return;
+            }
+
+            try
+            {
+                switch (shape)
+                {
+                    case "Square": diagonal = a * Math.Sqrt(2); break;
+                    case "Rectangle": diagonal = Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2)); break;
+                    case "Cube": diagonal = a * Math.Sqrt(3); break;
+                    case "Cuboid": diagonal = Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2) + Math.Pow(c, 2)); break;
+                }
+
+                ResultLabel.Text = "Diagonal Length =";
+                ResultValueText.Text = diagonal.ToString("N2");
+            }
+            catch
+            {
+                ResultLabel.Text = "Error:";
+                ResultValueText.Text = "Calculation error.";
+            }
+
+            await ResultDialog.ShowAsync();
+        }
+
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dp = new DataPackage();
+            dp.SetText(ResultValueText.Text);
+            Clipboard.SetContent(dp);
         }
     }
 }
