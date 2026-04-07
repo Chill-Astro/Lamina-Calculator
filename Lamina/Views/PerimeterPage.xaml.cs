@@ -1,56 +1,118 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
+using System;
+using Windows.ApplicationModel.DataTransfer;
 
-namespace Lamina.Views;
-
-public sealed partial class PerimeterPage : Page
+namespace Lamina.Views
 {
-    public PerimeterPage()
+    public sealed partial class PerimeterPage : Page
     {
-        InitializeComponent();
-    }
-
-    protected override void OnNavigatedTo(NavigationEventArgs e)
-    {
-        base.OnNavigatedTo(e);
-        // Load the Equilateral Triangle perimeter page by default
-        ContentFrame.Navigate(typeof(ETPermPage));
-    }
-
-    private void ShapeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (ShapeComboBox.SelectedItem is ComboBoxItem selectedItem)
+        public PerimeterPage()
         {
-            string shape = selectedItem.Content.ToString();
+            this.InitializeComponent();
+            this.Loaded += Page_Loaded;
+        }
 
-            if (ContentFrame == null)
-            {
-                System.Diagnostics.Debug.WriteLine("ContentFrame is null.");
-                return;
-            }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ShapeComboBox.SelectedIndex = 0;
+            UpdateUI();
+        }
+
+        private void ShapeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            if (ShapeComboBox == null || InputA == null || FormulaInfoBar == null) return;
+
+            InputA.Visibility = InputB.Visibility = Visibility.Collapsed;
+            string shape = (ShapeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
 
             switch (shape)
             {
                 case "Equilateral Triangle":
-                    ContentFrame.Navigate(typeof(ETPermPage));
+                    FormulaInfoBar.Message = "Perimeter = 3 × s";
+                    SetInputs("Side (s)");
                     break;
                 case "Isosceles Triangle":
-                    ContentFrame.Navigate(typeof(ITPermPage));
+                    FormulaInfoBar.Message = "Perimeter = 2a + b";
+                    SetInputs("Equal Side (a)", "Base (b)");
                     break;
                 case "Square / Rhombus":
-                    ContentFrame.Navigate(typeof(SquarePermPage));
+                    FormulaInfoBar.Message = "Perimeter = 4 × s";
+                    SetInputs("Side (s)");
                     break;
                 case "Rectangle / Parallelogram":
-                    ContentFrame.Navigate(typeof(RectPermPage));
+                    FormulaInfoBar.Message = "Perimeter = 2 × (L + W)";
+                    SetInputs("Length (L)", "Width (W)");
                     break;
                 case "Circle":
-                    ContentFrame.Navigate(typeof(CirclePermPage));
+                    FormulaInfoBar.Message = "Circumference = 2πr";
+                    SetInputs("Radius (r)");
                     break;
                 case "Semi-circle":
-                    ContentFrame.Navigate(typeof(SCirclePermPage));
+                    FormulaInfoBar.Message = "Perimeter = πr + 2r";
+                    SetInputs("Radius (r)");
                     break;
             }
+        }
+
+        private void SetInputs(string a, string b = null)
+        {
+            InputA.Header = a; InputA.Visibility = Visibility.Visible;
+            if (b != null) { InputB.Header = b; InputB.Visibility = Visibility.Visible; }
+        }
+
+        private async void CalculateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.Content.XamlRoot == null) return;
+            ResultDialog.XamlRoot = this.Content.XamlRoot;
+
+            string shape = (ShapeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            double a = InputA.Value;
+            double b = InputB.Value;
+            double perimeter = 0;
+
+            if (double.IsNaN(a) || (InputB.Visibility == Visibility.Visible && double.IsNaN(b)))
+            {
+                ResultLabel.Text = "Error:";
+                ResultValueText.Text = "Please enter valid numbers.";
+                await ResultDialog.ShowAsync();
+                return;
+            }
+
+            try
+            {
+                switch (shape)
+                {
+                    case "Equilateral Triangle": perimeter = 3 * a; break;
+                    case "Isosceles Triangle": perimeter = (2 * a) + b; break;
+                    case "Square / Rhombus": perimeter = 4 * a; break;
+                    case "Rectangle / Parallelogram": perimeter = 2 * (a + b); break;
+                    case "Circle": perimeter = 2 * Math.PI * a; break;
+                    case "Semi-circle": perimeter = (Math.PI * a) + (2 * a); break;
+                }
+
+                ResultLabel.Text = $"Perimeter =";
+                ResultValueText.Text = perimeter.ToString("N2");
+            }
+            catch
+            {
+                ResultLabel.Text = "Error:";
+                ResultValueText.Text = "Invalid dimensions.";
+            }
+
+            await ResultDialog.ShowAsync();
+        }
+
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dp = new DataPackage();
+            dp.SetText(ResultValueText.Text);
+            Clipboard.SetContent(dp);
         }
     }
 }
