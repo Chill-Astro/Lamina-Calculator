@@ -121,7 +121,7 @@ namespace Lamina.Views
 
                 if (double.IsNaN(area) || double.IsInfinity(area)) throw new Exception();
 
-                ResultLabel.Text = $"Area of {shape}:";
+                ResultLabel.Text = $"Area =";
                 ResultValueText.Text = area.ToString("N2");
             }
             catch
