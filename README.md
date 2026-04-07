@@ -41,7 +41,7 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 
 ## Install Lamina ✦ from Winget :
       
-      winget install Lamina.unp
+      winget install Lamina
 
 ---
 
