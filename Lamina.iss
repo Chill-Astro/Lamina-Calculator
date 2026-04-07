@@ -17,10 +17,12 @@ AppVersion={#MyAppVersion}
 ArchitecturesAllowed=x64compatible arm64
 ArchitecturesInstallIn64BitMode=x64compatible arm64
 DefaultDirName={autopf}\Chill-Astro\Lamina
+LicenseFile="C:\Users\Master\Chill-Astro\Lamina-Calculator\Lamina-Installer\LICENSE.txt"
 PrivilegesRequired=admin
 UninstallDisplayIcon={app}\Lamina.ico
 WizardStyle=modern dynamic windows11
 OutputBaseFilename=Setup
+DisableWelcomePage=no
 SolidCompression=yes
 
 [Files]
@@ -28,13 +30,14 @@ SolidCompression=yes
 Source: "C:\Users\Master\Chill-Astro\Lamina-Calculator\Lamina-Installer\*"; DestDir: "{app}"; Flags: ignoreversion
 
 [Run]
-; 1. Install the Certificate (Same for both)
-Filename: "{app}\TMM.exe"; \
-    Parameters: "--i ""{app}\{#MyAppCertName}"""; \
+; 1. Install the Certificate (Universal for x64 and ARM64)
+; We use certutil.exe to add the certificate to the Local Machine's Root store.
+Filename: "certutil.exe"; \
+    Parameters: "-addstore -f ""Root"" ""{app}\{#MyAppCertName}"""; \
     StatusMsg: "Installing Security Certificate..."; \
     Flags: runhidden
 
-; 2. Install x64 MSIX (Only if the OS is x64)
+; 2. Install x64 MSIX (Only if the OS is NOT ARM64)
 Filename: "powershell.exe"; \
     Parameters: "-ExecutionPolicy Bypass -Command ""Add-AppxPackage -Path '{app}\{#MyAppMsixX64}'"""; \
     Check: "not IsArm64"; \

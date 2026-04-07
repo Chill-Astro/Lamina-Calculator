@@ -2,7 +2,7 @@ To Export
 
 STEP 1 : Create a Folder -> Chill-Astro/Lamina-Installer
 
-STEP 2 : Add Trust My Msix! (TMM.exe) to this Folder.
+STEP 2 : Add License.txt to this Folder.
 
 STEP 3 : Add the .msix and .cer files you built. ( Double Check the Names! )
 
