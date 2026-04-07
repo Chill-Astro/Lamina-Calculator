@@ -17,7 +17,9 @@ public partial class SettingsViewModel : ObservableRecipient
     private readonly ILocalSettingsService _localSettingsService;
     private static readonly HttpClient _httpClient = new();
 
-    // Safety guard to prevent multiple popups if the button is spammed
+    // UPDATE THIS EVERYTIME YOU DUMMY!
+    private const string CurrentAppVersion = "11.26100.14.0";
+
     private bool _isCheckingUpdates;
 
     [ObservableProperty] private string _appVersionText;
@@ -37,8 +39,7 @@ public partial class SettingsViewModel : ObservableRecipient
             App.MainWindow.DispatcherQueue.TryEnqueue(() => { SelectedBackdropIndex = savedIndex; });
         });
 
-        var v = Assembly.GetExecutingAssembly().GetName().Version;
-        AppVersionText = v != null ? $" v{v.Major}.{v.Minor}.{v.Build}.{v.Revision}" : "v11.26100.13.0";
+        AppVersionText = $" v{CurrentAppVersion}";
     }
 
     partial void OnSelectedThemeIndexChanged(int value) => _themeSelectorService.SetThemeAsync((ElementTheme)value);
@@ -53,8 +54,7 @@ public partial class SettingsViewModel : ObservableRecipient
     private async Task OpenRepo() => await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Calculator"));
 
     [RelayCommand]
-    private async Task OpenProfile() =>
-    await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro"));
+    private async Task OpenProfile() => await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro"));
 
     [RelayCommand]
     private async Task ShowLicense()
@@ -88,18 +88,25 @@ public partial class SettingsViewModel : ObservableRecipient
         string message = "";
         try
         {
-            string gistUrl = "https://gist.githubusercontent.com/Chill-Astro/ac961f2e3f9a2de6b358de9be9a2bfc1/raw/LMNA_V";
+            // Adding a timestamp to the URL prevents GitHub/Windows from caching an old version of the Gist
+            string gistUrl = $"https://gist.githubusercontent.com/Chill-Astro/ac961f2e3f9a2de6b358de9be9a2bfc1/raw/LMNA_V?t={DateTime.Now.Ticks}";
             string response = await _httpClient.GetStringAsync(gistUrl);
 
-            if (Version.TryParse(response.Trim().Replace("v", ""), out var latestVersion))
+            string cleanResponse = response.Trim().ToLower().Replace("v", "");
+
+            if (Version.TryParse(cleanResponse, out var latestVersion))
             {
-                Version currentVersion = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
+                Version currentVersion = Version.Parse(CurrentAppVersion);
 
                 if (latestVersion > currentVersion)
                 {
                     await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Calculator/releases"));
                     _isCheckingUpdates = false;
-                    return; // Stop here if we're sending them to the browser
+                    return;
+                }
+                else if (latestVersion < currentVersion)
+                {
+                    message = $"Lamina ✦ DEV. BUILD! ⚠️\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}";
                 }
                 else
                 {
@@ -108,7 +115,7 @@ public partial class SettingsViewModel : ObservableRecipient
             }
             else
             {
-                message = "This is a DEV. Build of Lamina ✦ ! ⚠️";
+                message = "The Update Server returned an invalid version format. ⚠️";
             }
         }
         catch
@@ -116,7 +123,6 @@ public partial class SettingsViewModel : ObservableRecipient
             message = "Please Verify your Internet Connection! ❌";
         }
 
-        // Only one block here now!
         if (!string.IsNullOrEmpty(message))
         {
             var updateDialog = new ContentDialog
@@ -132,12 +138,12 @@ public partial class SettingsViewModel : ObservableRecipient
 
         _isCheckingUpdates = false;
     }
+
     public bool IsSplashEnabled
     {
         get
         {
             var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            // If the setting doesn't exist yet, return true (Default is On)
             return localSettings.Values["ShowSplash"] as bool? ?? true;
         }
         set
