@@ -78,7 +78,7 @@
                         x:Name="ResultValueText"
                         Grid.Column="0"
                         VerticalAlignment="Center"
-                        FontSize="32"
+                        FontSize="28"
                         FontWeight="Bold"
                         TextWrapping="WrapWholeWords" />
                     <Button

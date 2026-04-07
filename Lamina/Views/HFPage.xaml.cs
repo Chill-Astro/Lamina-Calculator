@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System;
@@ -8,69 +9,78 @@ namespace Lamina.Views
 {
     public sealed partial class HFPage : Page
     {
-        static string temp = "";
+        string resultTemp = "";
+
         public HFPage()
         {
             this.InitializeComponent();
         }
+
         private async void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
+            if (this.Content.XamlRoot == null) return;
+            ResultDialog.XamlRoot = this.Content.XamlRoot;
+
+            // Reset colors to default
+            ResultLabel.Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"];
+            ResultValueText.Foreground = (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"];
+            CopyButton.Visibility = Visibility.Visible;
+
             double a = SideANumberBox.Value;
             double b = SideBNumberBox.Value;
             double c = SideCNumberBox.Value;
 
-            // 1. Check for Missing Input
-            if (double.IsNaN(a) || double.IsNaN(b) || double.IsNaN(c))
+            // 1. Validation for Missing/Zero/Negative
+            if (double.IsNaN(a) || double.IsNaN(b) || double.IsNaN(c) || a <= 0 || b <= 0 || c <= 0)
             {
-                temp = string.Empty;
-                await ShowResultPopup("Error", "Sides can't be 0", false);
+                ShowError("Error:", "Invalid side lengths.");
+                await ResultDialog.ShowAsync();
                 return;
             }
 
-            // 2. Validate Positive Numbers
-            if (a <= 0 || b <= 0 || c <= 0)
+            // 2. Triangle Inequality Check
+            if (a + b <= c || a + c <= b || b + c <= a)
             {
-                temp = string.Empty;
-                await ShowResultPopup("Error", "Sides must be +ve", false);
+                ShowError("Invalid Geometry:", "Not a valid triangle.");
+                await ResultDialog.ShowAsync();
+                return;
             }
-            // 3. Triangle Inequality Check
-            else if (a + b <= c || a + c <= b || b + c <= a)
+
+            // 3. Calculation
+            try
             {
-                temp = string.Empty;
-                await ShowResultPopup("Invalid Geometry", "These are not Sides of a Triangle", false);
-            }
-            else
-            {
-                // 4. Success Case
                 double s = (a + b + c) / 2.0;
                 double area = Math.Sqrt(s * (s - a) * (s - b) * (s - c));
 
-                temp = area.ToString("F2");
-                await ShowResultPopup("Calculation Result", $"{temp} sq. units", true);
+                if (double.IsNaN(area) || double.IsInfinity(area)) throw new Exception();
+
+                resultTemp = area.ToString("N2");
+                ResultLabel.Text = "Area =";
+                ResultValueText.Text = resultTemp;
             }
-        }        
-        private async System.Threading.Tasks.Task ShowResultPopup(string title, string message, bool isSuccess)
-        {
-            ResultDialog.Title = title;
-            ResultValueText.Text = message;
+            catch
+            {
+                ShowError("Error:", "Calculation failed.");
+            }
 
-            // Hide or show the Copy button and label based on success
-            ResultLabel.Visibility = isSuccess ? Visibility.Visible : Visibility.Collapsed;
-            CopyButton.Visibility = isSuccess ? Visibility.Visible : Visibility.Collapsed;
-
-            // Set text color: Normal for success, Red for error
-            ResultValueText.Foreground = isSuccess
-                ? (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
-                : (Brush)Application.Current.Resources["SystemFillColorCriticalBrush"];
-
-            ResultDialog.XamlRoot = this.Content.XamlRoot;
             await ResultDialog.ShowAsync();
         }
+
+        private void ShowError(string label, string message)
+        {
+            ResultLabel.Text = label;
+            ResultLabel.Foreground = new SolidColorBrush(Colors.Red);
+            ResultValueText.Text = message;
+            ResultValueText.Foreground = new SolidColorBrush(Colors.Red);
+            CopyButton.Visibility = Visibility.Collapsed; // Hide copy on error
+        }
+
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
-            var dataPackage = new DataPackage();
-            dataPackage.SetText(temp);
-            Clipboard.SetContent(dataPackage);
+            if (string.IsNullOrEmpty(ResultValueText.Text)) return;
+            var dp = new DataPackage();
+            dp.SetText(ResultValueText.Text);
+            Clipboard.SetContent(dp);
         }
     }
 }

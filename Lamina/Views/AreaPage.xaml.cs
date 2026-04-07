@@ -1,5 +1,7 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using System;
 using Windows.ApplicationModel.DataTransfer;
 
@@ -10,13 +12,11 @@ namespace Lamina.Views
         public AreaPage()
         {
             this.InitializeComponent();
-            // Use the Loaded event to ensure the UI is fully ready before we touch it
             this.Loaded += Page_Loaded;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            // Force the initial selection to Equilateral Triangle (Index 0)
             ShapeComboBox.SelectedIndex = 0;
             UpdateUI();
         }
@@ -28,10 +28,8 @@ namespace Lamina.Views
 
         private void UpdateUI()
         {
-            // Null guard: Prevents crashes during the early initialization phase
             if (ShapeComboBox == null || InputA == null || FormulaInfoBar == null) return;
 
-            // Hide all inputs by default
             InputA.Visibility = InputB.Visibility = InputC.Visibility = Visibility.Collapsed;
 
             string shape = (ShapeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
@@ -87,19 +85,22 @@ namespace Lamina.Views
             if (this.Content.XamlRoot == null) return;
             ResultDialog.XamlRoot = this.Content.XamlRoot;
 
+            // Reset colors to default theme values
+            ResultLabel.Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"];
+            ResultValueText.Foreground = (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"];
+
             string shape = (ShapeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
             double a = InputA.Value;
             double b = InputB.Value;
             double c = InputC.Value;
             double area = 0;
 
-            // Simple validation: Ensure visible inputs have values
+            // Validation: Show Red Error
             if (double.IsNaN(a) ||
                (InputB.Visibility == Visibility.Visible && double.IsNaN(b)) ||
                (InputC.Visibility == Visibility.Visible && double.IsNaN(c)))
             {
-                ResultLabel.Text = "Error:";
-                ResultValueText.Text = "Please enter valid numbers.";
+                ShowError("Error:", "Please enter valid numbers.");
                 await ResultDialog.ShowAsync();
                 return;
             }
@@ -126,11 +127,18 @@ namespace Lamina.Views
             }
             catch
             {
-                ResultLabel.Text = "Error:";
-                ResultValueText.Text = "Invalid dimensions.";
+                ShowError("Error:", "Invalid dimensions.");
             }
 
             await ResultDialog.ShowAsync();
+        }
+
+        private void ShowError(string label, string message)
+        {
+            ResultLabel.Text = label;
+            ResultLabel.Foreground = new SolidColorBrush(Colors.Red);
+            ResultValueText.Text = message;
+            ResultValueText.Foreground = new SolidColorBrush(Colors.Red);
         }
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)

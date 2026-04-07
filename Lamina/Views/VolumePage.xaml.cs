@@ -1,5 +1,7 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using System;
 using Windows.ApplicationModel.DataTransfer;
 
@@ -68,18 +70,22 @@ namespace Lamina.Views
             if (this.Content.XamlRoot == null) return;
             ResultDialog.XamlRoot = this.Content.XamlRoot;
 
+            // Reset colors to default theme values
+            ResultLabel.Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"];
+            ResultValueText.Foreground = (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"];
+
             string shape = (ShapeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
             double a = InputA.Value;
             double b = InputB.Value;
             double c = InputC.Value;
             double volume = 0;
 
+            // Validation: Show Red Error
             if (double.IsNaN(a) ||
                (InputB.Visibility == Visibility.Visible && double.IsNaN(b)) ||
                (InputC.Visibility == Visibility.Visible && double.IsNaN(c)))
             {
-                ResultLabel.Text = "Error:";
-                ResultValueText.Text = "Invalid inputs.";
+                ShowError("Error:", "Invalid inputs.");
                 await ResultDialog.ShowAsync();
                 return;
             }
@@ -100,15 +106,23 @@ namespace Lamina.Views
             }
             catch
             {
-                ResultLabel.Text = "Error:";
-                ResultValueText.Text = "Calculation error.";
+                ShowError("Error:", "Calculation error.");
             }
 
             await ResultDialog.ShowAsync();
         }
 
+        private void ShowError(string label, string message)
+        {
+            ResultLabel.Text = label;
+            ResultLabel.Foreground = new SolidColorBrush(Colors.Red);
+            ResultValueText.Text = message;
+            ResultValueText.Foreground = new SolidColorBrush(Colors.Red);
+        }
+
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(ResultValueText.Text)) return;
             var dp = new DataPackage();
             dp.SetText(ResultValueText.Text);
             Clipboard.SetContent(dp);
