@@ -8,7 +8,7 @@
   
 Lamina ✦ is a **Windows 11** native **WinUI 3 calculator** application that is **Elevated with Powerful Scripted Actions**. This utility combines a modern, clean interface with the ability to perform complex calculations across **Mensuration, Finance, and Unit Conversions**, making it significantly more powerful than standard calculators.
   
-**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.13.0**
+**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.14.0**
 
 **App Execution Aliases :** `lamina.exe` & `lmna.exe` 
 
@@ -69,9 +69,7 @@ https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
 ## Scripted Actions :
 
 > [!NOTE]
-> A Scientific Calculator will be added onto the Main Calculator UI in v11.26100.15.0
-> 
-> These Scripted Actions Will be Redesigned in THE NEXT UPDATE!
+> A Scientific Calculator WILL BE ADDED onto the Main Calculator UI in v11.26100.15.0
 
 - Base Calculator UI
 - Scientific Calculator ( v11.26100.15.0 )
@@ -125,7 +123,7 @@ https://github.com/user-attachments/assets/870b4683-0e88-4f46-b4e2-9220e19e9a86
 - Finance :
   * Financial Calculator
        * Simple Interest
-       * Compund Interest
+       * Compound Interest
        * Recurring Deposit
 
 ---
