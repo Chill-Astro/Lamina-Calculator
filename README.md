@@ -6,7 +6,7 @@
 
 <div align="center">
   
-Lamina ✦ is a `WinUI 3 calculator` that is NOT ONLY includes a Regular Calculator BUT ALSO something called `"Scripties"`. She supports **Mensuration, Finance, Currency Conversion, Unit Conversions AND MORE**, making her VERY POWERFUL AND EXTENDABLE.
+Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calculator but also something called `"Scripties"`. She supports **Mensuration, Finance, Currency Conversion, Unit Conversions And More!**, making her a Very Extendable Option.
   
 **Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.14.0**
 
@@ -45,6 +45,25 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 
 ---
 
+## Version Structure :
+
+<div align="center">
+
+<H2>
+
+v`11`.`26100`.`14`.`0`
+
+</H2>
+
+</div>
+
+- `11` -> Target OS ( She IS for Windows 11 )
+- `26100` -> Release SDK Version ( Currently She uses 26100.xxxx Versions of Windows 11 SDK )
+- `11` -> Release Index ( Here 14 stands for the 14 Release Of Course! )
+- `0` -> Filler Number ( Package.appxmanifest doesn't allow me to edit this Number so it's there for NOTHING 💀 )
+
+---
+
 ## Video Previews :
 
 - New Onboarding Experience and Reveamped Settings Menu!!!!
@@ -60,7 +79,10 @@ https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
 ## Features + Scripties :
 
 > [!NOTE]
-> A Scientific Calculator WILL BE ADDED onto the Main Calculator UI in v11.26100.15.0
+> A Scientific Calculator WILL BE ADDED in v11.26100.15.0!
+
+> [!IMPORTANT]
+> The Code will go through a minor changes in the next few commits such as giving "Better variableNames" and adding comments for making stuff easier.
 
 - Base Calculator UI
 - Scientific Calculator ( v11.26100.15.0 )
