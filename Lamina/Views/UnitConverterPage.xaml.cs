@@ -49,12 +49,12 @@ public sealed partial class UnitConverterPage : Page
     public UnitConverterPage()
     {
         this.InitializeComponent();
-        CategoryComboBox.SelectedIndex = 0;
+        CategoryMenu.SelectedIndex = 0;
     }
 
-    private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void CategoryMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (CategoryComboBox.SelectedItem is ComboBoxItem selectedItem)
+        if (CategoryMenu.SelectedItem is ComboBoxItem selectedItem)
         {
             string category = selectedItem.Content.ToString();
             if (unitsByCategory.ContainsKey(category))
@@ -64,10 +64,10 @@ public sealed partial class UnitConverterPage : Page
                 {
                     shortUnits.Add(unitSymbols.ContainsKey(fullName) ? unitSymbols[fullName] : fullName);
                 }
-                FromUnitComboBox.ItemsSource = shortUnits;
-                ToUnitComboBox.ItemsSource = shortUnits;
-                FromUnitComboBox.SelectedIndex = 0;
-                ToUnitComboBox.SelectedIndex = 1;
+                FromUnit.ItemsSource = shortUnits;
+                ToUnit.ItemsSource = shortUnits;
+                FromUnit.SelectedIndex = 0;
+                ToUnit.SelectedIndex = 1;
             }
         }
     }
@@ -81,17 +81,17 @@ public sealed partial class UnitConverterPage : Page
         return symbol;
     }
 
-    private async void ConvertButton_Click(object sender, RoutedEventArgs e)
+    private async void Convert_Click(object sender, RoutedEventArgs e)
     {
-        if (!double.TryParse(ValueToConvertTextBox.Text, out double val))
+        if (!double.TryParse(ValueToConvert.Text, out double val))
         {
             await ShowResultPopup("Input Issue:", "Please enter a valid number.", false);
             return;
         }
 
-        if (FromUnitComboBox.SelectedItem is string fromSym &&
-            ToUnitComboBox.SelectedItem is string toSym &&
-            CategoryComboBox.SelectedItem is ComboBoxItem catItem)
+        if (FromUnit.SelectedItem is string fromSym &&
+            ToUnit.SelectedItem is string toSym &&
+            CategoryMenu.SelectedItem is ComboBoxItem catItem)
         {
             string category = catItem.Content.ToString().Trim();
             string fromUnit = GetFullNameFromSymbol(fromSym);
@@ -126,9 +126,9 @@ public sealed partial class UnitConverterPage : Page
     private async Task ShowResultPopup(string label, string value, bool isSuccess)
     {
         ResultLabel.Text = label;
-        ResultValueText.Text = value;
+        ResultValue.Text = value;
         CopyButton.Visibility = isSuccess ? Visibility.Visible : Visibility.Collapsed;
-        ResultValueText.Foreground = isSuccess
+        ResultValue.Foreground = isSuccess
             ? (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
             : (Brush)Application.Current.Resources["SystemFillColorCriticalBrush"];
 
@@ -322,8 +322,8 @@ public sealed partial class UnitConverterPage : Page
     private void SwapButton_Click(object sender, RoutedEventArgs e)
     {
         // Swap the selected indices
-        int tempIndex = FromUnitComboBox.SelectedIndex;
-        FromUnitComboBox.SelectedIndex = ToUnitComboBox.SelectedIndex;
-        ToUnitComboBox.SelectedIndex = tempIndex;        
+        int tempIndex = FromUnit.SelectedIndex;
+        FromUnit.SelectedIndex = ToUnit.SelectedIndex;
+        ToUnit.SelectedIndex = tempIndex;        
     }
 }

@@ -41,13 +41,13 @@ namespace Lamina.Views
         {
             if (_history == null || _history.Count == 0)
             {
-                NoHistoryTextBlock.Visibility = Visibility.Visible;
-                HistoryListView.ItemsSource = null;
+                NoHistoryText.Visibility = Visibility.Visible;
+                HistoryList.ItemsSource = null;
             }
             else
             {
-                NoHistoryTextBlock.Visibility = Visibility.Collapsed;
-                HistoryListView.ItemsSource = _history;
+                NoHistoryText.Visibility = Visibility.Collapsed;
+                HistoryList.ItemsSource = _history;
             }
         }
     }

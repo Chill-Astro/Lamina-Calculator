@@ -10,6 +10,9 @@
     PreviewKeyDown="CalculatorPage_PreviewKeyDown"
     mc:Ignorable="d">
 
+    <!--  Part of Main Calculator UIs  -->
+
+    <!--  Stylish Design from Fashion Brand I mean a Kid with a Laptop  -->
     <Page.Resources>
         <Style x:Key="CalculatorButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
@@ -84,11 +87,13 @@
             </Setter>
         </Style>
 
+        <!--  Stylish Design from Fashion Brand I mean a Kid with a Laptop  -->
         <Style
             x:Key="NumberButtonStyle"
             BasedOn="{StaticResource CalculatorButtonStyle}"
             TargetType="Button" />
 
+        <!--  Think Different ( and not same )  -->
         <Style
             x:Key="AccentButtonStyle"
             BasedOn="{StaticResource CalculatorButtonStyle}"
@@ -170,6 +175,7 @@
             </Button.KeyboardAccelerators>
         </Button>
 
+        <!--  Resizable Magic Button Grid that Sucks to Develop fr fr 🥀  -->
         <Grid
             x:Name="ContentGrid"
             HorizontalAlignment="Stretch"
@@ -182,6 +188,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <!--  Calculator's Display which is a Part of a Computers Display ( Displayception )  -->
             <Viewbox
                 Grid.Row="1"
                 MaxHeight="120"
@@ -223,6 +230,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
+                <!--  Row 1  -->
                 <Button
                     x:Name="BtnPercent"
                     Grid.Row="0"
@@ -254,6 +262,7 @@
                     FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
 
+                <!--  Row 2  -->
                 <Button
                     Grid.Row="1"
                     Grid.Column="0"
@@ -284,6 +293,7 @@
                     FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
 
+                <!--  Row 3  -->
                 <Button
                     x:Name="Btn7"
                     Grid.Row="2"
@@ -318,6 +328,7 @@
                     FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
 
+                <!--  Row 4  -->
                 <Button
                     x:Name="Btn4"
                     Grid.Row="3"
@@ -352,6 +363,7 @@
                     FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
 
+                <!--  Row 5  -->
                 <Button
                     x:Name="Btn1"
                     Grid.Row="4"
@@ -386,6 +398,7 @@
                     FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
 
+                <!--  Row 6  -->
                 <Button
                     Grid.Row="5"
                     Grid.Column="0"

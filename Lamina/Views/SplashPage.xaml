@@ -5,6 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
+    <!--  World's MOST GOATED Splash Screen 🐐🐐🐐🐐🐐🐐🐐🐐  -->
+
+    <!--  All the Animations which no Corporation Dares to Put in  -->
     <Page.Resources>
         <Storyboard x:Name="FadeInStoryboard">
             <DoubleAnimation
@@ -25,7 +29,15 @@
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
-        <Image x:Name="SplashImage" Source="ms-appx:///Assets/SplashScreen.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"
-               MaxWidth="450" MaxHeight="450" MinHeight="350" MinWidth="350"/>
+        <Image
+            x:Name="SplashImage"
+            MinWidth="350"
+            MinHeight="350"
+            MaxWidth="450"
+            MaxHeight="450"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Source="ms-appx:///Assets/SplashScreen.png"
+            Stretch="Uniform" />
     </Grid>
 </Page>

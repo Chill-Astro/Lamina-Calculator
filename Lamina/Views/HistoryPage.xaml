@@ -8,6 +8,8 @@
     Background="Transparent"
     mc:Ignorable="d">
 
+    <!--  History of your Math not the Boring one from School  -->
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -40,14 +42,15 @@
         <Grid Grid.Row="1" Margin="20">
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
+                    <!--  The No History Text from FOSS Root Checker  -->
                     <TextBlock
-                        x:Name="NoHistoryTextBlock"
+                        x:Name="NoHistoryText"
                         Margin="10"
                         HorizontalAlignment="Center"
-                        FontSize="10"
-                        Text="Let's Make some History!"
+                        FontSize="12"
+                        Text="Aww no History? Let's Make some! :)"
                         Visibility="Collapsed" />
-                    <ListView x:Name="HistoryListView" MaxHeight="400">
+                    <ListView x:Name="HistoryList" MaxHeight="400">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock

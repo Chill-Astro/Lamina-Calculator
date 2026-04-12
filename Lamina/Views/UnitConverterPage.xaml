@@ -7,6 +7,8 @@
     Background="Transparent"
     mc:Ignorable="d">
 
+    <!--  Converter  -->
+
     <Grid Background="Transparent">
         <ScrollViewer VerticalScrollBarVisibility="Hidden">
             <StackPanel
@@ -23,12 +25,13 @@
                     BorderThickness="1"
                     CornerRadius="12">
 
+                    <!--  Hell long Dropdown Menu of Categories  -->
                     <StackPanel Spacing="20">
                         <ComboBox
-                            x:Name="CategoryComboBox"
+                            x:Name="CategoryMenu"
                             HorizontalAlignment="Stretch"
                             Header="Category"
-                            SelectionChanged="CategoryComboBox_SelectionChanged">
+                            SelectionChanged="CategoryMenu_SelectionChanged">
                             <ComboBoxItem Content="Length" />
                             <ComboBoxItem Content="Weight (Mass)" />
                             <ComboBoxItem Content="Volume" />
@@ -44,7 +47,7 @@
                         </ComboBox>
 
                         <NumberBox
-                            x:Name="ValueToConvertTextBox"
+                            x:Name="ValueToConvert"
                             HorizontalAlignment="Stretch"
                             Header="Value"
                             PlaceholderText="Enter amount..."
@@ -59,7 +62,7 @@
                             </Grid.ColumnDefinitions>
 
                             <ComboBox
-                                x:Name="FromUnitComboBox"
+                                x:Name="FromUnit"
                                 Grid.Column="0"
                                 HorizontalAlignment="Stretch"
                                 Header="From" />
@@ -80,17 +83,17 @@
                             </Button>
 
                             <ComboBox
-                                x:Name="ToUnitComboBox"
+                                x:Name="ToUnit"
                                 Grid.Column="2"
                                 HorizontalAlignment="Stretch"
                                 Header="To" />
                         </Grid>
 
                         <Button
-                            x:Name="ConvertButton"
+                            x:Name="Convert"
                             Height="40"
                             HorizontalAlignment="Stretch"
-                            Click="ConvertButton_Click"
+                            Click="Convert_Click"
                             Content="Convert"
                             Style="{StaticResource AccentButtonStyle}" />
                     </StackPanel>
@@ -115,7 +118,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock
-                        x:Name="ResultValueText"
+                        x:Name="ResultValue"
                         Grid.Column="0"
                         MaxWidth="320"
                         VerticalAlignment="Center"

@@ -5,6 +5,8 @@
     xmlns:xaml="using:Microsoft.UI.Xaml"
     Background="Transparent">
 
+    <!--  This Page has Undergone a MAJOR Revamp in v11.26100.13.0. Inspired from FOSS Root Checker!  -->
+
     <ScrollViewer
         IsVerticalRailEnabled="True"
         VerticalScrollBarVisibility="Hidden"
@@ -26,17 +28,19 @@
 
                     <TextBlock
                         HorizontalAlignment="Center"
-                        FontSize="32"
-                        FontWeight="SemiBold"
+                        FontFamily="ms-appx:///Assets/Fonts/AlexBrush-Regular.ttf#Alex Brush"
+                        FontSize="50"
                         Text="Lamina ✦" />
 
+                    <!--  Tagline  -->
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontFamily="ms-appx:///Assets/Fonts/AlexBrush-Regular.ttf#Alex Brush"
                         FontSize="30"
-                        Opacity="0.8"
+                        Opacity="0.6"
                         Text="“Math on a Sheet of Glass!”" />
 
+                    <!--  Github Profile Ad Sorry :)  -->
                     <HyperlinkButton
                         Padding="4,2"
                         HorizontalAlignment="Center"
@@ -98,6 +102,7 @@
 
                 <StackPanel HorizontalAlignment="Stretch" Spacing="4">
 
+                    <!--  Theme Setting  -->
                     <Border
                         Padding="16"
                         HorizontalAlignment="Stretch"
@@ -126,6 +131,7 @@
                         </Grid>
                     </Border>
 
+                    <!--  Backdrop Setting  -->
                     <Border
                         Padding="16"
                         HorizontalAlignment="Stretch"
@@ -192,6 +198,7 @@
                         CornerRadius="8"
                         Style="{StaticResource AccentButtonStyle}" />
 
+                    <!--  Please Star my Repo! :)  -->
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontSize="12"

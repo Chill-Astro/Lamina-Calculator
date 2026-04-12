@@ -11,9 +11,9 @@ public sealed partial class BaseConverterPage : Page
     static string temp = "";
     public BaseConverterPage() => this.InitializeComponent();
 
-    private async void ConvertButton_Click(object sender, RoutedEventArgs e)
+    private async void Convert_Click(object sender, RoutedEventArgs e)
     {
-        string input = InputTextBox.Text?.Trim().ToUpper();
+        string input = Input.Text?.Trim().ToUpper();
 
         if (string.IsNullOrEmpty(input))
         {
@@ -23,14 +23,14 @@ public sealed partial class BaseConverterPage : Page
 
         try
         {
-            int fromBase = int.Parse((FromBaseComboBox.SelectedItem as ComboBoxItem).Tag.ToString());
-            int toBase = int.Parse((ToBaseComboBox.SelectedItem as ComboBoxItem).Tag.ToString());
+            int fromBase = int.Parse((FromBase.SelectedItem as ComboBoxItem).Tag.ToString());
+            int toBase = int.Parse((ToBase.SelectedItem as ComboBoxItem).Tag.ToString());
 
             // Convert input to decimal first, then to target base
-            long decimalValue = Convert.ToInt64(input, fromBase);
-            temp = Convert.ToString(decimalValue, toBase).ToUpper();
+            long decimalValue = System.Convert.ToInt64(input, fromBase);
+            temp = System.Convert.ToString(decimalValue, toBase).ToUpper();
 
-            string toBaseName = (ToBaseComboBox.SelectedItem as ComboBoxItem).Content.ToString().Split(' ')[0];
+            string toBaseName = (ToBase.SelectedItem as ComboBoxItem).Content.ToString().Split(' ')[0];
             await ShowResultPopup($"{toBaseName} Value =", temp, true);
         }
         catch (FormatException)

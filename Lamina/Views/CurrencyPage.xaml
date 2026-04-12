@@ -6,6 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <!--  Converter  -->
+
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -16,8 +18,9 @@
             <ToolTip Content="Currency rates are provided by exchangerate-api.com. Use the refresh button to update the list." />
         </ToolTipService.ToolTip>
 
+        <!--  Very Refreshing Indeed to use my 1500 Monthly Quota -_-  -->
         <Button
-            x:Name="RefreshButton"
+            x:Name="Refresh"
             Width="35"
             Height="35"
             Margin="0,-52,1,0"
@@ -26,10 +29,10 @@
             VerticalAlignment="Top"
             Background="Transparent"
             BorderThickness="0"
-            Click="RefreshButton_Click"
+            Click="Refresh_Click"
             Content="&#xE72C;"
             CornerRadius="3"
-            FontFamily="ms-appx:///Assets/Fonts/Segoe.ttf#Segoe Fluent Icons"
+            FontFamily="Segoe Fluent Icons"
             FontSize="16">
             <ToolTipService.ToolTip>
                 <ToolTip Content="Refresh currency list" />
@@ -51,6 +54,7 @@
                 BorderThickness="1"
                 CornerRadius="12">
 
+                <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  -->
                 <StackPanel Spacing="20">
                     <NumberBox
                         x:Name="InputNumberBox"
@@ -68,7 +72,7 @@
                         </Grid.ColumnDefinitions>
 
                         <ComboBox
-                            x:Name="FromCurrencyComboBox"
+                            x:Name="FromCurrency"
                             Grid.Column="0"
                             HorizontalAlignment="Stretch"
                             Header="From" />
@@ -89,17 +93,17 @@
                         </Button>
 
                         <ComboBox
-                            x:Name="ToCurrencyComboBox"
+                            x:Name="ToCurrency"
                             Grid.Column="2"
                             HorizontalAlignment="Stretch"
                             Header="To" />
                     </Grid>
 
                     <Button
-                        x:Name="ConvertButton"
+                        x:Name="Convert"
                         Height="40"
                         HorizontalAlignment="Stretch"
-                        Click="ConvertButton_Click"
+                        Click="Convert_Click"
                         Content="Convert"
                         Style="{StaticResource AccentButtonStyle}" />
                 </StackPanel>
@@ -119,6 +123,7 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
+                    <!--  No Popup Here  -->
                     <TextBlock
                         x:Name="ResultTextBlock"
                         Grid.Column="0"
@@ -150,6 +155,7 @@
             </StackPanel>
         </StackPanel>
 
+        <!--  Proof that your Internet Doesn't Suck  -->
         <ProgressBar
             x:Name="LoadingProgressBar"
             Grid.Row="1"

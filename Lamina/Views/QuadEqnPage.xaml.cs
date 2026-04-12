@@ -18,9 +18,9 @@ public sealed partial class QuadEqnPage : Page
 
     private async void CalculateRootsButton_Click(object sender, RoutedEventArgs e)
     {
-        double a = CoefficientANumberBox.Value;
-        double b = CoefficientBNumberBox.Value;
-        double c = CoefficientCNumberBox.Value;
+        double a = Number1.Value;
+        double b = Number2.Value;
+        double c = Number3.Value;
 
         // 1. Check for Missing Input
         if (double.IsNaN(a) || double.IsNaN(b) || double.IsNaN(c))

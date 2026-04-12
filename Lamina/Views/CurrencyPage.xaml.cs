@@ -51,16 +51,16 @@ public sealed partial class CurrencyPage : Page
                 .OrderBy(c => c.Code)
                 .ToList();
 
-            FromCurrencyComboBox.ItemsSource = currencyList;
-            ToCurrencyComboBox.ItemsSource = currencyList;
-            FromCurrencyComboBox.SelectedItem = currencyList.Find(c => c.Code == "USD");
-            ToCurrencyComboBox.SelectedItem = currencyList.Find(c => c.Code == "EUR");
+            FromCurrency.ItemsSource = currencyList;
+            ToCurrency.ItemsSource = currencyList;
+            FromCurrency.SelectedItem = currencyList.Find(c => c.Code == "USD");
+            ToCurrency.SelectedItem = currencyList.Find(c => c.Code == "EUR");
         }
         catch
         {
             var fallback = new List<CurrencyItem> { new() { Code = "USD", Name = "United States Dollar" }, new() { Code = "EUR", Name = "Euro" } };
-            FromCurrencyComboBox.ItemsSource = fallback;
-            ToCurrencyComboBox.ItemsSource = fallback;
+            FromCurrency.ItemsSource = fallback;
+            ToCurrency.ItemsSource = fallback;
         }
         finally
         {
@@ -82,8 +82,8 @@ public sealed partial class CurrencyPage : Page
             return;
         }
 
-        var from = (FromCurrencyComboBox.SelectedItem as CurrencyItem)?.Code ?? "USD";
-        var to = (ToCurrencyComboBox.SelectedItem as CurrencyItem)?.Code ?? "EUR";
+        var from = (FromCurrency.SelectedItem as CurrencyItem)?.Code ?? "USD";
+        var to = (ToCurrency.SelectedItem as CurrencyItem)?.Code ?? "EUR";
 
         LoadingProgressBar.Visibility = Visibility.Visible;
         try
@@ -108,9 +108,9 @@ public sealed partial class CurrencyPage : Page
     }
     private void SwapButton_Click(object sender, RoutedEventArgs e)
     {
-        var temp = FromCurrencyComboBox.SelectedIndex;
-        FromCurrencyComboBox.SelectedIndex = ToCurrencyComboBox.SelectedIndex;
-        ToCurrencyComboBox.SelectedIndex = temp;
+        var temp = FromCurrency.SelectedIndex;
+        FromCurrency.SelectedIndex = ToCurrency.SelectedIndex;
+        ToCurrency.SelectedIndex = temp;
 
         // Auto-convert on swap if there is a value
         if (!double.IsNaN(InputNumberBox.Value))

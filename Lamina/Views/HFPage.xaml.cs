@@ -26,9 +26,9 @@ namespace Lamina.Views
             ResultValueText.Foreground = (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"];
             CopyButton.Visibility = Visibility.Visible;
 
-            double a = SideANumberBox.Value;
-            double b = SideBNumberBox.Value;
-            double c = SideCNumberBox.Value;
+            double a = SideA.Value;
+            double b = SideB.Value;
+            double c = SideC.Value;
 
             // 1. Validation for Missing/Zero/Negative
             if (double.IsNaN(a) || double.IsNaN(b) || double.IsNaN(c) || a <= 0 || b <= 0 || c <= 0)

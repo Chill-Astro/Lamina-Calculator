@@ -7,6 +7,8 @@
     Background="{x:Null}"
     mc:Ignorable="d">
 
+    <!--  Scriptie  -->
+
     <Grid Background="Transparent">
         <StackPanel
             Margin="0,0,0,0"
@@ -14,6 +16,7 @@
             VerticalAlignment="Top"
             Spacing="12">
 
+            <!--  Formula Bar  -->
             <InfoBar
                 Title="Formula"
                 IsClosable="False"
@@ -23,28 +26,28 @@
                 Severity="Informational" />
 
             <NumberBox
-                x:Name="CoefficientANumberBox"
+                x:Name="Number1"
                 Width="300"
                 Header="First Coefficient (a)"
                 PlaceholderText="0.00"
                 SpinButtonPlacementMode="Compact" />
 
             <NumberBox
-                x:Name="CoefficientBNumberBox"
+                x:Name="Number2"
                 Width="300"
                 Header="Second Coefficient (b)"
                 PlaceholderText="0.00"
                 SpinButtonPlacementMode="Compact" />
 
             <NumberBox
-                x:Name="CoefficientCNumberBox"
+                x:Name="Number3"
                 Width="300"
                 Header="Third Coefficient (c)"
                 PlaceholderText="0.00"
                 SpinButtonPlacementMode="Compact" />
 
             <Button
-                x:Name="CalculateRootsButton"
+                x:Name="Calculate"
                 Margin="0,15,0,0"
                 HorizontalAlignment="Center"
                 Click="CalculateRootsButton_Click"
@@ -56,6 +59,7 @@
             </Button>
         </StackPanel>
 
+        <!--  Popup Box  -->
         <ContentDialog
             x:Name="ResultDialog"
             Title="Result"

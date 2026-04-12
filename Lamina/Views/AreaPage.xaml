@@ -5,6 +5,8 @@
     Background="{x:Null}"
     Loaded="Page_Loaded">
 
+    <!--  Scriptie  -->
+
     <Grid Background="Transparent">
         <StackPanel
             Margin="0,0,0,0"
@@ -12,6 +14,7 @@
             VerticalAlignment="Top"
             Spacing="12">
 
+            <!--  Dropdown Menu for Simplicity  -->
             <ComboBox
                 x:Name="ShapeComboBox"
                 Width="300"
@@ -28,6 +31,7 @@
                 <ComboBoxItem Content="Room (4 Walls)" />
             </ComboBox>
 
+            <!--  Formula Bar (Variable)  -->
             <InfoBar
                 x:Name="FormulaInfoBar"
                 Title="Formula"
@@ -64,6 +68,7 @@
             </Button>
         </StackPanel>
 
+        <!--  Popup Box  -->
         <ContentDialog
             x:Name="ResultDialog"
             Title="Result"

@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Background="Transparent">
 
+    <!--  Part of Main Calculator UIs  -->
+
     <ScrollViewer VerticalScrollBarVisibility="Hidden">
         <StackPanel
             Margin="0,0,0,0"
@@ -20,6 +22,8 @@
                 <ComboBoxItem Content="Difference between dates" />
                 <ComboBoxItem Content="Add or subtract days" />
             </ComboBox>
+
+            <!--  Everything Live Update No Buttons nor Popups  -->
 
             <StackPanel x:Name="DifferenceSection" Spacing="16">
                 <CalendarDatePicker
@@ -111,7 +115,6 @@
                         Text="---" />
                 </StackPanel>
             </StackPanel>
-
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Background="{x:Null}">
 
+    <!--  Scriptie  -->
+
     <Grid Background="Transparent">
         <StackPanel
             Margin="0,0,0,0"
@@ -11,6 +13,7 @@
             VerticalAlignment="Top"
             Spacing="12">
 
+            <!--  Dropdown Menu for Simplicity  -->
             <ComboBox
                 x:Name="ShapeComboBox"
                 Width="300"
@@ -22,6 +25,7 @@
                 <ComboBoxItem Content="Cuboid" />
             </ComboBox>
 
+            <!--  Formula Bar (Variable)  -->
             <InfoBar
                 x:Name="FormulaInfoBar"
                 Title="Formula"
@@ -58,6 +62,7 @@
             </Button>
         </StackPanel>
 
+        <!--  Popup Box  -->
         <ContentDialog
             x:Name="ResultDialog"
             Title="Result"

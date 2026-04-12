@@ -7,6 +7,8 @@
     Background="Transparent"
     mc:Ignorable="d">
 
+    <!--  The BEAUTIFUL and Anti-Corporate Onboarding Page ( Btw Alex Brush is W Font for Someone who likes Cursive like me! )  -->
+
     <Page.Transitions>
         <TransitionCollection>
             <EntranceThemeTransition />
@@ -14,6 +16,7 @@
     </Page.Transitions>
 
     <Grid>
+        <!--  Welcome Slide with Lamina ✦ BIG AND CENTRED  -->
         <Grid x:Name="SlidesContainer">
             <StackPanel
                 x:Name="Slide1"
@@ -36,6 +39,7 @@
                     Style="{StaticResource AccentButtonStyle}" />
             </StackPanel>
 
+            <!--  Customization Page with Everything Ripped from Settings Page (lol)  -->
             <StackPanel
                 x:Name="Slide2"
                 Margin="0,48,0,0"
@@ -147,19 +151,20 @@
                     Style="{StaticResource AccentButtonStyle}" />
             </StackPanel>
 
+            <!--  Have a Nice Time with Lamina ✦ !  -->
             <StackPanel
                 x:Name="Slide3"
                 VerticalAlignment="Center"
                 Spacing="32"
                 Visibility="Collapsed">
                 <FontIcon
-                    FontSize="60"
+                    FontSize="100"
                     Foreground="{ThemeResource AccentButtonBackground}"
                     Glyph="&#xEB51;" />
                 <TextBlock
                     HorizontalAlignment="Center"
                     FontFamily="ms-appx:///Assets/Fonts/AlexBrush-Regular.ttf#Alex Brush"
-                    FontSize="30"
+                    FontSize="40"
                     Text="Have a Nice Time!" />
                 <Button
                     Width="120"

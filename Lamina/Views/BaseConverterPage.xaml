@@ -20,13 +20,13 @@
                 Severity="Informational" />
 
             <TextBox
-                x:Name="InputTextBox"
+                x:Name="Input"
                 Width="300"
                 Header="Input Number"
                 PlaceholderText="e.g. 1010 or FF" />
 
             <ComboBox
-                x:Name="FromBaseComboBox"
+                x:Name="FromBase"
                 Width="300"
                 Header="From Base"
                 SelectedIndex="1">
@@ -37,7 +37,7 @@
             </ComboBox>
 
             <ComboBox
-                x:Name="ToBaseComboBox"
+                x:Name="ToBase"
                 Width="300"
                 Header="To Base"
                 SelectedIndex="0">
@@ -48,10 +48,10 @@
             </ComboBox>
 
             <Button
-                x:Name="ConvertButton"
+                x:Name="Convert"
                 Margin="0,15,0,0"
                 HorizontalAlignment="Center"
-                Click="ConvertButton_Click"
+                Click="Convert_Click"
                 Content="Convert"
                 Style="{StaticResource AccentButtonStyle}">
                 <Button.KeyboardAccelerators>
