@@ -6,7 +6,7 @@
 
 <div align="center">
   
-Lamina ✦ is a `WinUI 3 calculator` that is NOT ONLY includes a Regular Calculator BUT ALSO something called `"Scripties"`. She supports **Mensuration, Finance, Currency Conversion, Unit Conversions AND MORE**, making her VERY POWERFUL AND EXTENDABLE.
+Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calculator but also something called `"Scripties"`. She supports **Mensuration, Finance, Currency Conversion, Unit Conversions And More!**, making her a Very Extendable Option.
   
 **Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.14.0**
 
