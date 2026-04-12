@@ -79,7 +79,10 @@ https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
 ## Features + Scripties :
 
 > [!NOTE]
-> A Scientific Calculator WILL BE ADDED onto the Main Calculator UI in v11.26100.15.0
+> A Scientific Calculator WILL BE ADDED in v11.26100.15.0!
+
+> [!IMPORTANT]
+> The Code will go through a minor changes in the next few commits such as giving "Better variableNames" and adding comments for making stuff easier.
 
 - Base Calculator UI
 - Scientific Calculator ( v11.26100.15.0 )
