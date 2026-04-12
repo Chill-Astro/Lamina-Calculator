@@ -6,5 +6,6 @@ public partial class SurfaceAreaViewModel : ObservableRecipient
 {
     public SurfaceAreaViewModel()
     {
+        // Just a blank class for nothing. Enjoy! :)
     }
 }

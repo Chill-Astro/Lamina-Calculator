@@ -20,7 +20,7 @@ public partial class SettingsViewModel : ObservableRecipient
     // UPDATE THIS EVERYTIME YOU DUMMY!
     private const string CurrentAppVersion = "11.26100.14.0";
 
-    private bool _isCheckingUpdates;
+    private bool _isCheckingUpdates; // No
 
     [ObservableProperty] private string _appVersionText;
     [ObservableProperty] private int _selectedThemeIndex;
@@ -28,10 +28,12 @@ public partial class SettingsViewModel : ObservableRecipient
 
     public SettingsViewModel(IThemeSelectorService themeSelectorService, IMicaService micaService, ILocalSettingsService localSettingsService)
     {
+        // All the Glassy UI Settings Stuff.
         _themeSelectorService = themeSelectorService;
         _micaService = micaService;
         _localSettingsService = localSettingsService;
-
+        
+        // Index for iLikeToFryMyEyes (Light) and iAmTheLoanWolf (Dark) theme or whatever Binbows 11 says.
         _selectedThemeIndex = (int)_themeSelectorService.Theme;
 
         Task.Run(async () => {
@@ -61,13 +63,14 @@ public partial class SettingsViewModel : ObservableRecipient
     {
         var licenseDialog = new ContentDialog
         {
-            Title = "MIT License",
+            Title = "MIT License", // Boring Legal Stuff if you are curious.
             CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
             Content = new ScrollViewer
             {
                 MaxHeight = 200,
                 Content = new TextBlock
                 {
+                    // Bro took so long to go to 2026 💀
                     Text = "MIT License\n\nCopyright (c) 2026 Chill-Astro Software\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
                     TextWrapping = TextWrapping.Wrap,
                     FontSize = 13
@@ -106,21 +109,21 @@ public partial class SettingsViewModel : ObservableRecipient
                 }
                 else if (latestVersion < currentVersion)
                 {
-                    message = $"Lamina ✦ DEV. BUILD! ⚠️\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}";
+                    message = $"Lamina ✦ DEV. BUILD! ⚠️\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // Using a Build like 11.26100.12.0 or lower (the buggy days)
                 }
                 else
                 {
-                    message = "Lamina ✦ is UP TO DATE! 🎉";
+                    message = "Lamina ✦ is UP TO DATE! 🎉"; // Using the Latest and Greatest
                 }
             }
             else
             {
-                message = "The Update Server returned an invalid version format. ⚠️";
+                message = "The Update Server returned an invalid version format. ⚠️"; // If the Server is like 67 kid.
             }
         }
         catch
         {
-            message = "Please Verify your Internet Connection! ❌";
+            message = "Please Verify your Internet Connection! ❌"; // If your router sucks.
         }
 
         if (!string.IsNullOrEmpty(message))
@@ -136,10 +139,10 @@ public partial class SettingsViewModel : ObservableRecipient
             await updateDialog.ShowAsync();
         }
 
-        _isCheckingUpdates = false;
+        _isCheckingUpdates = false; // Accurate
     }
 
-    public bool IsSplashEnabled
+    public bool IsSplashEnabled // No for Reel Scrollers and Serious Mathameticians and Yes for UI Design Lovers (like me).
     {
         get
         {

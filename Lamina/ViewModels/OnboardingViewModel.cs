@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Lamina.ViewModels;
 
-public partial class OnboardingViewModel : ObservableRecipient
+public partial class OnboardingViewModel : ObservableRecipient // The BEAUTIFUL Onboarding Experience's 2nd Backend Code. (srsly)
 {
     private readonly IMicaService _micaService;
     private readonly ILocalSettingsService _localSettingsService;
@@ -25,14 +25,14 @@ public partial class OnboardingViewModel : ObservableRecipient
         });
     }
 
-    partial void OnSelectedBackdropIndexChanged(int value)
+    partial void OnSelectedBackdropIndexChanged(int value) // Backdrop Switch in Slide 2 on "Customise" Screen.
     {
         _micaService.SetBackdrop(value);
         _ = _micaService.SaveMicaSettingAsync(value);
     }
 
     // Property for the ToggleSwitch in Slide 2
-    public bool IsSplashEnabled
+    public bool IsSplashEnabled // No
     {
         get => Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowSplash"] as bool? ?? true;
         set
@@ -42,7 +42,7 @@ public partial class OnboardingViewModel : ObservableRecipient
         }
     }
 
-    public int SelectedThemeIndex
+    public int SelectedThemeIndex // Boring Stuff that manipulates the Data in Settings.
     {
         get => (int)App.GetService<IThemeSelectorService>().Theme;
         set

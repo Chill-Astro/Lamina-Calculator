@@ -6,5 +6,6 @@ public partial class FinanceCalculatorViewModel : ObservableRecipient
 {
     public FinanceCalculatorViewModel()
     {
+        // Just a blank class for nothing. Enjoy! :)
     }
 }

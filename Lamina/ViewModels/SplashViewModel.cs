@@ -6,5 +6,6 @@ public partial class SplashViewModel : ObservableRecipient
 {
     public SplashViewModel()
     {
+        // Just a blank class for nothing. Enjoy! :)
     }
 }

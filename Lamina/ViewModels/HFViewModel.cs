@@ -6,5 +6,6 @@ public partial class HFViewModel : ObservableRecipient
 {
     public HFViewModel()
     {
+        // Just a blank class for nothing. Enjoy! :)
     }
 }

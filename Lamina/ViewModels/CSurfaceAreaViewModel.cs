@@ -6,5 +6,6 @@ public partial class CSurfaceAreaViewModel : ObservableRecipient
 {
     public CSurfaceAreaViewModel()
     {
+        // Just a blank class for nothing. Enjoy! :)
     }
 }

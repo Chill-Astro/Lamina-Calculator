@@ -8,12 +8,15 @@ namespace Lamina.ViewModels;
 
 public partial class CalculatorViewModel : ObservableRecipient
 {
+    // [BoringProperty]
     [ObservableProperty]
     private string _displayText = "0";
 
+    // [BoringProperty]
     [ObservableProperty]
     private string _operationText = "";
-
+    
+    // Even more Boring Stuff
     private double _currentNumber;
     private double _previousNumber;
     private double _secondNumber;
@@ -33,7 +36,7 @@ public partial class CalculatorViewModel : ObservableRecipient
     {
         if (_lastOperationWasEquals)
         {
-            ClearAll();
+            ClearAll(); // Do that to your Reels Feed Pls 🙏
             _lastOperationWasEquals = false;
         }
 
@@ -50,6 +53,7 @@ public partial class CalculatorViewModel : ObservableRecipient
         UpdateCurrentNumber();
     }
 
+    // [BoilerPlateCommand]
     [RelayCommand]
     private void InputDecimal()
     {
@@ -66,6 +70,7 @@ public partial class CalculatorViewModel : ObservableRecipient
         }
     }
 
+    // [BoilerPlateCommand]
     [RelayCommand]
     private void SetOperator(string op)
     {
@@ -86,7 +91,8 @@ public partial class CalculatorViewModel : ObservableRecipient
         OperationText = $"{_previousNumber} {op} ";
         _isNewNumberInput = true;
     }
-
+    
+    // [BoilerPlateCommand]
     [RelayCommand]
     private void Calculate()
     {
@@ -110,6 +116,7 @@ public partial class CalculatorViewModel : ObservableRecipient
         }
     }
 
+    // [BoilerPlateCommand]
     [RelayCommand]
     private void ClearAll()
     {
@@ -123,6 +130,7 @@ public partial class CalculatorViewModel : ObservableRecipient
         _lastOperationWasEquals = false;
     }
 
+    // [BoilerPlateCommand]
     [RelayCommand]
     private void Backspace()
     {
@@ -134,6 +142,7 @@ public partial class CalculatorViewModel : ObservableRecipient
         UpdateCurrentNumber();
     }
 
+    // [BoilerPlateCommand]
     [RelayCommand]
     private void Percent()
     {
@@ -141,14 +150,13 @@ public partial class CalculatorViewModel : ObservableRecipient
      
         if (!string.IsNullOrEmpty(_currentOperator))
         {
-            // For Addition and Subtraction: Calculate percentage relative to the first number
-            // Example: 50 - 2% -> becomes 50 - (50 * 0.02) = 50 - 1
+            // Behind the Scenes of % Button :
+            // For Addition and Subtraction: Calculate percentage relative to the first number            
             if (_currentOperator == "+" || _currentOperator == "-")
             {
                 _currentNumber = _previousNumber * (value / 100.0);
             }
-            // For Multiplication and Division: Just treat it as a decimal
-            // Example: 50 × 10% -> becomes 50 × 0.1
+            // For Multiplication and Division: Just treat it as a decimal            
             else if (_currentOperator == "×" || _currentOperator == "÷")
             {
                 _currentNumber = value / 100.0;
@@ -160,8 +168,7 @@ public partial class CalculatorViewModel : ObservableRecipient
         }
         else
         {
-            // If no operator is active, just turn the current number into its decimal form
-            // Example: 50% -> 0.5
+            // If no operator is active, just turn the current number into its decimal form            
             _currentNumber = value / 100.0;
             DisplayText = _currentNumber.ToString("G15");
             OperationText = $"{value}%";
@@ -170,9 +177,11 @@ public partial class CalculatorViewModel : ObservableRecipient
         _isNewNumberInput = true; // Ready for the next number or Equals
     }
 
+    // [BoilerPlateCommand]
     [RelayCommand]
     private void ClearEntry() => DisplayText = "0";
 
+    // [BoilerPlateCommand]
     [RelayCommand]
     private void Square()
     {
@@ -186,6 +195,7 @@ public partial class CalculatorViewModel : ObservableRecipient
         }
     }
 
+    // [BoilerPlateCommand]
     [RelayCommand]
     private void SquareRoot()
     {
@@ -205,6 +215,7 @@ public partial class CalculatorViewModel : ObservableRecipient
         }
     }
 
+    // [BoilerPlateCommand]
     [RelayCommand]
     private void CubeRoot()
     {
@@ -251,11 +262,11 @@ public partial class CalculatorViewModel : ObservableRecipient
         return _divisionByZeroOccurred ? 0 : Math.Round(res, 15);
     }
 
-    private double TriggerDivError()
+    private double TriggerDivError() // U suck at Math. Once a Legend said 0/0 is NaN.
     {
         _divisionByZeroOccurred = true;
-        DisplayText = "Not Defined";
-        OperationText = "";
+        DisplayText = "Division By 0 Not Defined";
+        OperationText = "NaN is NaN and Not a Number ❌"; // Education isn't Optional, Kids.
         return 0;
     }
 }

@@ -6,5 +6,6 @@ public partial class AreaViewModel : ObservableRecipient
 {
     public AreaViewModel()
     {
+        // Just a blank class for nothing. Enjoy! :)
     }
 }
