@@ -1,12 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Lamina.Views;
 
@@ -20,7 +15,7 @@ public sealed partial class CurrencyPage : Page
         InitializeComponent();
         var config = new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true) // Getting API key from appsettings.json to not leak my Personal API Key!
             .Build();
         _apiKey = config["CurrencyApiKey"] ?? string.Empty;
         _ = LoadCurrenciesAsync();
@@ -29,8 +24,7 @@ public sealed partial class CurrencyPage : Page
     private class CurrencyItem
     {
         public string Code { get; set; }
-        public string Name { get; set; }
-        // Short Names: This ensures the ComboBox only shows the Code
+        public string Name { get; set; }        
         public override string ToString() => Code;
     }
 
@@ -78,7 +72,7 @@ public sealed partial class CurrencyPage : Page
         double amount = InputNumberBox.Value;
         if (double.IsNaN(amount))
         {
-            ResultTextBlock.Text = "Invalid amount.";
+            ResultTextBlock.Text = "Invalid Amount";
             return;
         }
 
@@ -124,9 +118,7 @@ public sealed partial class CurrencyPage : Page
 
         var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
         dataPackage.SetText(ResultTextBlock.Text);
-        Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);
-
-        // Optional: Visual feedback that it was copied
+        Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);        
         VisualStateManager.GoToState(CopyButton, "Normal", true);
     }
 }

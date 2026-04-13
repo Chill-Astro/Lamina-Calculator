@@ -2,7 +2,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using System;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace Lamina.Views
@@ -20,8 +19,7 @@ namespace Lamina.Views
         {
             if (this.Content.XamlRoot == null) return;
             ResultDialog.XamlRoot = this.Content.XamlRoot;
-
-            // Reset colors to default
+            
             ResultLabel.Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"];
             ResultValueText.Foreground = (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"];
             CopyButton.Visibility = Visibility.Visible;
@@ -30,23 +28,23 @@ namespace Lamina.Views
             double b = SideB.Value;
             double c = SideC.Value;
 
-            // 1. Validation for Missing/Zero/Negative
+            // Validation for Missing / Zero / Negative ( Basically not Joking with Shapes )
             if (double.IsNaN(a) || double.IsNaN(b) || double.IsNaN(c) || a <= 0 || b <= 0 || c <= 0)
             {
-                ShowError("Error:", "Invalid side lengths.");
+                ShowError("Error :", "Invalid Side Lengths");
                 await ResultDialog.ShowAsync();
                 return;
             }
 
-            // 2. Triangle Inequality Check
+            // Triangle Inequality Check ( Sum of any two sides must be greater than the third )
             if (a + b <= c || a + c <= b || b + c <= a)
             {
-                ShowError("Invalid Geometry:", "Not a valid triangle.");
+                ShowError("Invalid Geometry :", "Invalid Triangle");
                 await ResultDialog.ShowAsync();
                 return;
             }
 
-            // 3. Calculation
+            // MATHING TIME!
             try
             {
                 double s = (a + b + c) / 2.0;
@@ -60,7 +58,7 @@ namespace Lamina.Views
             }
             catch
             {
-                ShowError("Error:", "Calculation failed.");
+                ShowError("Error :", "Calculation Failed");
             }
 
             await ResultDialog.ShowAsync();

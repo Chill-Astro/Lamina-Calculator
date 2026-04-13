@@ -1,10 +1,10 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using System.Collections.Generic;
 
 namespace Lamina.Views
 {
+    // Just like School History, this too is Boring.
     public sealed partial class HistoryPage : Page
     {
         private List<string> _history;

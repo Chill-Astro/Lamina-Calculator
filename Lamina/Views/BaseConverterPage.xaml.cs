@@ -1,7 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using System;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace Lamina.Views;
@@ -52,10 +51,10 @@ public sealed partial class BaseConverterPage : Page
         ResultLabel.Text = label;
         ResultValueText.Text = value;
 
-        // Only show copy button on success
+        // Only show copy button on Success, as Success stands on the pillars of Failure.
         CopyButton.Visibility = isSuccess ? Visibility.Visible : Visibility.Collapsed;
 
-        // Apply Red color for errors, Standard color for success
+        // Red has highest Wavelength so it's the color chosen for errors. ( I hope you remember Physics :D )
         ResultValueText.Foreground = isSuccess
             ? (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
             : (Brush)Application.Current.Resources["SystemFillColorCriticalBrush"]; // This makes it red

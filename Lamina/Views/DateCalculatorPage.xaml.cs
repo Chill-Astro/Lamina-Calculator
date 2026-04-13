@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System;
 
 namespace Lamina.Views;
 
@@ -9,12 +8,9 @@ public sealed partial class DateCalculatorPage : Page
     public DateCalculatorPage()
     {
         this.InitializeComponent();
-
         // Initialize with today's date
         var today = DateTimeOffset.Now;
-        FromDateDiff.Date = ToDateDiff.Date = StartDateAdd.Date = today;
-
-        // Wire up events for real-time updates
+        FromDateDiff.Date = ToDateDiff.Date = StartDateAdd.Date = today;        
         FromDateDiff.DateChanged += (s, e) => LiveUpdateDiff();
         ToDateDiff.DateChanged += (s, e) => LiveUpdateDiff();
         StartDateAdd.DateChanged += (s, e) => LiveUpdateAdd(null, null);
@@ -31,6 +27,7 @@ public sealed partial class DateCalculatorPage : Page
         AddSubtractSection.Visibility = isDiffMode ? Visibility.Collapsed : Visibility.Visible;
     }
 
+    // Yeah for saving your Hand from Clicking 100 times!
     private void LiveUpdateDiff()
     {
         if (!FromDateDiff.Date.HasValue || !ToDateDiff.Date.HasValue) return;
@@ -38,7 +35,7 @@ public sealed partial class DateCalculatorPage : Page
         DateTime start = FromDateDiff.Date.Value.DateTime;
         DateTime end = ToDateDiff.Date.Value.DateTime;
 
-        if (start == end) { DiffResultText.Text = "Same dates"; return; }
+        if (start == end) { DiffResultText.Text = "Same Dates"; return; }
 
         // Ensure we always calculate from earlier to later
         if (start > end) { var temp = start; start = end; end = temp; }
@@ -82,6 +79,6 @@ public sealed partial class DateCalculatorPage : Page
             DateTime result = start.AddYears(y * direction).AddMonths(m * direction).AddDays(d * direction);
             AddResultText.Text = result.ToString("dddd, MMMM d, yyyy");
         }
-        catch { AddResultText.Text = "Out of range"; }
+        catch { AddResultText.Text = "Out of Range"; }
     }
 }

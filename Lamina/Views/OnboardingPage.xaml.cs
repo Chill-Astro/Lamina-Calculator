@@ -5,13 +5,11 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using WinRT.Interop;
-using System;
-using System.Threading.Tasks;
 using Lamina.ViewModels;
 
 namespace Lamina.Views;
 
-public sealed partial class OnboardingPage : Page
+public sealed partial class OnboardingPage : Page // The 1st Backend for OnboardingPage!
 {
     public OnboardingViewModel ViewModel { get; }
     private int _currentIndex = 0;
@@ -64,22 +62,22 @@ public sealed partial class OnboardingPage : Page
 
     private async void Finish_Click(object sender, RoutedEventArgs e)
     {
-        // 1. Save state
+        // Save state
         var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
         localSettings.Values["FirstLaunch"] = false;
 
-        // 2. Fade out
+        // Fade out
         this.Opacity = 0;
         await System.Threading.Tasks.Task.Delay(250);
 
-        // 3. Create ShellPage with its ViewModel
+        // Create ShellPage with its ViewModel
         var shellViewModel = App.GetService<ShellViewModel>();
         var shellPage = new ShellPage(shellViewModel);
 
-        // 4. Set as Window Content
+        // Set as Window Content
         App.MainWindow.Content = shellPage;
 
-        // 5. CRITICAL: Force the window to update
+        // Force the window to update
         App.MainWindow.Activate();
     }
 }

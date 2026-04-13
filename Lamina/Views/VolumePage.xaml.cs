@@ -2,7 +2,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using System;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace Lamina.Views
@@ -35,6 +34,7 @@ namespace Lamina.Views
 
             switch (shape)
             {
+                // Formulae
                 case "Cube":
                     FormulaInfoBar.Message = "V = a³";
                     SetInputs("Side (a)");
@@ -69,8 +69,7 @@ namespace Lamina.Views
         {
             if (this.Content.XamlRoot == null) return;
             ResultDialog.XamlRoot = this.Content.XamlRoot;
-
-            // Reset colors to default theme values
+            
             ResultLabel.Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"];
             ResultValueText.Foreground = (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"];
 
@@ -80,12 +79,12 @@ namespace Lamina.Views
             double c = InputC.Value;
             double volume = 0;
 
-            // Validation: Show Red Error
+            // Red has highest Wavelength so it's the color chosen for errors. ( I hope you remember Physics :D )
             if (double.IsNaN(a) ||
                (InputB.Visibility == Visibility.Visible && double.IsNaN(b)) ||
                (InputC.Visibility == Visibility.Visible && double.IsNaN(c)))
             {
-                ShowError("Error:", "Invalid inputs.");
+                ShowError("Error :", "Invalid Inputs");
                 await ResultDialog.ShowAsync();
                 return;
             }
@@ -94,6 +93,7 @@ namespace Lamina.Views
             {
                 switch (shape)
                 {
+                    // MATH TIME! (Don't worry, it's just basic math)
                     case "Cube": volume = Math.Pow(a, 3); break;
                     case "Cuboid": volume = a * b * c; break;
                     case "Cylinder": volume = Math.PI * Math.Pow(a, 2) * b; break;
@@ -106,7 +106,7 @@ namespace Lamina.Views
             }
             catch
             {
-                ShowError("Error:", "Calculation error.");
+                ShowError("Error :", "Calculation Error");
             }
 
             await ResultDialog.ShowAsync();

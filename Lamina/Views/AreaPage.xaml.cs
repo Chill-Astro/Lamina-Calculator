@@ -2,7 +2,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using System;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace Lamina.Views
@@ -37,6 +36,7 @@ namespace Lamina.Views
 
             switch (shape)
             {
+                // Formulae
                 case "Equilateral Triangle":
                     FormulaInfoBar.Message = "Area = (√3 / 4) × s²";
                     SetInputs("Side (s)");
@@ -85,7 +85,7 @@ namespace Lamina.Views
             if (this.Content.XamlRoot == null) return;
             ResultDialog.XamlRoot = this.Content.XamlRoot;
 
-            // Reset colors to default theme values
+            // Red has highest Wavelength so it's the color chosen for errors. ( I hope you remember Physics :D )
             ResultLabel.Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"];
             ResultValueText.Foreground = (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"];
 
@@ -94,8 +94,7 @@ namespace Lamina.Views
             double b = InputB.Value;
             double c = InputC.Value;
             double area = 0;
-
-            // Validation: Show Red Error
+            
             if (double.IsNaN(a) ||
                (InputB.Visibility == Visibility.Visible && double.IsNaN(b)) ||
                (InputC.Visibility == Visibility.Visible && double.IsNaN(c)))
@@ -107,6 +106,7 @@ namespace Lamina.Views
 
             try
             {
+                // MATH TIME! (Don't worry, it's just basic math)
                 switch (shape)
                 {
                     case "Equilateral Triangle": area = (Math.Sqrt(3) / 4) * Math.Pow(a, 2); break;

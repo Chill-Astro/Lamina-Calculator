@@ -1,10 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using System;
-using System.Collections.Generic;
 using Windows.ApplicationModel.DataTransfer;
-using System.Threading.Tasks;
 
 namespace Lamina.Views;
 
@@ -119,7 +116,7 @@ public sealed partial class UnitConverterPage : Page
         }
         else
         {
-            await ShowResultPopup("Selection Issue:", "Please select both units.", false);
+            await ShowResultPopup("Selection Issue :", "Please Select Both Units", false);
         }
     }
 

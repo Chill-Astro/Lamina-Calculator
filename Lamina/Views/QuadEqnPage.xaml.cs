@@ -2,8 +2,6 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Windows.ApplicationModel.DataTransfer;
-using System;
-using System.Threading.Tasks;
 
 namespace Lamina.Views;
 
@@ -26,7 +24,7 @@ public sealed partial class QuadEqnPage : Page
         if (double.IsNaN(a) || double.IsNaN(b) || double.IsNaN(c))
         {
             temp = "";
-            await ShowResultPopup("Incomplete Input", "Please fill all coefficients.", false);
+            await ShowResultPopup("Incomplete Input", "Please Fill All Fields", false);
             return;
         }
 
@@ -36,7 +34,7 @@ public sealed partial class QuadEqnPage : Page
             if (b == 0)
             {
                 temp = "";
-                await ShowResultPopup("Invalid Equation", c == 0 ? "Infinite solutions (0=0)." : "No solution.", false);
+                await ShowResultPopup("Invalid Equation", c == 0 ? "Infinite Solutions (0=0)" : "No Solution", false);
             }
             else
             {
@@ -66,7 +64,7 @@ public sealed partial class QuadEqnPage : Page
         else
         {
             temp = ""; // No real number to copy
-            await ShowResultPopup("No Real Roots", "The discriminant is -ve.", false);
+            await ShowResultPopup("No Real Roots", "D is -ve.", false);
         }
     }
 

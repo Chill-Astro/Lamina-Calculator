@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace Lamina.Views
@@ -33,6 +32,7 @@ namespace Lamina.Views
 
             switch (shape)
             {
+                // Formulae
                 case "Cube":
                     FormulaInfoBar.Message = "SA = 6a²";
                     SetInputs("Side (a)");
@@ -78,8 +78,8 @@ namespace Lamina.Views
                (InputB.Visibility == Visibility.Visible && double.IsNaN(b)) ||
                (InputC.Visibility == Visibility.Visible && double.IsNaN(c)))
             {
-                ResultLabel.Text = "Error:";
-                ResultValueText.Text = "Please enter valid numbers.";
+                ResultLabel.Text = "Error :";
+                ResultValueText.Text = "Please Enter Valid Numbers";
                 await ResultDialog.ShowAsync();
                 return;
             }
@@ -88,6 +88,7 @@ namespace Lamina.Views
             {
                 switch (shape)
                 {
+                    // MATH TIME (Don't worry, I got this)
                     case "Cube":
                         surfaceArea = 6 * Math.Pow(a, 2);
                         break;
@@ -113,8 +114,8 @@ namespace Lamina.Views
             }
             catch
             {
-                ResultLabel.Text = "Error:";
-                ResultValueText.Text = "Invalid dimensions.";
+                ResultLabel.Text = "Error :";
+                ResultValueText.Text = "Invalid dimensions";
             }
 
             await ResultDialog.ShowAsync();

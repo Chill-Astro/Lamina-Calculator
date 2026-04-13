@@ -1,6 +1,7 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System;
+using Microsoft.UI.Xaml.Media;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace Lamina.Views
@@ -33,6 +34,7 @@ namespace Lamina.Views
 
             switch (shape)
             {
+                // Formulae
                 case "Cylinder":
                     FormulaInfoBar.Message = "CSA = 2πrh";
                     SetInputs("Radius (r)", "Height (h)");
@@ -59,6 +61,10 @@ namespace Lamina.Views
             if (this.Content.XamlRoot == null) return;
             ResultDialog.XamlRoot = this.Content.XamlRoot;
 
+            // Reset colors to default theme brushes for successful calculations
+            ResultLabel.Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"];
+            ResultValueText.Foreground = (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"];
+
             string shape = (ShapeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
             double a = InputA.Value;
             double b = InputB.Value;
@@ -66,14 +72,14 @@ namespace Lamina.Views
 
             if (double.IsNaN(a) || (InputB.Visibility == Visibility.Visible && double.IsNaN(b)))
             {
-                ResultLabel.Text = "Error:";
-                ResultValueText.Text = "Invalid inputs.";
+                ShowError("Error:", "Invalid inputs.");
                 await ResultDialog.ShowAsync();
                 return;
             }
 
             try
             {
+                // MATH TIME! (Don't worry, it's just basic geometry formulas)
                 switch (shape)
                 {
                     case "Cylinder": csa = 2 * Math.PI * a * b; break;
@@ -81,20 +87,30 @@ namespace Lamina.Views
                     case "Sphere": csa = 4 * Math.PI * Math.Pow(a, 2); break;
                 }
 
+                if (double.IsNaN(csa) || double.IsInfinity(csa)) throw new Exception();
+
                 ResultLabel.Text = "C. Surface Area =";
                 ResultValueText.Text = csa.ToString("N2");
             }
             catch
             {
-                ResultLabel.Text = "Error:";
-                ResultValueText.Text = "Calculation error.";
+                ShowError("Error:", "Calculation error.");
             }
 
             await ResultDialog.ShowAsync();
         }
+        // Red has highest Wavelength so it's the color chosen for errors. ( I hope you remember Physics :D )
+        private void ShowError(string label, string message)
+        {
+            ResultLabel.Text = label;
+            ResultLabel.Foreground = new SolidColorBrush(Colors.Red);
+            ResultValueText.Text = message;
+            ResultValueText.Foreground = new SolidColorBrush(Colors.Red);
+        }
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(ResultValueText.Text)) return;
             var dp = new DataPackage();
             dp.SetText(ResultValueText.Text);
             Clipboard.SetContent(dp);

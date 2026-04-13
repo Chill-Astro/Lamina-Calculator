@@ -3,8 +3,6 @@ using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using System;
-using System.Linq;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using Windows.UI.Core;
@@ -58,14 +56,12 @@ public sealed partial class CalculatorPage : Page
         this.Focus(FocusState.Programmatic);
     }
 
-    /// <summary>
-    /// Animates the button to provide visual feedback for keyboard presses.
-    /// </summary>
+    // NOICE ANIMATIONS FOR KEYBOARD FEEDBACK
     private async void AnimateClick(Button button)
     {
         if (button == null) return;
 
-        // Trigger the 'Pressed' visual state from your XAML Style
+        // Trigger the 'Pressed' visual state
         VisualStateManager.GoToState(button, "Pressed", true);
 
         // Brief delay to make the animation visible to the user
@@ -76,15 +72,14 @@ public sealed partial class CalculatorPage : Page
     }
 
     private void CalculatorPage_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
-    {
-        // CoreVirtualKeyStates is the correct WinUI 3 enum for checking modifier keys
+    {        
         var shift = InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Shift).HasFlag(CoreVirtualKeyStates.Down);
         var ctrl = InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Control).HasFlag(CoreVirtualKeyStates.Down);
 
         bool handled = true;
         Button targetButton = null;
 
-        // 1. Handle Numbers (Main Row and Numpad)
+        // Handle Numbers (Main Row and Numpad)
         if (e.Key >= VirtualKey.Number0 && e.Key <= VirtualKey.Number9 && !shift)
         {
             string num = (e.Key - VirtualKey.Number0).ToString();
@@ -97,7 +92,7 @@ public sealed partial class CalculatorPage : Page
             ViewModel.InputNumberCommand.Execute(num);
             targetButton = this.FindName("Btn" + num) as Button;
         }
-        // 2. Handle Operators and Actions
+        // Handle Operators and Actions
         else
         {
             switch (e.Key)
@@ -168,7 +163,7 @@ public sealed partial class CalculatorPage : Page
             }
         }
 
-        // 3. Finalize Event
+        // Finalize Event
         if (handled)
         {
             e.Handled = true;

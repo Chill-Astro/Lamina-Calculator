@@ -2,7 +2,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using System;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace Lamina.Views
@@ -26,6 +25,7 @@ namespace Lamina.Views
 
             switch (type)
             {
+                // Formulae
                 case "Simple Interest":
                     FormulaInfoBar.Message = "I = (P × R × T) / 100";
                     SetInputs("Principal (P)", "Rate % (R)", "Years (T)");
@@ -66,11 +66,10 @@ namespace Lamina.Views
             double n = InputD.Value;
 
             double interest = 0, totalAmount = 0;
-
-            // Validation: Show Red Error
+            
             if (double.IsNaN(p) || double.IsNaN(r) || double.IsNaN(t))
             {
-                ShowError("Error:", "Please fill all fields.");
+                ShowError("Error :", "Please Fill All Fields");
                 await ResultDialog.ShowAsync();
                 return;
             }
@@ -79,6 +78,7 @@ namespace Lamina.Views
             {
                 switch (type)
                 {
+                    // MATH TIME (I hope you remember all these formulae from school :D )
                     case "Simple Interest":
                         interest = (p * r * t) / 100.0;
                         totalAmount = p + interest;
@@ -104,12 +104,12 @@ namespace Lamina.Views
             }
             catch
             {
-                ShowError("Error:", "Calculation failed.");
+                ShowError("Error :", "Calculation failed");
             }
 
             await ResultDialog.ShowAsync();
         }
-
+        // Red has highest Wavelength so it's the color chosen for errors. ( I hope you remember Physics :D )
         private void ShowError(string label, string message)
         {
             ResultLabel.Text = label;
