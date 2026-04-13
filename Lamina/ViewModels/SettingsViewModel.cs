@@ -131,7 +131,7 @@ public partial class SettingsViewModel : ObservableRecipient
             var updateDialog = new ContentDialog
             {
                 Title = "Update Check",
-                Content = message,
+                Content = "Searching for Latest Release.... ♪(´▽｀)\n\n" + message,
                 CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
                 CloseButtonText = "Close",
                 XamlRoot = App.MainWindow.Content.XamlRoot

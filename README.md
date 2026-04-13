@@ -8,7 +8,7 @@
   
 Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calculator but also something called `"Scripties"`. She supports **Mensuration, Finance, Currency Conversion, Unit Conversions And More!**, making her a Very Extendable Option.
   
-**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.14.0**
+**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.15.0**
 
 **App Execution Aliases :** `lamina.exe` & `lmna.exe` 
 
@@ -79,13 +79,13 @@ https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
 ## Features + Scripties :
 
 > [!NOTE]
-> A Scientific Calculator WILL BE ADDED in v11.26100.15.0!
+> A Scientific Calculator WILL BE ADDED in v11.26100.16.0!
 
 > [!IMPORTANT]
-> The Code will go through a minor changes in the next few commits such as giving "Better variableNames" and adding comments for making stuff easier.
+> The Code is undergoing some Refactors for "Better variableNames", some UI Improvements and Cleanups here and there with a Touch of Personality, after all there's no Corporation Controlling Me!
 
-- Base Calculator UI
-- Scientific Calculator ( v11.26100.15.0 )
+- Basic Calculator
+- Advanced Calculator ( v11.26100.16.0 )
 - Date Calculator
 - Convertors :
   * Base Converter
