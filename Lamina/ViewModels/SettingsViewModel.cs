@@ -103,9 +103,8 @@ public partial class SettingsViewModel : ObservableRecipient
 
                 if (latestVersion > currentVersion)
                 {
-                    await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Calculator/releases"));
-                    _isCheckingUpdates = false;
-                    return;
+                    message = $"Woohooo! ヽ(✿ﾟ▽ﾟ)ノ \n\nThere's a New Release of Lamina ✦ ! 🎉\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // Whenever a New Update Drops.
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Calculator/releases/latest"));
                 }
                 else if (latestVersion < currentVersion)
                 {
@@ -113,7 +112,7 @@ public partial class SettingsViewModel : ObservableRecipient
                 }
                 else
                 {
-                    message = "Woohooo! ^o^ \n\nLamina ✦ is UP TO DATE! 🎉"; // Using the Latest and Greatest
+                    message = "Woohooo! ヾ(^▽^*))) \n\nLamina ✦ is UP TO DATE! 🎉"; // Using the Latest and Greatest
                 }
             }
             else
@@ -124,7 +123,7 @@ public partial class SettingsViewModel : ObservableRecipient
         catch
         {
             message = "(╯°□°）╯︵ ┻━┻ \n\nPlease Verify your Internet Connection! ❌"; // If your router sucks.
-        }
+        }        
 
         if (!string.IsNullOrEmpty(message))
         {
