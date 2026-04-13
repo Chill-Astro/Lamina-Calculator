@@ -81,7 +81,7 @@ public partial class SettingsViewModel : ObservableRecipient
         };
         await licenseDialog.ShowAsync();
     }
-
+    
     [RelayCommand]
     private async Task CheckForUpdates()
     {
@@ -91,10 +91,8 @@ public partial class SettingsViewModel : ObservableRecipient
         string message = "";
         try
         {
-            // Adding a timestamp to the URL prevents GitHub/Windows from caching an old version of the Gist
             string gistUrl = $"https://gist.githubusercontent.com/Chill-Astro/ac961f2e3f9a2de6b358de9be9a2bfc1/raw/LMNA_V?t={DateTime.Now.Ticks}";
             string response = await _httpClient.GetStringAsync(gistUrl);
-
             string cleanResponse = response.Trim().ToLower().Replace("v", "");
 
             if (Version.TryParse(cleanResponse, out var latestVersion))
@@ -103,45 +101,56 @@ public partial class SettingsViewModel : ObservableRecipient
 
                 if (latestVersion > currentVersion)
                 {
-                    message = $"Woohooo! ヽ(✿ﾟ▽ﾟ)ノ \n\nThere's a New Release of Lamina ✦ ! 🎉\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // Whenever a New Update Drops.
+                    message = $"Woohooo! ヽ(✿ﾟ▽ﾟ)ノ \n\nThere's a New Release of Lamina ✦ ! 🎉\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}\n\nHit Close to get New Version! ヾ(^▽^*)))";
+
+                    await DisplayDialog("Update Check", message); // Use the Helper if New Version.
+                    
                     await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Calculator/releases/latest"));
+
+                    _isCheckingUpdates = false;
+                    return;
                 }
                 else if (latestVersion < currentVersion)
                 {
-                    message = $"Huh! (。_。) \n\nThis is a DEV. BUILD Lamina ✦ ! ⚠️\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // Using a Build like 11.26100.12.0 or lower (the buggy days)
+                    message = $"Huh! (。_。) \n\nThis is a DEV. BUILD Lamina ✦ ! ⚠️\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // If using a Buggy Build.
                 }
                 else
                 {
-                    message = "Woohooo! ヾ(^▽^*))) \n\nLamina ✦ is UP TO DATE! 🎉"; // Using the Latest and Greatest
+                    message = "Woohooo! ヾ(^▽^*))) \n\nLamina ✦ is UP TO DATE! 🎉"; // If using the Latest and Greatest!
                 }
             }
             else
             {
-                message = "¯\\_(ツ)_/¯ \n\nThe Update Server returned an invalid version format. ⚠️"; // If the Server is like 67 kid.
+                message = "¯\\_(ツ)_/¯ \n\nThe Update Server returned an invalid version format. ⚠️"; // If the Server is like 67 Kid.
             }
         }
         catch
         {
-            message = "(╯°□°）╯︵ ┻━┻ \n\nPlease Verify your Internet Connection! ❌"; // If your router sucks.
-        }        
-
-        if (!string.IsNullOrEmpty(message))
-        {
-            var updateDialog = new ContentDialog
-            {
-                Title = "Update Check",
-                Content = "Searching for Latest Release.... ♪(´▽｀)\n\n" + message, // La la la la! La la la la la!
-                CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
-                CloseButtonText = "Close",
-                XamlRoot = App.MainWindow.Content.XamlRoot
-            };
-            await updateDialog.ShowAsync();
+            message = "(╯°□°）╯︵ ┻━┻ \n\nPlease Verify your Internet Connection! ❌"; // If ur WiFi is as bad as your Reels Feed.
         }
 
-        _isCheckingUpdates = false; // Accurate
+        // Show the dialog for everything EXCEPT the "New Release"
+        if (!string.IsNullOrEmpty(message))
+        {
+            await DisplayDialog("Update Check", message);
+        }
+
+        _isCheckingUpdates = false;
+    }  
+    private async Task DisplayDialog(string title, string content)
+    {
+        var dialog = new ContentDialog
+        {
+            Title = title,
+            Content = "Searching for Latest Release.... ♪(´▽｀)\n\n" + content,
+            CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
+            CloseButtonText = "Close",
+            XamlRoot = App.MainWindow.Content.XamlRoot
+        };
+        await dialog.ShowAsync();
     }
 
-    public bool IsSplashEnabled // No for Reel Scrollers and Serious Mathematicians and Yes for UI Design Lovers (like me).
+    public bool IsSplashEnabled // No for Reel Scrollers and Serious Mathematicians, but Yes for UI Design Lovers (like me).
     {
         get
         {
