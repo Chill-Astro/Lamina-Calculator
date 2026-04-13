@@ -18,7 +18,7 @@ public partial class SettingsViewModel : ObservableRecipient
     private static readonly HttpClient _httpClient = new();
 
     // UPDATE THIS EVERYTIME YOU DUMMY!
-    private const string CurrentAppVersion = "11.26100.14.0";
+    private const string CurrentAppVersion = "11.26100.15.0";
 
     private bool _isCheckingUpdates; // No
 
@@ -142,7 +142,7 @@ public partial class SettingsViewModel : ObservableRecipient
         _isCheckingUpdates = false; // Accurate
     }
 
-    public bool IsSplashEnabled // No for Reel Scrollers and Serious Mathameticians and Yes for UI Design Lovers (like me).
+    public bool IsSplashEnabled // No for Reel Scrollers and Serious Mathematicians and Yes for UI Design Lovers (like me).
     {
         get
         {
