@@ -229,6 +229,25 @@ public partial class CalculatorViewModel : ObservableRecipient
         }
     }
 
+    // [BoilerPlateCommand]
+    [RelayCommand]
+    private void Paste(string n)
+    {
+        // TryParse to make sure it's actually a number
+        if (double.TryParse(n, out double value))
+        {
+            // Use the Property (DisplayText), not the field (_displayText)
+            DisplayText = value.ToString("G15");
+            OperationText = "";
+
+            // Also update the internal state so further math works
+            _currentNumber = value;
+            _isNewNumberInput = true; // Set to true so the next digit typed clears the paste
+            _lastOperationWasEquals = false;
+            _divisionByZeroOccurred = false;            
+        }
+    }
+
     private void UpdateCurrentNumber()
     {
         if (double.TryParse(DisplayText.Replace(",", ""), out double val))
@@ -268,5 +287,5 @@ public partial class CalculatorViewModel : ObservableRecipient
         DisplayText = "Division By 0 Not Defined";
         OperationText = "NaN is NaN and Not a Number ❌"; // Education isn't Optional, Kids.
         return 0;
-    }
+    }    
 }

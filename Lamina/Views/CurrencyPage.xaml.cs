@@ -68,12 +68,12 @@ public sealed partial class CurrencyPage : Page
         }
     }
 
-    private void RefreshButton_Click(object sender, RoutedEventArgs e)
+    private void Refresh_Click(object sender, RoutedEventArgs e)
     {
         _ = LoadCurrenciesAsync();
     }
 
-    private async void ConvertButton_Click(object sender, RoutedEventArgs e)
+    private async void Convert_Click(object sender, RoutedEventArgs e)
     {
         double amount = InputNumberBox.Value;
         if (double.IsNaN(amount))
@@ -115,7 +115,7 @@ public sealed partial class CurrencyPage : Page
         // Auto-convert on swap if there is a value
         if (!double.IsNaN(InputNumberBox.Value))
         {
-            ConvertButton_Click(null, null);
+            Convert_Click(null, null);
         }
     }
     private void CopyButton_Click(object sender, RoutedEventArgs e)

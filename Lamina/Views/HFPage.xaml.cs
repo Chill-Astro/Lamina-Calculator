@@ -16,7 +16,7 @@ namespace Lamina.Views
             this.InitializeComponent();
         }
 
-        private async void CalculateButton_Click(object sender, RoutedEventArgs e)
+        private async void Calculate_Click(object sender, RoutedEventArgs e)
         {
             if (this.Content.XamlRoot == null) return;
             ResultDialog.XamlRoot = this.Content.XamlRoot;

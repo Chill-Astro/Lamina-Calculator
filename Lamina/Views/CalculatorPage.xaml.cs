@@ -1,12 +1,13 @@
-﻿using System;
-using System.Linq;
+﻿using Lamina.ViewModels;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using System;
+using System.Linq;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using Windows.UI.Core;
-using Lamina.ViewModels;
 
 namespace Lamina.Views;
 
@@ -136,7 +137,7 @@ public sealed partial class CalculatorPage : Page
                     targetButton = BtnBackspace;
                     break;
                 
-                case VirtualKey.C when !shift:
+                case VirtualKey.C when !shift && !ctrl:
                     ViewModel.ClearAllCommand.Execute(null);
                     targetButton = BtnC;
                     break;
@@ -179,4 +180,37 @@ public sealed partial class CalculatorPage : Page
     }
 
     private void HistoryButton_Click(object sender, RoutedEventArgs e) => OpenHistoryDialog();
+
+    private async void CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrEmpty(DisplayTextBlock.Text)) return;
+        var dp = new DataPackage();
+        dp.SetText(DisplayTextBlock.Text);
+        Clipboard.SetContent(dp);
+        CopyNotification.IsOpen = true;
+        await Task.Delay(2000);
+        CopyNotification.IsOpen = false;
+    }
+    private async void PasteButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var content = Clipboard.GetContent();
+
+            if (content != null && content.Contains(StandardDataFormats.Text))
+            {
+                string pasteText = await content.GetTextAsync();
+
+                if (double.TryParse(pasteText, out _))
+                {
+                    ViewModel.PasteCommand.Execute(pasteText);
+                    // Success is shown by the number appearing on the display!
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Paste Error: {ex.Message}");
+        }
+    }
 }

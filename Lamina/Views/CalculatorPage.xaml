@@ -87,7 +87,6 @@
             </Setter>
         </Style>
 
-        <!--  Stylish Design from Fashion Brand I mean a Kid with a Laptop  -->
         <Style
             x:Key="NumberButtonStyle"
             BasedOn="{StaticResource CalculatorButtonStyle}"
@@ -156,6 +155,7 @@
     </Page.Resources>
 
     <Grid>
+        <!--  History Button  -->
         <Button
             Width="35"
             Height="35"
@@ -173,6 +173,57 @@
             <Button.KeyboardAccelerators>
                 <KeyboardAccelerator Key="H" Modifiers="Control" />
             </Button.KeyboardAccelerators>
+            <ToolTipService.ToolTip>
+                <ToolTip Content="History (Ctrl + H)" />
+            </ToolTipService.ToolTip>
+        </Button>
+
+        <!--  Copy Button  -->
+        <Button
+            x:Name="CopyButton"
+            Width="35"
+            Height="35"
+            Margin="0,-52,1,0"
+            Padding="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="CopyButton_Click"
+            Content="&#xe8c8;"
+            CornerRadius="3"
+            FontFamily="Segoe Fluent Icons"
+            FontSize="16">
+            <Button.KeyboardAccelerators>
+                <KeyboardAccelerator Key="C" Modifiers="Control" />
+            </Button.KeyboardAccelerators>
+            <ToolTipService.ToolTip>
+                <ToolTip Content="Copy Result to Clipboard (Ctrl + C)" />
+            </ToolTipService.ToolTip>
+        </Button>
+
+        <!--  Paste Button  -->
+        <Button
+            x:Name="PasteButton"
+            Width="35"
+            Height="35"
+            Margin="35,-52,1,0"
+            Padding="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="PasteButton_Click"
+            Content="&#xE77F;"
+            CornerRadius="3"
+            FontFamily="Segoe Fluent Icons"
+            FontSize="16">
+            <Button.KeyboardAccelerators>
+                <KeyboardAccelerator Key="V" Modifiers="Control" />
+            </Button.KeyboardAccelerators>
+            <ToolTipService.ToolTip>
+                <ToolTip Content="Paste from Clipboard (Ctrl + V)" />
+            </ToolTipService.ToolTip>
         </Button>
 
         <!--  Resizable Magic Button Grid that Sucks to Develop fr fr 🥀  -->
@@ -431,6 +482,13 @@
                     FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource AccentButtonStyle}" />
             </Grid>
+            <TeachingTip
+                x:Name="CopyNotification"
+                Title="Copied! ♪(´▽｀)"
+                IsLightDismissEnabled="True"
+                PreferredPlacement="Top"
+                Subtitle="The result has been copied to the clipboard."
+                Target="{x:Bind CopyButton}" />
         </Grid>
     </Grid>
 </Page>
