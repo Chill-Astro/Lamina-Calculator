@@ -21,13 +21,18 @@ Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calcula
 
 ## Art
 
-Since Lamina ✦ is Personified as `"She"` and has many Anti-Corporate Design Choices, so here's some Art which serves as a Representation of Her Fictional Human Character : 
+Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ) and has many Anti-Corporate Design Choices,
+
+so here's her Fictional Human Form! ヾ(^▽^*)))
 
 <kbd>
   
 ![IMG_20260414_000158](https://github.com/user-attachments/assets/724831c5-0497-4a53-8be8-53e6a974412f)
 
 </kbd>
+
+<br> <br>
+Well I am no Artist, but I hope that you Have a Nice Time with Her!
 
 ---
 
