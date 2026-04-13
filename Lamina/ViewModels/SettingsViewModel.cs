@@ -109,21 +109,21 @@ public partial class SettingsViewModel : ObservableRecipient
                 }
                 else if (latestVersion < currentVersion)
                 {
-                    message = $"Lamina ✦ DEV. BUILD! ⚠️\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // Using a Build like 11.26100.12.0 or lower (the buggy days)
+                    message = $"Huh! (。_。) \n\nThis is a DEV. BUILD Lamina ✦ ! ⚠️\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // Using a Build like 11.26100.12.0 or lower (the buggy days)
                 }
                 else
                 {
-                    message = "Lamina ✦ is UP TO DATE! 🎉"; // Using the Latest and Greatest
+                    message = "Woohooo! ^o^ \n\nLamina ✦ is UP TO DATE! 🎉"; // Using the Latest and Greatest
                 }
             }
             else
             {
-                message = "The Update Server returned an invalid version format. ⚠️"; // If the Server is like 67 kid.
+                message = "¯\\_(ツ)_/¯ \n\nThe Update Server returned an invalid version format. ⚠️"; // If the Server is like 67 kid.
             }
         }
         catch
         {
-            message = "Please Verify your Internet Connection! ❌"; // If your router sucks.
+            message = "(╯°□°）╯︵ ┻━┻ \n\nPlease Verify your Internet Connection! ❌"; // If your router sucks.
         }
 
         if (!string.IsNullOrEmpty(message))
@@ -131,7 +131,7 @@ public partial class SettingsViewModel : ObservableRecipient
             var updateDialog = new ContentDialog
             {
                 Title = "Update Check",
-                Content = "Searching for Latest Release.... ♪(´▽｀)\n\n" + message,
+                Content = "Searching for Latest Release.... ♪(´▽｀)\n\n" + message, // La la la la! La la la la la!
                 CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
                 CloseButtonText = "Close",
                 XamlRoot = App.MainWindow.Content.XamlRoot
