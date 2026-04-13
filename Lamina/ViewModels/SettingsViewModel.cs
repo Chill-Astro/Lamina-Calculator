@@ -101,7 +101,7 @@ public partial class SettingsViewModel : ObservableRecipient
 
                 if (latestVersion > currentVersion)
                 {
-                    message = $"Woohooo! ヽ(✿ﾟ▽ﾟ)ノ \n\nThere's a New Release of Lamina ✦ ! 🎉\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}\n\nHit Close to get New Version! ヾ(^▽^*)))";
+                    message = $"Woohooo! ヽ(✿ﾟ▽ﾟ)ノ \n\nThere's a New Release of Lamina ✦ ! 🎉\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}\n\nHit Update to Download! ヾ(^▽^*)))";
 
                     await DisplayDialog("Update Check", message); // Use the Helper if New Version.
                     
@@ -144,7 +144,7 @@ public partial class SettingsViewModel : ObservableRecipient
             Title = title,
             Content = "Searching for Latest Release.... ♪(´▽｀)\n\n" + content,
             CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
-            CloseButtonText = "Close",
+            CloseButtonText = content.Contains("New Release") ? "Update" : "Close",
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
         await dialog.ShowAsync();
