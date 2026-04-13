@@ -1,6 +1,6 @@
 <p align="center">
   <kbd>
-    <img width="1920" height="1080" alt="Lamina Promo" src="https://github.com/user-attachments/assets/5c483dca-ca62-4a1a-b836-df5a05e355d0" />
+    <img alt="Lamina Promo" src="https://github.com/user-attachments/assets/5c483dca-ca62-4a1a-b836-df5a05e355d0" />
   </kbd>
 </p>
 
@@ -26,9 +26,7 @@ Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ) and has
 so here's her Fictional Human Form! ヾ(^▽^*)))
 
 <kbd>
-  
-![IMG_20260414_000158](https://github.com/user-attachments/assets/724831c5-0497-4a53-8be8-53e6a974412f)
-
+<img alt="Art" src="https://github.com/user-attachments/assets/724831c5-0497-4a53-8be8-53e6a974412f" />
 </kbd>
 
 <br> <br>
