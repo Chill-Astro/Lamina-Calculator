@@ -1,6 +1,6 @@
 <p align="center">
   <kbd>    
-    <img alt="Lamina Promo" src="https://github.com/user-attachments/assets/4e6263e1-7aab-47d4-a0a7-f91df6f6d846" />
+    <img alt="Lamina Promo" src="https://github.com/user-attachments/assets/588dfad8-51cd-4177-b6a9-49c015c44a3d" />
   </kbd>
 </p>
 
@@ -74,7 +74,7 @@ v`11`.`26100`.`14`.`0`
 
 - `11` -> Target OS ( She IS for Windows 11 )
 - `26100` -> Release SDK Version ( Currently She uses 26100.xxxx Versions of Windows 11 SDK )
-- `11` -> Release Index ( Here 14 stands for the 14 Release Of Course! )
+- `14` -> Release Index ( Here 14 stands for the 14 Release Of Course! )
 - `0` -> Filler Number ( Package.appxmanifest doesn't allow me to edit this Number so it's there for NOTHING 💀 )
 
 ---
