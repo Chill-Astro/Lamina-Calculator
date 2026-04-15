@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Lamina.Contracts.Services;
 using Microsoft.UI.Xaml;
+using Windows.ApplicationModel;
 using Microsoft.UI.Xaml.Controls;
 
 namespace Lamina.ViewModels;
@@ -17,9 +18,10 @@ public partial class SettingsViewModel : ObservableRecipient
     private readonly ILocalSettingsService _localSettingsService;
     private static readonly HttpClient _httpClient = new();
 
-    // UPDATE THIS EVERYTIME YOU DUMMY!
-    private const string CurrentAppVersion = "11.26100.15.0";
-
+    // Automatically gets App Version so I don't have to Increment EVERYTIME. Yaaaaaay! 🎉
+    static PackageVersion pv = Package.Current.Id.Version;
+    private readonly string CurrentAppVersion = $"{pv.Major}.{pv.Minor}.{pv.Build}.{pv.Revision}";    
+    
     private bool _isCheckingUpdates; // No
 
     [ObservableProperty] private string _appVersionText;
@@ -112,7 +114,7 @@ public partial class SettingsViewModel : ObservableRecipient
                 }
                 else if (latestVersion < currentVersion)
                 {
-                    message = $"Huh! (。_。) \n\nThis is a DEV. BUILD Lamina ✦ ! ⚠️\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // If using a Buggy Build.
+                    message = $"That looks a bit Unstable! (。_。) \n\nThis is a DEV. BUILD Lamina ✦ ! ⚠️\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // If using a Buggy Build.
                 }
                 else
                 {
@@ -121,12 +123,12 @@ public partial class SettingsViewModel : ObservableRecipient
             }
             else
             {
-                message = "¯\\_(ツ)_/¯ \n\nThe Update Server returned an invalid version format. ⚠️"; // If the Server is like 67 Kid.
+                message = "Is the Server confused or me? ¯\\_(ツ)_/¯ \n\nThe Server Returned an Invalid Version Number! ❌"; // If the Server is like 67 Kid.
             }
         }
         catch
         {
-            message = "(╯°□°）╯︵ ┻━┻ \n\nPlease Verify your Internet Connection! ❌"; // If ur WiFi is as bad as your Reels Feed.
+            message = "Oh Snap! (╯°□°）╯︵ ┻━┻ \n\nPlease Verify your Internet Connection! ❌"; // If ur WiFi is as bad as your Reels Feed.
         }
 
         // Show the dialog for everything EXCEPT the "New Release"
