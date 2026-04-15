@@ -50,7 +50,41 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 - History Support for the Base Calculator UI. ✅
 - Theme switching built in. ✅
 - Backdrop switching betwwen Mica Alt, Mica and Acrylic! ✅
+- Eggcelent Looking Splash Screen that hasn't been seen before. ✅
+- Splash Screen can be toggled OFF if you are a Serious Mathematician or have 0 Attention Span. ✅
 - Available in both Msix & Installer Variants. ✅
+
+---
+
+## Pros ✅ :
+
+- Considering my Age, My UI Design Ideas are Very Humane and Passionate-looking in this World of Corporate Slop.
+- *Aesthetics* are *"Nailed it!"* in almost Every Part of the UI.
+- An Onboarding Page in a Calculator is Unique ✨, afterall most Calculator Apps look Generic.
+- She's Anti-Corporate in many parts like : *"Aww no History? Let's make Some!"* *"Oh Snap! (╯°□°）╯︵ ┻━┻ "* and *"Woohooo! ヾ(^▽^*)))"* too Make the User Experience less "It's just another Calculator".
+- Tactile Key Press Animations in Base Calculator UI.
+- Extra Power with Scripties.
+- More Lamina ✦ UI talk you can generate in your Head after trying her out!
+
+## Cons ❌ :
+
+- Slow Updates :
+    - Code is First Generated with `Gemini 3 Flash` ( after Brainstorming 🧠 ) and then the Generated Code is Rewritten to something not Cluttered with Comments.
+    - This takes time as sometimes AI is Stupid and I can't do Ctrl + C and Ctrl + V every time or the App will be Burnt Garbage.
+    - I am learning some of the More IMPORTANT Stuff this year and then Even More Next Year, so Understanding is Slow Paced.
+- Lack of Scientific Calculator : Self Explanatory. Even if She's Gorgeous, she lacks the Advanced Stuff.
+- Cursive ( For Certain People ) :
+    - `Alex Brush` is an Excellent Font, but with the Rise of Social Media, people have mostly shifted to Typing and Block Letters or Goody Ahh Hybrid of Print and Cursive.
+    - Certain UIs in this App such as `OnboardingPage` and `SettingsPage` have used Cursive at least in Branding.
+    - If Cursive looks like Alien Language to you, Sorry! :) The Usage of `Alex Brush` is **Branding Only**!
+
+<kbd>
+<img alt="image" src="https://github.com/user-attachments/assets/648f6f90-f1bc-453f-b467-e6ed4124f3b9" />
+</kbd>
+
+- BUGS :
+    - I am just a Teenage Boy with a Budget Laptop, and I have Studies. It's Impossible to Find and Fight all the Bugs and fix them Rapidly, when the Best I know is writing Logic JAVA for CLI ( Without BlueJ ).
+    - Sometimes Bug Slip in or I couldn't find the Logical Error in AI Code while Rewriting, leading to ODD Issues.     
 
 ---
 
@@ -196,7 +230,7 @@ https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/69bff8d4-5724-4854-b558-62484ddb6bea" />
 
-Lamina ✦ is now Deployed and now it shall appear in the Start Menu. Enjoy! :)
+Lamina ✦ is now Deployed and now she shall appear in the Start Menu. Enjoy! :)
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/65cc1ddb-da33-472c-941b-3a3e55c5073e" />
 
@@ -248,7 +282,7 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
 
 // Includes Clones who are working against the MIT Licence and Distributing Malware. All Flaws are mentioned. 😑
 
-- Lamina previously Calculator has undergone Malware Attacks.
+- She has previously Calculator has undergone Malware Attacks.
 
 ---
 
