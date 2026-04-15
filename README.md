@@ -1,6 +1,6 @@
 <p align="center">
   <kbd>    
-    <img alt="Lamina Promo" src="https://github.com/user-attachments/assets/588dfad8-51cd-4177-b6a9-49c015c44a3d" />
+    <img alt="Lamina Promo" src="https://github.com/user-attachments/assets/09a1d838-7571-4929-82a4-19c88c12889e" />
   </kbd>
 </p>
 
@@ -75,11 +75,11 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 - Lack of Scientific Calculator : Self Explanatory. Even if She's Gorgeous, she lacks the Advanced Stuff.
 - Cursive ( For Certain People ) :
     - `Alex Brush` is an Excellent Font, but with the Rise of Social Media, people have mostly shifted to Typing and Block Letters or Goody Ahh Hybrid of Print and Cursive.
-    - Certain UIs in this App such as `OnboardingPage` and `SettingsPage` have used Cursive at least in Branding.
+    - Certain UIs in this App such as `OnboardingPage`, `SettingsPage` and the **Title Bar** in `ShellPage` have used Cursive at least in Branding.
     - If Cursive looks like Alien Language to you, Sorry! :) The Usage of `Alex Brush` is **Branding Only**!
 
 <kbd>
-<img alt="image" src="https://github.com/user-attachments/assets/648f6f90-f1bc-453f-b467-e6ed4124f3b9" />
+<img alt="image" src="https://github.com/user-attachments/assets/93ceb201-e3ff-4bd3-adae-1415efa5b0ae" />
 </kbd>
 
 - BUGS :
