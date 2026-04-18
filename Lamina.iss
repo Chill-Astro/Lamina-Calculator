@@ -1,12 +1,12 @@
 #define MyAppName "Lamina ✦"
-#define MyAppVersion "11.26100.14.0"
+#define MyAppVersion "11.26100.15.0"
 #define MyAppPublisher "Chill-Astro Software"
 #define MyAppURL "https://github.com/Chill-Astro/Lamina-Calculator"
 
 ; Define both architecture-specific filenames
-#define MyAppMsixX64 "Lamina_11.26100.14.0_x64.msix"
-#define MyAppMsixArm64 "Lamina_11.26100.14.0_arm64.msix"
-#define MyAppCertName "Lamina_11.26100.14.0.cer"
+#define MyAppMsixX64 "Lamina_11.26100.15.0_x64.msix"
+#define MyAppMsixArm64 "Lamina_11.26100.15.0_arm64.msix"
+#define MyAppCertName "Lamina_11.26100.15.0.cer"
 
 [Setup]
 AppId={{633C1E5F-90A3-492B-933F-84ECEE95A462}
