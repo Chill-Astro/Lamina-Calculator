@@ -100,7 +100,7 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 
 <H2>
 
-v`11`.`26100`.`14`.`0`
+v`11`.`26100`.`15`.`0`
 
 </H2>
 
@@ -108,7 +108,7 @@ v`11`.`26100`.`14`.`0`
 
 - `11` -> Target OS ( She IS for Windows 11 )
 - `26100` -> Release SDK Version ( Currently She uses 26100.xxxx Versions of Windows 11 SDK )
-- `14` -> Release Index ( Here 14 stands for the 14 Release Of Course! )
+- `15` -> Release Index ( Here 15 stands for the 15th Release Of Course! )
 - `0` -> Filler Number ( Package.appxmanifest doesn't allow me to edit this Number so it's there for NOTHING 💀 )
 
 ---
