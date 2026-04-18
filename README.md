@@ -195,11 +195,13 @@ https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
 1.  Download the `.msix` and `.cer` files from the [latest release.](https://github.com/Chill-Astro/Lamina/releases/latest)
 2.  Import the `.cer` file to the `Trusted Root Certificates` Store. ( First Run ONLY! )
 
-    Alternatively use this Command after Downloading `TMM.exe` from [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) :
+    Alternatively use this Command after Downloading `TMM.exe` from [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) :    
 
          .\tmm --i <Certificate>
     
-3.  Install the `.msix` file.
+    Also you can Paste the Path into the Terminal Prompt or Drag the `.cer` on TMM.exe!
+    
+4.  Install the `.msix` file.
 
 <p align="center">
   --------------------- OR ---------------------
