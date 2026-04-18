@@ -3,11 +3,12 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Windows.ApplicationModel.DataTransfer;
-
 namespace Lamina.Views
 {
     public sealed partial class FinanceCalculatorPage : Page
     {
+        static string temp = "";
+
         public FinanceCalculatorPage()
         {
             this.InitializeComponent();
@@ -33,7 +34,7 @@ namespace Lamina.Views
                 case "Compound Interest":
                     FormulaInfoBar.Message = "A = P(1 + r/n)^nt";
                     SetInputs("Principal (P)", "Rate % (r)", "Years (t)", "Compounding periods per year (n)");
-                    InputD.Value = 12; // Default to monthly compounding
+                    InputD.Value = 12;
                     break;
                 case "Recurring Deposit":
                     FormulaInfoBar.Message = "I = [P × n(n+1) / 24] × r/100";
@@ -52,13 +53,6 @@ namespace Lamina.Views
 
         private async void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.Content.XamlRoot == null) return;
-            ResultDialog.XamlRoot = this.Content.XamlRoot;
-
-            // Reset colors to default
-            ResultLabel.Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"];
-            ResultValueText.Foreground = (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"];
-
             string type = (ComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
             double p = InputA.Value;
             double r = InputB.Value;
@@ -66,11 +60,11 @@ namespace Lamina.Views
             double n = InputD.Value;
 
             double interest = 0, totalAmount = 0;
-            
+
             if (double.IsNaN(p) || double.IsNaN(r) || double.IsNaN(t))
             {
-                ShowError("Error :", "Please Fill All Fields");
-                await ResultDialog.ShowAsync();
+                temp = "";
+                await ShowResultPopup("Error :", "Please Fill All Fields", false);
                 return;
             }
 
@@ -82,48 +76,56 @@ namespace Lamina.Views
                     case "Simple Interest":
                         interest = (p * r * t) / 100.0;
                         totalAmount = p + interest;
-                        ResultLabel.Text = $"Total Maturity: {totalAmount:N2}";
-                        ResultValueText.Text = interest.ToString("N2");
+                        temp = interest.ToString("N2");
+                        await ShowResultPopup($"Interest = {totalAmount:N2}", temp, true);
                         break;
 
                     case "Compound Interest":
                         if (double.IsNaN(n) || n <= 0) n = 1;
                         totalAmount = p * Math.Pow((1 + (r / 100.0) / n), n * t);
                         interest = totalAmount - p;
-                        ResultLabel.Text = $"Interest Earned: {interest:N2}";
-                        ResultValueText.Text = totalAmount.ToString("N2");
+                        temp = totalAmount.ToString("N2");
+                        await ShowResultPopup($"Compound Interest = {interest:N2}", temp, true);
                         break;
 
                     case "Recurring Deposit":
                         interest = (p * t * (t + 1) / 24.0) * (r / 100.0);
                         totalAmount = (p * t) + interest;
-                        ResultLabel.Text = $"Total Maturity: {totalAmount:N2}";
-                        ResultValueText.Text = interest.ToString("N2");
+                        temp = interest.ToString("N2");
+                        await ShowResultPopup($"Maturity Value = {totalAmount:N2}", temp, true);
                         break;
                 }
             }
             catch
             {
-                ShowError("Error :", "Calculation failed");
+                temp = "";
+                await ShowResultPopup("Error :", "Calculation failed", false);
             }
-
-            await ResultDialog.ShowAsync();
         }
-        // Red has highest Wavelength so it's the color chosen for errors. ( I hope you remember Physics :D )
-        private void ShowError(string label, string message)
+
+        private async System.Threading.Tasks.Task ShowResultPopup(string contextText, string actualValue, bool isSuccess)
         {
-            ResultLabel.Text = label;
-            ResultLabel.Foreground = new SolidColorBrush(Colors.Red);
-            ResultValueText.Text = message;
-            ResultValueText.Foreground = new SolidColorBrush(Colors.Red);
+            ResultLabel.Text = contextText;
+            ResultValueText.Text = actualValue;
+
+            // Visuals
+            CopyButton.Visibility = isSuccess ? Visibility.Visible : Visibility.Collapsed;
+
+            // Red has highest Wavelength so it's the color chosen for errors. ( I hope you remember Physics :D )
+            ResultValueText.Foreground = isSuccess
+                ? (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
+                : (Brush)Application.Current.Resources["SystemFillColorCriticalBrush"];
+
+            ResultDialog.XamlRoot = this.Content.XamlRoot;
+            await ResultDialog.ShowAsync();
         }
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(ResultValueText.Text)) return;
-            var dp = new DataPackage();
-            dp.SetText(ResultValueText.Text);
-            Clipboard.SetContent(dp);
+            if (string.IsNullOrEmpty(temp)) return;
+            var dataPackage = new DataPackage();
+            dataPackage.SetText(temp);
+            Clipboard.SetContent(dataPackage);
         }
     }
 }

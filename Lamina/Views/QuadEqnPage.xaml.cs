@@ -20,7 +20,7 @@ public sealed partial class QuadEqnPage : Page
         double b = Number2.Value;
         double c = Number3.Value;
 
-        // 1. Check for Missing Input
+        // Check for Missing Input
         if (double.IsNaN(a) || double.IsNaN(b) || double.IsNaN(c))
         {
             temp = "";
@@ -28,7 +28,7 @@ public sealed partial class QuadEqnPage : Page
             return;
         }
 
-        // 2. Handle linear equation (a = 0)
+        // Handle linear equation (a = 0)
         if (a == 0)
         {
             if (b == 0)
@@ -44,10 +44,10 @@ public sealed partial class QuadEqnPage : Page
             }
             return;
         }
-
-        // 3. Quadratic Logic
+        
+        // Checking if your Inputs Actually Produce a Real Number
         double discriminant = (b * b) - (4 * a * c);
-
+        // MATHING TIME! Btw this Formula is Indian! 
         if (discriminant > 0)
         {
             double r1 = (-b + Math.Sqrt(discriminant)) / (2 * a);

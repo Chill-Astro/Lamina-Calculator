@@ -81,6 +81,7 @@
                         FontWeight="Bold"
                         TextWrapping="WrapWholeWords" />
                     <Button
+                        x:Name="CopyButton"
                         Grid.Column="1"
                         Width="40"
                         Height="40"

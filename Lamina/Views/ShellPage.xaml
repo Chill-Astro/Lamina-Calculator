@@ -36,10 +36,10 @@
                 Source="/Assets/WindowIcon.ico" />
             <TextBlock
                 x:Name="AppTitleBarText"
-                Margin="26,2,0,0"
+                Margin="24,4,0,0"
                 VerticalAlignment="Center"
                 FontFamily="/Assets/Fonts/AlexBrush-Regular.ttf#Alex Brush"
-                FontSize="17"
+                FontSize="18"
                 Style="{StaticResource CaptionTextBlockStyle}"
                 TextWrapping="NoWrap" />
         </Grid>

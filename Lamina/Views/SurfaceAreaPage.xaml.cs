@@ -1,11 +1,13 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Windows.ApplicationModel.DataTransfer;
-
 namespace Lamina.Views
 {
     public sealed partial class SurfaceAreaPage : Page
     {
+        static string temp = "";
+
         public SurfaceAreaPage()
         {
             this.InitializeComponent();
@@ -65,9 +67,6 @@ namespace Lamina.Views
 
         private async void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.Content.XamlRoot == null) return;
-            ResultDialog.XamlRoot = this.Content.XamlRoot;
-
             string shape = (ShapeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
             double a = InputA.Value;
             double b = InputB.Value;
@@ -78,9 +77,8 @@ namespace Lamina.Views
                (InputB.Visibility == Visibility.Visible && double.IsNaN(b)) ||
                (InputC.Visibility == Visibility.Visible && double.IsNaN(c)))
             {
-                ResultLabel.Text = "Error :";
-                ResultValueText.Text = "Please Enter Valid Numbers";
-                await ResultDialog.ShowAsync();
+                temp = "";
+                await ShowResultPopup("Error :", "Please Enter Valid Numbers", false);
                 return;
             }
 
@@ -109,24 +107,39 @@ namespace Lamina.Views
                         break;
                 }
 
-                ResultLabel.Text = "Surface Area =";
-                ResultValueText.Text = surfaceArea.ToString("N2");
+                temp = surfaceArea.ToString("N2");
+                await ShowResultPopup("Surface Area =", temp, true);
             }
             catch
             {
-                ResultLabel.Text = "Error :";
-                ResultValueText.Text = "Invalid dimensions";
+                temp = "";
+                await ShowResultPopup("Error :", "Invalid dimensions", false);
             }
+        }
 
+        private async System.Threading.Tasks.Task ShowResultPopup(string contextText, string actualValue, bool isSuccess)
+        {
+            ResultLabel.Text = contextText;
+            ResultValueText.Text = actualValue;
+
+            // Visuals
+            CopyButton.Visibility = isSuccess ? Visibility.Visible : Visibility.Collapsed;
+
+            // Red has highest Wavelength so it's the color chosen for errors. ( I hope you remember Physics :D )
+            ResultValueText.Foreground = isSuccess
+                ? (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
+                : (Brush)Application.Current.Resources["SystemFillColorCriticalBrush"];
+
+            ResultDialog.XamlRoot = this.Content.XamlRoot;
             await ResultDialog.ShowAsync();
         }
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(ResultValueText.Text)) return;
-            var dp = new DataPackage();
-            dp.SetText(ResultValueText.Text);
-            Clipboard.SetContent(dp);
+            if (string.IsNullOrEmpty(temp)) return;
+            var dataPackage = new DataPackage();
+            dataPackage.SetText(temp);
+            Clipboard.SetContent(dataPackage);
         }
     }
 }

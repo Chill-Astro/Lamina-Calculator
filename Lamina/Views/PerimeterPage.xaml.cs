@@ -3,11 +3,12 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Windows.ApplicationModel.DataTransfer;
-
 namespace Lamina.Views
 {
     public sealed partial class PerimeterPage : Page
     {
+        static string temp = "";
+
         public PerimeterPage()
         {
             this.InitializeComponent();
@@ -70,13 +71,6 @@ namespace Lamina.Views
 
         private async void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.Content.XamlRoot == null) return;
-            ResultDialog.XamlRoot = this.Content.XamlRoot;
-
-            // Red has highest Wavelength so it's the color chosen for errors. ( I hope you remember Physics :D )
-            ResultLabel.Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"];
-            ResultValueText.Foreground = (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"];
-
             string shape = (ShapeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
             double a = InputA.Value;
             double b = InputB.Value;
@@ -84,8 +78,8 @@ namespace Lamina.Views
 
             if (double.IsNaN(a) || (InputB.Visibility == Visibility.Visible && double.IsNaN(b)))
             {
-                ShowError("Error :", "Please Enter Valid Numbers");
-                await ResultDialog.ShowAsync();
+                temp = "";
+                await ShowResultPopup("Error :", "Please Enter Valid Numbers", false);
                 return;
             }
 
@@ -104,31 +98,39 @@ namespace Lamina.Views
 
                 if (double.IsNaN(perimeter) || double.IsInfinity(perimeter)) throw new Exception();
 
-                ResultLabel.Text = $"Perimeter =";
-                ResultValueText.Text = perimeter.ToString("N2");
+                temp = perimeter.ToString("N2");
+                await ShowResultPopup("Perimeter =", temp, true);
             }
             catch
             {
-                ShowError("Error :", "Invalid Dimensions");
+                temp = "";
+                await ShowResultPopup("Error :", "Invalid Dimensions", false);
             }
-
-            await ResultDialog.ShowAsync();
         }
 
-        private void ShowError(string label, string message)
+        private async System.Threading.Tasks.Task ShowResultPopup(string contextText, string actualValue, bool isSuccess)
         {
-            ResultLabel.Text = label;
-            ResultLabel.Foreground = new SolidColorBrush(Colors.Red);
-            ResultValueText.Text = message;
-            ResultValueText.Foreground = new SolidColorBrush(Colors.Red);
+            ResultLabel.Text = contextText;
+            ResultValueText.Text = actualValue;
+
+            // Visuals
+            CopyButton.Visibility = isSuccess ? Visibility.Visible : Visibility.Collapsed;
+
+            // Red has highest Wavelength so it's the color chosen for errors. ( I hope you remember Physics :D )
+            ResultValueText.Foreground = isSuccess
+                ? (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
+                : (Brush)Application.Current.Resources["SystemFillColorCriticalBrush"];
+
+            ResultDialog.XamlRoot = this.Content.XamlRoot;
+            await ResultDialog.ShowAsync();
         }
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(ResultValueText.Text)) return;
-            var dp = new DataPackage();
-            dp.SetText(ResultValueText.Text);
-            Clipboard.SetContent(dp);
+            if (string.IsNullOrEmpty(temp)) return;
+            var dataPackage = new DataPackage();
+            dataPackage.SetText(temp);
+            Clipboard.SetContent(dataPackage);
         }
     }
 }

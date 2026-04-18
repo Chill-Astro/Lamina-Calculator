@@ -78,6 +78,7 @@ public sealed partial class UnitConverterPage : Page
         return symbol;
     }
 
+    // Convertion Fluff
     private async void Convert_Click(object sender, RoutedEventArgs e)
     {
         if (!double.TryParse(ValueToConvert.Text, out double val))
@@ -138,10 +139,9 @@ public sealed partial class UnitConverterPage : Page
         var dp = new DataPackage();
         dp.SetText(lastResult);
         Clipboard.SetContent(dp);
-    }
+    }    
 
-    // --- Conversion Logic Methods ---
-
+    // More Convertion Fluff
     private double ConvertLength(double value, string from, string to)
     {
         if (from == to) return value;
