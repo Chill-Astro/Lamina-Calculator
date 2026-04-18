@@ -1,13 +1,15 @@
-﻿using System;
-using System.Reflection;
-using System.Net.Http;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Lamina.Contracts.Services;
 using Microsoft.UI.Xaml;
-using Windows.ApplicationModel;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using System;
+using System.Net.Http;
+using System.Reflection;
+using System.Security.Principal;
+using System.Threading.Tasks;
+using Windows.ApplicationModel;
 
 namespace Lamina.ViewModels;
 
@@ -23,6 +25,7 @@ public partial class SettingsViewModel : ObservableRecipient
     private readonly string CurrentAppVersion = $"{pv.Major}.{pv.Minor}.{pv.Build}.{pv.Revision}";    
     
     private bool _isCheckingUpdates; // No
+    private int _tapCount = 0; // 3435 is My Favorite Number because, 3^3 + 4^4 + 3^3 + 5^5 = 3435! :)
 
     [ObservableProperty] private string _appVersionText;
     [ObservableProperty] private int _selectedThemeIndex;
@@ -72,7 +75,7 @@ public partial class SettingsViewModel : ObservableRecipient
                 MaxHeight = 200,
                 Content = new TextBlock
                 {
-                    // Bro took so long to go to 2026 💀
+                    // Bro took so long to Update his Licence! 💀
                     Text = "MIT License\n\nCopyright (c) 2026 Chill-Astro Software\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
                     TextWrapping = TextWrapping.Wrap,
                     FontSize = 13
@@ -83,7 +86,79 @@ public partial class SettingsViewModel : ObservableRecipient
         };
         await licenseDialog.ShowAsync();
     }
+
+    [RelayCommand]
+    public async Task VersionTap()
+    {
+        _tapCount++;
+        if (_tapCount == 5)
+        {
+            _tapCount = 0; // Reset
+            await ShowEasterEgg();
+        }
+    }
     
+    [RelayCommand]
+    private async Task ShowEasterEgg()
+    {
+        var eggDialog = new ContentDialog
+        {
+            Title = "✦ Easter Egg! ✦",
+            CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],            
+            Content = new ScrollViewer
+            {
+                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                MaxHeight = 300,
+                Content = new StackPanel
+                {
+                    Spacing = 10,
+                    Padding = new Thickness(0, 0, 10, 0), 
+                    Children =
+                {
+                    new TextBlock
+                    {
+                        Text = "Hi I am Lamina ✦ ! ヾ(^▽^*)))",
+                        TextWrapping = TextWrapping.Wrap,
+                        FontSize = 14,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        TextAlignment = TextAlignment.Center,
+                        Opacity = 0.8
+                    },
+                    new Border
+                    {
+                        CornerRadius = new CornerRadius(5), 
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        Child = new Image
+                        {
+                            Source = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/EasterEgg.png")), // Meet Lamina ✦ !
+                            MaxWidth = 320,
+                            Stretch = Stretch.Uniform
+                        }
+                    },
+                    new TextBlock
+                    {
+                        // Indian History Music!
+                        Text = "I like Math and Singing! ♪(´▽｀)\n\n" +
+                               "सरफ़रोशी की तमन्ना अब हमारे दिल में है,\nदेखना है ज़ोर कितना बाज़ू-ए-क़ातिल में है।\n\n" +
+                               "वक़्त आने दे बता देंगे तुझे ऐ आसमाँ,\nहम अभी से क्या बताएँ क्या हमारे दिल में है।\n\n" +
+                               "खिंच कर लाई है सब को क़त्ल होने की उम्मीद,\nआशिक़ों का आज जमघट कूचा-ए-क़ातिल में है।\n\n" +
+                               "है लिये हथियार दुश्मन ताक में बैठा उधर,\nऔर हम तैयार हैं सीना लिये अपना इधर।\n\n" +
+                               "ख़ून से खेलेंगे होली गर वतन मुश्किल में है,\nसरफ़रोशी की तमन्ना अब हमारे दिल में है।",
+                        TextWrapping = TextWrapping.Wrap,
+                        FontSize = 14,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        TextAlignment = TextAlignment.Center,
+                        Opacity = 0.8
+                    }
+                }
+                }
+            },
+            CloseButtonText = "वन्दे मातरम्!", // From Belur Math by Bankim Chandra Chatterjee!
+            XamlRoot = App.MainWindow.Content.XamlRoot
+        };
+        await eggDialog.ShowAsync();
+    }
+
     [RelayCommand]
     private async Task CheckForUpdates()
     {

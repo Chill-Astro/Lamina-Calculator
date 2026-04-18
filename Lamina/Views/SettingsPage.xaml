@@ -34,6 +34,7 @@
 
                     <!--  Tagline  -->
                     <TextBlock
+                        Margin="0,-12,0,0"
                         HorizontalAlignment="Center"
                         FontFamily="ms-appx:///Assets/Fonts/AlexBrush-Regular.ttf#Alex Brush"
                         FontSize="30"
@@ -41,11 +42,23 @@
                         Text="“Math on a Sheet of Glass!”" />
 
                     <!--  Github Profile Ad Sorry :)  -->
-                    <HyperlinkButton
+                    <Button
                         Padding="4,2"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
                         Command="{x:Bind ViewModel.OpenProfileCommand}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <ContentPresenter
+                                    x:Name="ContentPresenter"
+                                    Padding="{TemplateBinding Padding}"
+                                    Background="Transparent"
+                                    Content="{TemplateBinding Content}" />
+                            </ControlTemplate>
+                        </Button.Template>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 FontSize="14"
@@ -57,15 +70,32 @@
                                 Foreground="{ThemeResource AccentButtonBackground}"
                                 Text=" Chill-Astro Software" />
                         </StackPanel>
-                    </HyperlinkButton>
+                    </Button>
 
+                    <!--  Version Button + Easter Egg!  -->
                     <Button
-                        Padding="4,2"
+                        x:Name="VersionButton"
+                        Padding="0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        BorderThickness="0">
+                        BorderThickness="0"
+                        Command="{x:Bind ViewModel.VersionTapCommand}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <ContentPresenter
+                                    x:Name="ContentPresenter"
+                                    Padding="{TemplateBinding Padding}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Background="Transparent"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    ContentTransitions="{TemplateBinding ContentTransitions}" />
+                            </ControlTemplate>
+                        </Button.Template>
+
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 FontSize="14"
