@@ -18,6 +18,19 @@ Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calcula
 > Project [Trust My Msix!](https://github.com/Chill-Astro/Trust-My-Msix) can be used to Import the Self-Signed Certificate of the `.msix ` Version of Lamina ✦. A Copy is given in [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) for Usage.
 
 ---
+## TRAILER on @chill-astro-sfs :
+
+<div align="center">
+  <kbd>
+  <a href="https://www.youtube.com/watch?v=AWq2MTEJa0I">
+    <img src="https://img.youtube.com/vi/AWq2MTEJa0I/maxresdefault.jpg" alt="Watch the Lamina Trailer"style="border-radius:10px;">
+    <br>
+    <b><h3>▶ Click to Watch the Official Trailer</h3></b>
+  </a>
+</kbd>
+</div>
+
+---
 
 ## Art
 
