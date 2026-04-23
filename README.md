@@ -143,9 +143,6 @@ https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
 > [!NOTE]
 > A Scientific Calculator WILL BE ADDED in v11.26100.16.0!
 
-> [!IMPORTANT]
-> The Code is undergoing some Refactors for "Better variableNames", some UI Improvements and Cleanups here and there with a Touch of Personality, after all there's no Corporation Controlling Me!
-
 - Basic Calculator
 - Advanced Calculator ( v11.26100.16.0 )
 - Date Calculator
