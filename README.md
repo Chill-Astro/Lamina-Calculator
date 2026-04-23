@@ -12,6 +12,11 @@ Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calcula
 
 **App Execution Aliases :** `lamina.exe` & `lmna.exe` 
 
+*- TRUSTED SOURCES -*
+
+<a href="https://github.com/Chill-Astro/Lamina-Calculator/releases/latest" target="_blank"><img src="https://img.shields.io/static/v1?label=%20&message=GitHub&color=FFFFFF&labelColor=000000&style=for-the-badge&logo=github&logoColor=FFFFFF" height="80" alt="GitHub"></a> 
+<a href="https://sourceforge.net/projects/lamina-calculator/" target="_blank"><img src="https://img.shields.io/static/v1?label=%20&message=SourceForge&color=EE7034&labelColor=000000&style=for-the-badge&logo=sourceforge&logoColor=EE7034" height="80" alt="SourceForge"></a> 
+
 </div>
 
 > [!NOTE]
