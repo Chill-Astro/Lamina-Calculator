@@ -23,19 +23,6 @@ Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calcula
 > Project [Trust My Msix!](https://github.com/Chill-Astro/Trust-My-Msix) can be used to Import the Self-Signed Certificate of the `.msix ` Version of Lamina ✦. A Copy is given in [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) for Usage.
 
 ---
-## TRAILER on @chill-astro-sfs :
-
-<div align="center">
-  <kbd>
-  <a href="https://www.youtube.com/watch?v=AWq2MTEJa0I">
-    <img src="https://img.youtube.com/vi/AWq2MTEJa0I/maxresdefault.jpg" alt="Watch the Lamina Trailer"style="border-radius:10px;">
-    <br>
-    <b><h3>▶ Click to Watch the Official Trailer</h3></b>
-  </a>
-</kbd>
-</div>
-
----
 
 ## What are Scripties?
 
@@ -84,17 +71,6 @@ v`11`.`26100`.`15`.`0`
 
 ---
 
-## Video Previews :
-
-- New Onboarding Experience and Reveamped Settings Menu!!!!
-
-https://github.com/user-attachments/assets/1a737f20-3497-4105-91b6-d23a1321b3ce
-
-- BRAND NEW REVAMPED SCRIPTIES!!!!!
-
-https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
-
----
 
 ## Installation : 
 
@@ -114,6 +90,32 @@ https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
 </p>
 
 -  Download the `Setup.exe` that does the Importing and Installation FOR YOU!
+
+---
+
+## TRAILER on @chill-astro-sfs :
+
+<div align="center">
+  <kbd>
+  <a href="https://www.youtube.com/watch?v=AWq2MTEJa0I">
+    <img src="https://img.youtube.com/vi/AWq2MTEJa0I/maxresdefault.jpg" alt="Watch the Lamina Trailer"style="border-radius:10px;">
+    <br>
+    <b><h3>▶ Click to Watch the Official Trailer</h3></b>
+  </a>
+</kbd>
+</div>
+
+---
+
+## Video Previews :
+
+- New Onboarding Experience and Reveamped Settings Menu!!!!
+
+https://github.com/user-attachments/assets/1a737f20-3497-4105-91b6-d23a1321b3ce
+
+- BRAND NEW REVAMPED SCRIPTIES!!!!!
+
+https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
 
 ---
 
