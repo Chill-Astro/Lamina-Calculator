@@ -96,68 +96,6 @@ https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
 
 ---
 
-## Features + Scripties :
-
-> [!NOTE]
-> A Scientific Calculator WILL BE ADDED in v11.26100.16.0!
-
-- Basic Calculator
-- Advanced Calculator ( v11.26100.16.0 )
-- Date Calculator
-- Convertors :
-  * Base Converter
-  * Unit Convertor
-  * Currency Convertor
-- Mensuration :
-  * Heron's Formula
-  * Perimeter Calculator
-      * Equilateral Triangle
-      * Isosceles Triangle
-      * Square / Rhombus
-      * Rectangle / Parallelogram
-      * Circle
-      * Semi-circle
-  * Area Calculator
-      * Equilateral Triangle
-      * Isosceles Triangle
-      * Standard Triangle
-      * Square
-      * Rectangle / Parallelogram
-      * Rhombus
-      * Circle
-      * Semi-circle
-      * Room
-  * Volume Calculator
-      * Cube
-      * Cuboid
-      * Cylinder
-      * Cone
-      * Sphere
-  * Total Surface Area
-      * Cube
-      * Cuboid
-      * Cylinder
-      * Cone
-      * Sphere
-  * Curved Surface Area      
-      * Cylinder
-      * Cone
-      * Sphere
-  * Diagonal Calculator
-      * Square
-      * Rectangle
-      * Cube
-      * Cuboid
-- Algebra :
-  * Quadratic Equation Solver  
-- Finance :
-  * Financial Calculator
-       * Simple Interest
-       * Compound Interest
-       * Recurring Deposit
-
----
-
 ## Installation : 
 
 1.  Download the `.msix` and `.cer` files from the [latest release.](https://github.com/Chill-Astro/Lamina/releases/latest)
@@ -224,6 +162,21 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
 
 ---
 
+## Art 
+
+Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ) and has many Anti-Corporate Design Choices,
+
+so here's her Fictional Human Form! ヾ(^▽^*)))
+
+<kbd>
+<img alt="Art" width="400" src="https://github.com/user-attachments/assets/724831c5-0497-4a53-8be8-53e6a974412f" />
+</kbd>
+
+<br> <br>
+Well I am no Artist, but I hope that you Have a Nice Time with Her!
+
+---
+
 ## Pros ✅ :
 
 - Considering my Age, My UI Design Ideas are Very Humane and Passionate-looking in this World of Corporate Slop.
@@ -253,21 +206,6 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
 - BUGS :
     - I am just a Teenage Boy with a Budget Laptop, and I have Studies. It's Impossible to Find and Fight all the Bugs and fix them Rapidly, when the Best I know is writing Logic JAVA for CLI ( Without BlueJ ).
     - Sometimes Bug Slip in or I couldn't find the Logical Error in AI Code while Rewriting, leading to ODD Issues.     
-
----
-
-## Art ( Scroll past if you don't care )
-
-Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ) and has many Anti-Corporate Design Choices,
-
-so here's her Fictional Human Form! ヾ(^▽^*)))
-
-<kbd>
-<img alt="Art" width="400" src="https://github.com/user-attachments/assets/724831c5-0497-4a53-8be8-53e6a974412f" />
-</kbd>
-
-<br> <br>
-Well I am no Artist, but I hope that you Have a Nice Time with Her!
 
 ---
 
