@@ -151,7 +151,7 @@
                     <NavigationViewItem.Content>
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <FontIcon Glyph="&#xE710;" />
-                            <TextBlock Text="Add Scriptie" />
+                            <TextBlock Text="Add" />
                         </StackPanel>
                     </NavigationViewItem.Content>
                 </NavigationViewItem>

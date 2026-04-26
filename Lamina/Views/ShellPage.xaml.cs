@@ -135,14 +135,18 @@ public sealed partial class ShellPage : Page
 
                 var newItem = new NavigationViewItem()
                 {
-                    Content = displayName, // Now shows "Quadratic Equation Demo"
-                    Icon = new SymbolIcon(Symbol.Document),
+                    Content = displayName,
+                    Icon = new FontIcon
+                    {
+                        Glyph = "\uEA86",
+                        FontFamily = new Microsoft.UI.Xaml.Media.FontFamily("Segoe Fluent Icons")
+                    },
                     Tag = file.Path
                 };
 
                 // Context Menu
                 var flyout = new MenuFlyout();
-                var removeMenuItem = new MenuFlyoutItem { Text = "Remove Scriptie", Icon = new SymbolIcon(Symbol.Delete) };
+                var removeMenuItem = new MenuFlyoutItem { Text = "Remove", Icon = new SymbolIcon(Symbol.Delete) };
                 removeMenuItem.Click += async (s, e) => {
                     await file.DeleteAsync();
                     RefreshImportedList();
