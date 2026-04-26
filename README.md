@@ -44,7 +44,7 @@ Dynamo is a Dynamic Scriptie Loader. Think of MODS in a Game, or Magisk Modules.
 
 Yes that's right! An Importer of Math Scripts. Now you can Program her without Proper Coding Skills!
 
-Check for Details [here!](https://github.com/Chill-Astro/Lamina-Dynamo-Scripties-Loader)
+Check for Details [here!](https://github.com/Chill-Astro/Lamina-Modules-Repo)
 
 For Maximum Reach, ensure to Fork the Above Mentioned Repo and I will add you to my Modules!
 
