@@ -42,7 +42,7 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 
 Dynamo is a Dynamic Scriptie Loader. Think of MODS in a Game, or Magisk Modules.
 
-Yes that's right! An Importer of Path. Now you can Program Lamina without Proper Coding Skills!
+Yes that's right! An Importer of Math Scripts. Now you can Program her without Proper Coding Skills!
 
 Check for Details [here!](https://github.com/Chill-Astro/Lamina-Dynamo-Scripties-Loader)
 
