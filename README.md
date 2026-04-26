@@ -12,7 +12,7 @@ Lamina ✦ `v11.26100.16.0 BETA` has Support for `Dynamo Scripties Loader For La
 
 `Dynamo` allows you to make your OWN Scripties and Import your `.lamina`  File Immediately!
 
-To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Module-Repo).
+To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
   
 **Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.15.0**
 
@@ -52,7 +52,7 @@ For Maximum Reach, ensure to Fork the Above Mentioned Repo and I will add you to
 
 ## Steps to Use Dynamo :
 
-- Go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules).
+- Go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
 - Download your Desired Mod, a `.lamina` File.
 - Go to Menu > Add and Add the File from the Popup!
 - 
