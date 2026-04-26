@@ -8,11 +8,11 @@
   
 Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calculator but also something called `"Scripties"`. She supports **Mensuration, Finance, Currency Conversion, Unit Conversions And More!**, making her a Very Extendable Option.
 
-Lamina ✦ `v11.26100.16.0 BETA` has Support for "[Dynamo Scripties Loader For Lamina ✦](https://github.com/Chill-Astro/Lamina-Modules-Repo)" which is a Custom Scriptie Importer!
+Lamina ✦ `v11.26100.16.0 BETA` has Support for `Dynamo Scripties Loader For Lamina ✦` which is a Custom Scriptie Importer!
 
 `Dynamo` allows you to make your OWN Scripties and Import your `.lamina`  File Immediately!
 
-To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules).
+To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
   
 **Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.15.0**
 
@@ -44,7 +44,7 @@ Dynamo is a Dynamic Scriptie Loader. Think of MODS in a Game, or Magisk Modules.
 
 Yes that's right! An Importer of Math Scripts. Now you can Program her without Proper Coding Skills!
 
-Check for Details [here!](https://github.com/Chill-Astro/Lamina-Dynamo-Scripties-Loader)
+Check for Details [here!](https://github.com/Chill-Astro/Lamina-Modules-Repo)
 
 For Maximum Reach, ensure to Fork the Above Mentioned Repo and I will add you to my Modules!
 
@@ -52,7 +52,7 @@ For Maximum Reach, ensure to Fork the Above Mentioned Repo and I will add you to
 
 ## Steps to Use Dynamo :
 
-- Go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules).
+- Go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
 - Download your Desired Mod, a `.lamina` File.
 - Go to Menu > Add and Add the File from the Popup!
 - 
