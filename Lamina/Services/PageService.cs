@@ -31,6 +31,8 @@ public class PageService : IPageService
         Configure<DateCalculatorViewModel, DateCalculatorPage>();
         Configure<FinanceCalculatorViewModel, FinanceCalculatorPage>();
         Configure<OnboardingViewModel, OnboardingPage>();        
+        Configure<DyNamoViewModel, DyNamoPage>();
+        Configure<DyNamoMangerViewModel, DyNamoMangerPage>();
     }
 
     public Type GetPageType(string key)
