@@ -30,6 +30,18 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 
 ---
 
+## A Halt on Development :
+
+- I wouldn't provide updates for the next couple of months.
+- Issues will be addressed late.
+- Pull Requests may be merged late.
+- All of this is because WinUI 3 is annoying and in return, no appreciation.
+- I am not Maintaining this Project for a Wall, I am maintaining this as an example of What UI can be.
+- She is quite Stable from v13, v14 amd v15 onwards with many of her Bugs and Trashy UI fixed.
+- I hope that you have a good UX! 👍
+ 
+---
+
 ## Key Features :
 
 - Simple and Clean GUI. ✅
