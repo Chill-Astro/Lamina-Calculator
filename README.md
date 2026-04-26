@@ -12,6 +12,13 @@ Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calcula
 
 **App Execution Aliases :** `lamina.exe` & `lmna.exe` 
 
+**Codename** : `LMNA`, formerly `Calc+ ( till v11 )` & `CalcX-11 ( Pre-Alpha )`
+
+*- TRUSTED SOURCES -*
+
+<a href="https://github.com/Chill-Astro/Lamina-Calculator/releases/latest" target="_blank"><img src="https://img.shields.io/static/v1?label=%20&message=GitHub&color=FFFFFF&labelColor=000000&style=for-the-badge&logo=github&logoColor=FFFFFF" height="80" alt="GitHub"></a> 
+<a href="https://sourceforge.net/projects/lamina-calculator/" target="_blank"><img src="https://img.shields.io/static/v1?label=%20&message=SourceForge&color=EE7034&labelColor=000000&style=for-the-badge&logo=sourceforge&logoColor=EE7034" height="80" alt="SourceForge"></a> 
+
 </div>
 
 > [!NOTE]
@@ -19,25 +26,22 @@ Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calcula
 
 ---
 
-## Art
-
-Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ) and has many Anti-Corporate Design Choices,
-
-so here's her Fictional Human Form! ヾ(^▽^*)))
-
-<kbd>
-<img alt="Art" src="https://github.com/user-attachments/assets/724831c5-0497-4a53-8be8-53e6a974412f" />
-</kbd>
-
-<br> <br>
-Well I am no Artist, but I hope that you Have a Nice Time with Her!
-
----
-
 ## What are Scripties?
 
 Scripties are High Performance GUI equivalents of Console Scripts, that are Reliable and Easy to Make.
 
+---
+
+## A Halt on Development :
+
+- I wouldn't provide updates for the next couple of months.
+- Issues will be addressed late.
+- Pull Requests may be merged late.
+- All of this is because WinUI 3 is annoying and in return, no appreciation.
+- I am not Maintaining this Project for a Wall, I am maintaining this as an example of What UI can be.
+- She is quite Stable from v13, v14 amd v15 onwards with many of her Bugs and Trashy UI fixed.
+- I hope that you have a good UX! 👍
+ 
 ---
 
 ## Key Features :
@@ -56,38 +60,6 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 
 ---
 
-## Pros ✅ :
-
-- Considering my Age, My UI Design Ideas are Very Humane and Passionate-looking in this World of Corporate Slop.
-- *Aesthetics* are *"Nailed it!"* in almost Every Part of the UI.
-- An Onboarding Page in a Calculator is Unique ✨, afterall most Calculator Apps look Generic.
-- She's Anti-Corporate in many parts like : *"Aww no History? Let's make Some!"* *"Oh Snap! (╯°□°）╯︵ ┻━┻ "* and *"Woohooo! ヾ(^▽^*)))"* too Make the User Experience less "It's just another Calculator".
-- Tactile Key Press Animations in Base Calculator UI.
-- Extra Power with Scripties.
-- More Lamina ✦ UI talk you can generate in your Head after trying her out!
-
-## Cons ❌ :
-
-- Slow Updates :
-    - Code is First Generated with `Gemini 3 Flash` ( after Brainstorming 🧠 ) and then the Generated Code is Rewritten to something not Cluttered with Comments.
-    - This takes time as sometimes AI is Stupid and I can't do Ctrl + C and Ctrl + V every time or the App will be Burnt Garbage.
-    - I am learning some of the More IMPORTANT Stuff this year and then Even More Next Year, so Understanding is Slow Paced.
-- Lack of Scientific Calculator : Self Explanatory. Even if She's Gorgeous, she lacks the Advanced Stuff.
-- Cursive ( For Certain People ) :
-    - `Alex Brush` is an Excellent Font, but with the Rise of Social Media, people have mostly shifted to Typing and Block Letters or Goody Ahh Hybrid of Print and Cursive.
-    - Certain UIs in this App such as `OnboardingPage`, `SettingsPage` and the **Title Bar** in `ShellPage` have used Cursive at least in Branding.
-    - If Cursive looks like Alien Language to you, Sorry! :) The Usage of `Alex Brush` is **Branding Only**!
-
-<kbd>
-<img alt="image" src="https://github.com/user-attachments/assets/93ceb201-e3ff-4bd3-adae-1415efa5b0ae" />
-</kbd>
-
-- BUGS :
-    - I am just a Teenage Boy with a Budget Laptop, and I have Studies. It's Impossible to Find and Fight all the Bugs and fix them Rapidly, when the Best I know is writing Logic JAVA for CLI ( Without BlueJ ).
-    - Sometimes Bug Slip in or I couldn't find the Logical Error in AI Code while Rewriting, leading to ODD Issues.     
-
----
-
 ## Install Lamina ✦ from Winget :
       
       winget install Lamina
@@ -100,7 +72,7 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 
 <H2>
 
-v`11`.`26100`.`14`.`0`
+v`11`.`26100`.`15`.`0`
 
 </H2>
 
@@ -108,8 +80,44 @@ v`11`.`26100`.`14`.`0`
 
 - `11` -> Target OS ( She IS for Windows 11 )
 - `26100` -> Release SDK Version ( Currently She uses 26100.xxxx Versions of Windows 11 SDK )
-- `14` -> Release Index ( Here 14 stands for the 14 Release Of Course! )
+- `15` -> Release Index ( Here 15 stands for the 15th Release Of Course! )
 - `0` -> Filler Number ( Package.appxmanifest doesn't allow me to edit this Number so it's there for NOTHING 💀 )
+
+---
+
+
+## Installation : 
+
+1.  Download the `.msix` and `.cer` files from the [latest release.](https://github.com/Chill-Astro/Lamina/releases/latest)
+2.  Import the `.cer` file to the `Trusted Root Certificates` Store. ( First Run ONLY! )
+
+    Alternatively use this Command after Downloading `TMM.exe` from [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) :    
+
+         .\tmm --i <Certificate>
+    
+    Also you can Paste the Path into the Terminal Prompt or Drag the `.cer` on TMM.exe!
+    
+4.  Install the `.msix` file.
+
+<p align="center">
+  --------------------- OR ---------------------
+</p>
+
+-  Download the `Setup.exe` that does the Importing and Installation FOR YOU!
+
+---
+
+## TRAILER on @chill-astro-sfs :
+
+<div align="center">
+  <kbd>
+  <a href="https://www.youtube.com/watch?v=AWq2MTEJa0I">
+    <img src="https://img.youtube.com/vi/AWq2MTEJa0I/maxresdefault.jpg" alt="Watch the Lamina Trailer"style="border-radius:10px;">
+    <br>
+    <b><h3>▶ Click to Watch the Official Trailer</h3></b>
+  </a>
+</kbd>
+</div>
 
 ---
 
@@ -122,90 +130,6 @@ https://github.com/user-attachments/assets/1a737f20-3497-4105-91b6-d23a1321b3ce
 - BRAND NEW REVAMPED SCRIPTIES!!!!!
 
 https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
-
----
-
-## Features + Scripties :
-
-> [!NOTE]
-> A Scientific Calculator WILL BE ADDED in v11.26100.16.0!
-
-> [!IMPORTANT]
-> The Code is undergoing some Refactors for "Better variableNames", some UI Improvements and Cleanups here and there with a Touch of Personality, after all there's no Corporation Controlling Me!
-
-- Basic Calculator
-- Advanced Calculator ( v11.26100.16.0 )
-- Date Calculator
-- Convertors :
-  * Base Converter
-  * Unit Convertor
-  * Currency Convertor
-- Mensuration :
-  * Heron's Formula
-  * Perimeter Calculator
-      * Equilateral Triangle
-      * Isosceles Triangle
-      * Square / Rhombus
-      * Rectangle / Parallelogram
-      * Circle
-      * Semi-circle
-  * Area Calculator
-      * Equilateral Triangle
-      * Isosceles Triangle
-      * Standard Triangle
-      * Square
-      * Rectangle / Parallelogram
-      * Rhombus
-      * Circle
-      * Semi-circle
-      * Room
-  * Volume Calculator
-      * Cube
-      * Cuboid
-      * Cylinder
-      * Cone
-      * Sphere
-  * Total Surface Area
-      * Cube
-      * Cuboid
-      * Cylinder
-      * Cone
-      * Sphere
-  * Curved Surface Area      
-      * Cylinder
-      * Cone
-      * Sphere
-  * Diagonal Calculator
-      * Square
-      * Rectangle
-      * Cube
-      * Cuboid
-- Algebra :
-  * Quadratic Equation Solver  
-- Finance :
-  * Financial Calculator
-       * Simple Interest
-       * Compound Interest
-       * Recurring Deposit
-
----
-
-## Installation : 
-
-1.  Download the `.msix` and `.cer` files from the [latest release.](https://github.com/Chill-Astro/Lamina/releases/latest)
-2.  Import the `.cer` file to the `Trusted Root Certificates` Store. ( First Run ONLY! )
-
-    Alternatively use this Command after Downloading `TMM.exe` from [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) :
-
-         .\tmm --i <Certificate>
-    
-3.  Install the `.msix` file.
-
-<p align="center">
-  --------------------- OR ---------------------
-</p>
-
--  Download the `Setup.exe` that does the Importing and Installation FOR YOU!
 
 ---
 
@@ -251,6 +175,53 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
         }
 
 - Buid and Run the Application as shown above.
+
+---
+
+## Art 
+
+Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ) and has many Anti-Corporate Design Choices,
+
+so here's her Fictional Human Form! ヾ(^▽^*)))
+
+<kbd>
+<img alt="Art" width="400" src="https://github.com/user-attachments/assets/724831c5-0497-4a53-8be8-53e6a974412f" />
+</kbd>
+
+<br> <br>
+Well I am no Artist, but I hope that you Have a Nice Time with Her!
+
+---
+
+## Pros ✅ :
+
+- Considering my Age, My UI Design Ideas are Very Humane and Passionate-looking in this World of Corporate Slop.
+- *Aesthetics* are *"Nailed it!"* in almost Every Part of the UI.
+- An Onboarding Page in a Calculator is Unique ✨, afterall most Calculator Apps look Generic.
+- She's Anti-Corporate in many parts like : *"Aww no History? Let's make Some!"* *"Oh Snap! (╯°□°）╯︵ ┻━┻ "* and *"Woohooo! ヾ(^▽^*)))"* too Make the User Experience less "It's just another Calculator".
+- Tactile Key Press Animations in Base Calculator UI.
+- Extra Power with Scripties.
+- More Lamina ✦ UI talk you can generate in your Head after trying her out!
+
+## Cons ❌ :
+
+- Slow Updates :
+    - Code is First Generated with `Gemini 3 Flash` ( after Brainstorming 🧠 ) and then the Generated Code is Rewritten to something not Cluttered with Comments.
+    - This takes time as sometimes AI is Stupid and I can't do Ctrl + C and Ctrl + V every time or the App will be Burnt Garbage.
+    - I am learning some of the More IMPORTANT Stuff this year and then Even More Next Year, so Understanding is Slow Paced.
+- Lack of Scientific Calculator : Self Explanatory. Even if She's Gorgeous, she lacks the Advanced Stuff.
+- Cursive ( For Certain People ) :
+    - `Alex Brush` is an Excellent Font, but with the Rise of Social Media, people have mostly shifted to Typing and Block Letters or Goody Ahh Hybrid of Print and Cursive.
+    - Certain UIs in this App such as `OnboardingPage`, `SettingsPage` and the **Title Bar** in `ShellPage` have used Cursive at least in Branding.
+    - If Cursive looks like Alien Language to you, Sorry! :) The Usage of `Alex Brush` is **Branding Only**!
+
+<kbd>
+<img alt="image" src="https://github.com/user-attachments/assets/93ceb201-e3ff-4bd3-adae-1415efa5b0ae" />
+</kbd>
+
+- BUGS :
+    - I am just a Teenage Boy with a Budget Laptop, and I have Studies. It's Impossible to Find and Fight all the Bugs and fix them Rapidly, when the Best I know is writing Logic JAVA for CLI ( Without BlueJ ).
+    - Sometimes Bug Slip in or I couldn't find the Logical Error in AI Code while Rewriting, leading to ODD Issues.     
 
 ---
 
