@@ -117,4 +117,9 @@ public sealed partial class DyNamoMangerPage : Page
     {
         await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Dynamo-Scriptie-Loader"));
     }
+
+    private async void Download_Click(object sender, RoutedEventArgs e)
+    {        
+        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Modules"));
+    }
 }
