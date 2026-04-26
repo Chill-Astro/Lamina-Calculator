@@ -50,12 +50,12 @@ For Maximum Reach, ensure to Fork the Above Mentioned Repo and I will add you to
 
 ---
 
-## Steps to Use Dynamo :
+## Steps to Use Dynamo Scriptie Loader:
 
 - Go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
 - Download your Desired Mod, a `.lamina` File.
 - Go to Menu > Add and Add the File from the Popup!
-- 
+
 ---
 
 ## A Halt on Development from v11.26100.16.0 ONWARDS :
