@@ -143,6 +143,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
+                <!--  Dynamo Scripties Loader  -->
                 <NavigationViewItemHeader x:Name="ImportedHeader" Content="Imported" />
                 <NavigationViewItem
                     x:Name="AddScriptieButton"

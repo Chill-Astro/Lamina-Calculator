@@ -90,7 +90,7 @@ public sealed partial class CurrencyPage : Page
             var result = doc.RootElement.GetProperty("conversion_result").GetDouble();
 
             // Restored original output style
-            ResultTextBlock.Text = $"{amount} {from} = {result:N2} {to}";
+            ResultTextBlock.Text = $"{result:N2} {to}";
         }
         catch (Exception ex)
         {            

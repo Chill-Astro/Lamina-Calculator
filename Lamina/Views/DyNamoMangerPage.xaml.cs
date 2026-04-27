@@ -1,15 +1,16 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using Windows.Storage;
 
 namespace Lamina.Views;
 
-// --- DATA MODELS ---
+// Information Obtained from the .lamina file
 public class LaminaScript
 {
     public Metadata Metadata { get; set; }
@@ -25,7 +26,7 @@ public class UIConfig { public string Formula { get; set; } public List<InputIte
 public class InputItem { public string Label { get; set; } public string Key { get; set; } public string Header { get; set; } public string Placeholder { get; set; } }
 public class LogicConfig { public string Output { get; set; } public string Error { get; set; } }
 
-// --- LOGIC ---
+// TECHNOLOGIA
 public sealed partial class DyNamoMangerPage : Page
 {
     public DyNamoMangerPage()
@@ -67,7 +68,7 @@ public sealed partial class DyNamoMangerPage : Page
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"DyNamo Manager Error: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"Dynamo Manager Error: {ex.Message}");
         }
     }
 
@@ -77,8 +78,8 @@ public sealed partial class DyNamoMangerPage : Page
         {
             ContentDialog confirm = new ContentDialog
             {
-                Title = "Remove Scriptie?",
-                Content = $"Are you sure to do Strike Off {script.Metadata.Name}?",
+                Title = "Remove Confirmation",
+                Content = $"Strike off {script.Metadata.Name}?",
                 PrimaryButtonText = "Remove",
                 CloseButtonText = "Cancel",
                 DefaultButton = ContentDialogButton.Close,
@@ -92,9 +93,8 @@ public sealed partial class DyNamoMangerPage : Page
                     var file = await StorageFile.GetFileFromPathAsync(script.FilePath);
                     await file.DeleteAsync();
 
-                    LoadScripties(); // Refresh self
-
-                    // Sync with Shell Sidebar
+                    LoadScripties();
+                    // Sync with ShellPage Sidebar
                     if (App.MainWindow.Content is ShellPage shell)
                     {
                         shell.RefreshImportedList();
@@ -105,6 +105,7 @@ public sealed partial class DyNamoMangerPage : Page
         }
     }
 
+    // ADs to get into the Chill-Astro's FOSS Walled Garden
     private async void Repo_Click(object sender, RoutedEventArgs e)
     {
         if (sender is Button btn && btn.Tag is string url && !string.IsNullOrWhiteSpace(url))
@@ -121,5 +122,11 @@ public sealed partial class DyNamoMangerPage : Page
     private async void Download_Click(object sender, RoutedEventArgs e)
     {        
         await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Modules-Repo"));
+    }
+
+    // TECHNOLOGIA of DRY (Don't Repeat Yourself) - Reuse the Add Scriptie logic from ShellPage
+    private void Add_Click(object sender, RoutedEventArgs e)
+    {
+        (App.MainWindow.Content as ShellPage)?.OnAddScriptieTapped(null, null);
     }
 }

@@ -9,9 +9,6 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
 using System.Text.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace Lamina.Views;
 
@@ -61,7 +58,7 @@ public sealed partial class ShellPage : Page
         };
     }
 
-    // Handles sidebar item selection (including the new Manager)
+    // Handles sidebar item selection
     private void NavigationViewControl_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
     {
         if (args.InvokedItemContainer != null)
@@ -76,7 +73,7 @@ public sealed partial class ShellPage : Page
         }
     }
 
-    private async void OnAddScriptieTapped(object sender, TappedRoutedEventArgs e)
+    public async void OnAddScriptieTapped(object sender, TappedRoutedEventArgs e)
     {
         var picker = new FileOpenPicker();
         var hwnd = WindowNative.GetWindowHandle(App.MainWindow);
@@ -91,8 +88,6 @@ public sealed partial class ShellPage : Page
             var localFolder = ApplicationData.Current.LocalFolder;
             var folder = await localFolder.CreateFolderAsync("Scripties", CreationCollisionOption.OpenIfExists);
 
-            // Optional: You could parse the JSON here to rename the file to Metadata.Name
-            // for perfect sync with the Manager's Delete button.
             await file.CopyAsync(folder, file.Name, NameCollisionOption.ReplaceExisting);
 
             RefreshImportedList();
@@ -165,7 +160,7 @@ public sealed partial class ShellPage : Page
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"DyNamo Refresh Error: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"Dynamo Refresh Error: {ex.Message}");
         }
     }
 

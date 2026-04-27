@@ -5,8 +5,15 @@
     xmlns:local="using:Lamina.Views"
     Background="Transparent">
 
+    <!--  Skeleton Scriptie, the JSON just fills in the Values  -->
+
     <Grid Background="Transparent">
-        <ScrollViewer VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Auto">
+        <ScrollViewer
+            HorizontalScrollBarVisibility="Disabled"
+            IsScrollInertiaEnabled="True"
+            IsVerticalRailEnabled="True"
+            VerticalScrollBarVisibility="Hidden"
+            VerticalScrollMode="Auto">
             <StackPanel
                 x:Name="ControlStack"
                 MaxWidth="380"
@@ -39,8 +46,6 @@
 
                 <Button
                     x:Name="CalculateBtn"
-                    Height="40"
-                    Padding="40,0"
                     HorizontalAlignment="Center"
                     Click="Calculate_Click"
                     Content="Calculate"

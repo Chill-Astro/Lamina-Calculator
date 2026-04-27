@@ -190,6 +190,7 @@
                         </Grid>
                     </Border>
 
+                    <!--  Splash Screen Setting  -->
                     <Border
                         Padding="16"
                         HorizontalAlignment="Stretch"

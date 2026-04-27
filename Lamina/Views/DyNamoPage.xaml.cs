@@ -38,12 +38,12 @@ public sealed partial class DyNamoPage : Page
 
             if (_currentScript == null) return;
 
-            // 2. Setup Formula Bar (The fix you requested)
+            // Setup Formula Bar
             if (_currentScript.UI != null && !string.IsNullOrEmpty(_currentScript.UI.Formula))
             {
                 FormulaBar.Message = _currentScript.UI.Formula;
                 FormulaBar.Visibility = Visibility.Visible;
-                FormulaBar.IsOpen = true; // CRITICAL: InfoBar won't show without this
+                FormulaBar.IsOpen = true;
             }
             else
             {
@@ -51,7 +51,7 @@ public sealed partial class DyNamoPage : Page
                 FormulaBar.IsOpen = false;
             }
 
-            // 3. Load Inputs
+            // Load Inputs
             InputList.ItemsSource = _currentScript.UI.Inputs;
         }
         catch (Exception ex)
@@ -60,6 +60,7 @@ public sealed partial class DyNamoPage : Page
         }
     }
 
+    // Add as many Inputs as you ( yeah you the user ) want!
     private void NumberBox_Loaded(object sender, RoutedEventArgs e)
     {
         if (sender is NumberBox nb && nb.Tag != null)
@@ -79,7 +80,7 @@ public sealed partial class DyNamoPage : Page
 
             foreach (var nb in _activeInputs)
             {
-                // Assign parameters to NCalc from our tracked NumberBoxes
+                // Assign parameters to NCalc
                 expr.Parameters[nb.Tag.ToString()] = double.IsNaN(nb.Value) ? 0.0 : nb.Value;
             }
 
@@ -94,10 +95,8 @@ public sealed partial class DyNamoPage : Page
 
     private async Task ShowResult(string value)
     {
-        ResultLabel.Text = "Calculated Value";
-        ResultValueText.Text = value;
-
-        // This connects the dialog to the window so it can actually pop up
+        ResultLabel.Text = "Value Returned = ";
+        ResultValueText.Text = value;        
         ResultDialog.XamlRoot = this.Content.XamlRoot;
         await ResultDialog.ShowAsync();
     }

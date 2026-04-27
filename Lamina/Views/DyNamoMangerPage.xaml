@@ -8,41 +8,55 @@
     Background="Transparent"
     mc:Ignorable="d">
 
-    <ScrollViewer VerticalScrollBarVisibility="Hidden">
-        <Grid HorizontalAlignment="Stretch">
+    <!--  Dynamo Scripties Manager  -->
+
+    <ScrollViewer
+        IsScrollInertiaEnabled="True"
+        IsVerticalRailEnabled="True"
+        VerticalScrollBarVisibility="Hidden"
+        VerticalScrollMode="Auto">
+
+        <Grid Padding="0,32,0,64" HorizontalAlignment="Stretch">
             <StackPanel
                 MaxWidth="400"
-                Padding="0"
                 HorizontalAlignment="Center"
-                Spacing="24">
+                Spacing="28">
 
                 <StackPanel HorizontalAlignment="Center" Spacing="0">
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontFamily="ms-appx:///Assets/Fonts/AlexBrush-Regular.ttf#Alex Brush"
-                        FontSize="54"
+                        FontSize="58"
                         Text="Lamina ✦" />
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontFamily="ms-appx:///Assets/Fonts/AlexBrush-Regular.ttf#Alex Brush"
-                        FontSize="20"
+                        FontSize="30"
                         FontWeight="SemiBold"
                         Opacity="0.5"
                         Text="Dynamo Scriptie Loader" />
+
                     <StackPanel
-                        Margin="0,16,0,0"
+                        Margin="0,20,0,0"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal"
-                        Spacing="8">
+                        Spacing="6">
                         <Button
-                            Padding="24,8"
+                            Padding="20,8"
                             Click="Download_Click"
                             Content="Download"
                             CornerRadius="8"
                             Style="{StaticResource AccentButtonStyle}" />
 
                         <Button
-                            Padding="24,8"
+                            Padding="20,8"
+                            Click="Add_Click"
+                            Content="Install"
+                            CornerRadius="8"
+                            Style="{StaticResource AccentButtonStyle}" />
+
+                        <Button
+                            Padding="20,8"
                             Click="Contribute_Click"
                             Content="Contribute"
                             CornerRadius="8"
@@ -52,35 +66,38 @@
 
                 <TextBlock
                     x:Name="EmptyStateText"
+                    Margin="0,40,0,0"
                     HorizontalAlignment="Center"
-                    FontSize="16"
+                    FontSize="15"
+                    FontStyle="Italic"
                     Opacity="0.4"
-                    Text="No Scripties? Contribute Some!"
+                    Text="Aww no Scripties? Contribute Some! :)"
                     Visibility="Collapsed" />
 
                 <ItemsControl x:Name="ScriptieList">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="local:LaminaScript">
                             <Border
-                                Margin="0,0,0,12"
-                                Padding="16"
+                                Margin="0,0,0,16"
+                                Padding="20"
                                 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                                 BorderThickness="1"
-                                CornerRadius="8">
+                                CornerRadius="12">
                                 <StackPanel Spacing="4">
                                     <Grid ColumnDefinitions="*,Auto">
                                         <TextBlock
-                                            FontSize="16"
+                                            FontSize="18"
                                             FontWeight="Bold"
                                             Text="{x:Bind Metadata.Name}" />
+
                                         <StackPanel
                                             Grid.Column="1"
                                             Orientation="Horizontal"
-                                            Spacing="8">
+                                            Spacing="0">
                                             <Button
-                                                Width="32"
-                                                Height="32"
+                                                Width="36"
+                                                Height="36"
                                                 Padding="0"
                                                 Background="Transparent"
                                                 BorderThickness="0"
@@ -90,8 +107,8 @@
                                                 Tag="{x:Bind Metadata.Repo}"
                                                 ToolTipService.ToolTip="View Repository" />
                                             <Button
-                                                Width="32"
-                                                Height="32"
+                                                Width="36"
+                                                Height="36"
                                                 Padding="0"
                                                 Background="Transparent"
                                                 BorderThickness="0"
@@ -99,18 +116,20 @@
                                                 Content="&#xE74D;"
                                                 FontFamily="Segoe MDL2 Assets"
                                                 Foreground="{ThemeResource SystemFillColorCriticalBrush}"
-                                                ToolTipService.ToolTip="Remove Scriptie" />
+                                                ToolTipService.ToolTip="Remove" />
                                         </StackPanel>
                                     </Grid>
-                                    <TextBlock FontSize="12" Opacity="0.6">
+
+                                    <TextBlock FontSize="13" Opacity="0.5">
                                         <Run FontWeight="SemiBold" Text="{x:Bind Metadata.Author}" />
                                         <Run Text=" • v" />
                                         <Run Text="{x:Bind Metadata.Version}" />
                                     </TextBlock>
+
                                     <TextBlock
-                                        Margin="0,8,0,0"
-                                        FontSize="13"
-                                        Opacity="0.8"
+                                        Margin="0,10,0,0"
+                                        FontSize="14"
+                                        Opacity="0.85"
                                         Text="{x:Bind Metadata.Description}"
                                         TextWrapping="Wrap" />
                                 </StackPanel>

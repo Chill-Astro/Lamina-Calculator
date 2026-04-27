@@ -127,12 +127,14 @@
                     <TextBlock
                         x:Name="ResultTextBlock"
                         Grid.Column="0"
+                        MaxWidth="300"
                         HorizontalAlignment="Center"
                         FontSize="28"
                         FontWeight="Bold"
                         Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                         IsTextSelectionEnabled="True"
-                        Text="---" />
+                        Text="---"
+                        TextWrapping="Wrap" />
 
                     <Button
                         x:Name="CopyButton"
