@@ -69,6 +69,11 @@
                         <FontIcon FontFamily="{StaticResource Lamina_Icons}" Glyph="&#xe230;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem x:Uid="Shell_AdvancedCalculator" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.AdvancedCalculatorViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource Lamina_Icons}" Glyph="&#xe90A;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem x:Uid="Shell_DateCalculator" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.DateCalculatorViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource Lamina_Icons}" Glyph="&#xe231;" />

@@ -33,6 +33,7 @@ public class PageService : IPageService
         Configure<OnboardingViewModel, OnboardingPage>();        
         Configure<DyNamoViewModel, DyNamoPage>();
         Configure<DyNamoMangerViewModel, DyNamoMangerPage>();
+        Configure<AdvancedCalculatorViewModel, AdvancedCalculatorPage>();
     }
 
     public Type GetPageType(string key)

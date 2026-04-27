@@ -62,6 +62,8 @@ namespace Lamina
                 services.AddSingleton<IFileService, FileService>();
 
                 // Views and ViewModels                                
+                services.AddTransient<AdvancedCalculatorViewModel>();
+                services.AddTransient<AdvancedCalculatorPage>();
                 services.AddTransient<DyNamoMangerViewModel>();
                 services.AddTransient<DyNamoMangerPage>();
                 services.AddTransient<DyNamoViewModel>();

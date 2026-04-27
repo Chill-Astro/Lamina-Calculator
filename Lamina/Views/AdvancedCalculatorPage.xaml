@@ -1,0 +1,560 @@
+﻿<Page
+    x:Class="Lamina.Views.AdvancedCalculatorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:Lamina.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{x:Null}"
+    IsTabStop="True"
+    Loaded="CalculatorPage_Loaded"
+    PreviewKeyDown="CalculatorPage_PreviewKeyDown"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="CalculatorButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
+            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="MinWidth" Value="55" />
+            <Setter Property="MinHeight" Value="35" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="OuterBorder" Background="Transparent">
+                            <Border
+                                x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}">
+                                <Border.RenderTransform>
+                                    <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" />
+                                </Border.RenderTransform>
+                                <ContentPresenter
+                                    x:Name="ContentPresenter"
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}" />
+                            </Border>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ColorAnimation
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="#20AAAAAA"
+                                                Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation
+                                                Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="#30888888"
+                                                Duration="0" />
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="ScaleTransform"
+                                                Storyboard.TargetProperty="ScaleX"
+                                                To="0.95"
+                                                Duration="0:0:0.1" />
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="ScaleTransform"
+                                                Storyboard.TargetProperty="ScaleY"
+                                                To="0.95"
+                                                Duration="0:0:0.1" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CalculatorToggleButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+
+        <Style
+            x:Key="NumberButtonStyle"
+            BasedOn="{StaticResource CalculatorButtonStyle}"
+            TargetType="Button" />
+
+        <Style
+            x:Key="AccentButtonStyle"
+            BasedOn="{StaticResource CalculatorButtonStyle}"
+            TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource AccentButtonBackground}" />
+            <Setter Property="Foreground" Value="{ThemeResource AccentButtonForeground}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="OuterBorder" Background="Transparent">
+                            <Border
+                                x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}">
+                                <Border.RenderTransform>
+                                    <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" />
+                                </Border.RenderTransform>
+                                <ContentPresenter
+                                    x:Name="ContentPresenter"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}" />
+                            </Border>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonHoverBackground}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonPressedBackground}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="ScaleTransform"
+                                                Storyboard.TargetProperty="ScaleX"
+                                                To="0.95"
+                                                Duration="0:0:0.05" />
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="ScaleTransform"
+                                                Storyboard.TargetProperty="ScaleY"
+                                                To="0.95"
+                                                Duration="0:0:0.05" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Button
+            x:Name="CopyButton"
+            Width="35"
+            Height="35"
+            Margin="0,-52,1,0"
+            Padding="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="CopyButton_Click"
+            Content="&#xe8c8;"
+            CornerRadius="3"
+            FontFamily="Segoe Fluent Icons"
+            FontSize="16">
+            <Button.KeyboardAccelerators>
+                <KeyboardAccelerator Key="C" Modifiers="Control" />
+            </Button.KeyboardAccelerators>
+            <ToolTipService.ToolTip>
+                <ToolTip Content="Copy Result to Clipboard (Ctrl + C)" />
+            </ToolTipService.ToolTip>
+        </Button>
+
+        <Button
+            x:Name="PasteButton"
+            Width="35"
+            Height="35"
+            Margin="35,-52,1,0"
+            Padding="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="PasteButton_Click"
+            Content="&#xE77F;"
+            CornerRadius="3"
+            FontFamily="Segoe Fluent Icons"
+            FontSize="16">
+            <Button.KeyboardAccelerators>
+                <KeyboardAccelerator Key="V" Modifiers="Control" />
+            </Button.KeyboardAccelerators>
+            <ToolTipService.ToolTip>
+                <ToolTip Content="Paste from Clipboard (Ctrl + V)" />
+            </ToolTipService.ToolTip>
+        </Button>
+
+        <Grid
+            x:Name="ContentGrid"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Transparent"
+            IsTabStop="False">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Viewbox
+                Grid.Row="1"
+                MaxHeight="120"
+                Margin="0,-10,0,0"
+                HorizontalAlignment="Right">
+                <StackPanel
+                    x:Name="DisplayStack"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom">
+                    <TextBlock
+                        x:Name="DisplayTextBlock"
+                        Margin="12,7,5,10"
+                        HorizontalAlignment="Right"
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        IsTextSelectionEnabled="True"
+                        Text="{x:Bind ViewModel.DisplayText, Mode=OneWay}"
+                        TextAlignment="Right" />
+                </StackPanel>
+            </Viewbox>
+            <Grid Grid.Row="2" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Button
+                    x:Name="BtnSqrt"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="Sqrt("
+                    Content="√"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnPi"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="Pi"
+                    Content="π"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnPow"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="Pow("
+                    Content="Pow("
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnFactorial"
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="!"
+                    Content="!"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+
+                <Button
+                    x:Name="BtnAngleMode"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Command="{x:Bind ViewModel.CycleAngleModeCommand}"
+                    Content="{x:Bind ViewModel.AngleModeText, Mode=OneWay}"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnSin"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="{x:Bind ViewModel.SinLabel, Mode=OneWay}"
+                    Content="{x:Bind ViewModel.SinLabel, Mode=OneWay}"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnCos"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="{x:Bind ViewModel.CosLabel, Mode=OneWay}"
+                    Content="{x:Bind ViewModel.CosLabel, Mode=OneWay}"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnTan"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="{x:Bind ViewModel.TanLabel, Mode=OneWay}"
+                    Content="{x:Bind ViewModel.TanLabel, Mode=OneWay}"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+
+                <ToggleButton
+                    x:Name="BtnInv"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Content="Inv"
+                    IsChecked="{x:Bind ViewModel.IsInverse, Mode=TwoWay}"
+                    Style="{StaticResource CalculatorToggleButtonStyle}" />
+                <Button
+                    x:Name="BtnE"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="E"
+                    Content="e"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnLn"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="Log("
+                    Content="ln"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnLog"
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="Log10("
+                    Content="log"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+
+                <Button
+                    x:Name="BtnReciprocal"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Command="{x:Bind ViewModel.ReciprocalCommand}"
+                    Content="1/x"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnNegate"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Command="{x:Bind ViewModel.NegateCommand}"
+                    Content="+/-"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnCubeRoot"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="³√("
+                    Content="³√"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnBackspace"
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Command="{x:Bind ViewModel.BackspaceCommand}"
+                    Content="&#xe750;"
+                    FontFamily="Segoe Fluent Icons"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+
+                <Button
+                    x:Name="BtnAC"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Command="{x:Bind ViewModel.ClearAllCommand}"
+                    Content="AC"
+                    Foreground="#FFB4AB"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnLeftBracket"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="("
+                    Content="("
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnRightBracket"
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter=")"
+                    Content=")"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+                <Button
+                    x:Name="BtnDivide"
+                    Grid.Row="4"
+                    Grid.Column="3"
+                    Command="{x:Bind ViewModel.SetOperatorCommand}"
+                    CommandParameter="÷"
+                    Content="÷"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+
+                <Button
+                    x:Name="Btn7"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="7"
+                    Content="7"
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="Btn8"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="8"
+                    Content="8"
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="Btn9"
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="9"
+                    Content="9"
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="BtnMultiply"
+                    Grid.Row="5"
+                    Grid.Column="3"
+                    Command="{x:Bind ViewModel.SetOperatorCommand}"
+                    CommandParameter="×"
+                    Content="×"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+
+                <Button
+                    x:Name="Btn4"
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="4"
+                    Content="4"
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="Btn5"
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="5"
+                    Content="5"
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="Btn6"
+                    Grid.Row="6"
+                    Grid.Column="2"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="6"
+                    Content="6"
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="BtnSubtract"
+                    Grid.Row="6"
+                    Grid.Column="3"
+                    Command="{x:Bind ViewModel.SetOperatorCommand}"
+                    CommandParameter="-"
+                    Content="-"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+
+                <Button
+                    x:Name="Btn1"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="1"
+                    Content="1"
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="Btn2"
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="2"
+                    Content="2"
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="Btn3"
+                    Grid.Row="7"
+                    Grid.Column="2"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="3"
+                    Content="3"
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="BtnAdd"
+                    Grid.Row="7"
+                    Grid.Column="3"
+                    Command="{x:Bind ViewModel.SetOperatorCommand}"
+                    CommandParameter="+"
+                    Content="+"
+                    Style="{StaticResource CalculatorButtonStyle}" />
+
+                <Button
+                    x:Name="Btn0"
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    Command="{x:Bind ViewModel.InputNumberCommand}"
+                    CommandParameter="0"
+                    Content="0"
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="BtnComma"
+                    Grid.Row="8"
+                    Grid.Column="1"
+                    Command="{x:Bind ViewModel.InputCommaCommand}"
+                    Content=","
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="BtnDecimal"
+                    Grid.Row="8"
+                    Grid.Column="2"
+                    Command="{x:Bind ViewModel.InputDecimalCommand}"
+                    Content="."
+                    Style="{StaticResource NumberButtonStyle}" />
+                <Button
+                    x:Name="BtnEqual"
+                    Grid.Row="8"
+                    Grid.Column="3"
+                    Command="{x:Bind ViewModel.CalculateCommand}"
+                    Content="&#xe94e;"
+                    FontFamily="Segoe Fluent Icons"
+                    Style="{StaticResource AccentButtonStyle}" />
+            </Grid>
+            <TeachingTip
+                x:Name="CopyNotification"
+                Title="Copied! ♪(´▽｀)"
+                IsLightDismissEnabled="True"
+                PreferredPlacement="Top"
+                Subtitle="The result has been copied to the clipboard."
+                Target="{x:Bind CopyButton}" />
+        </Grid>
+    </Grid>
+</Page>

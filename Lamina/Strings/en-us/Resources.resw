@@ -124,7 +124,7 @@
     <value>Lamina ✦</value>
   </data>
   <data name="Shell_Calculator.Content" xml:space="preserve">
-    <value>Calculator</value>
+    <value>Basic Calculator</value>
   </data>
   <data name="Shell_HF.Content" xml:space="preserve">
     <value>Heron's Formula</value>
@@ -194,5 +194,8 @@
   </data>
   <data name="Shell_DyNamoManger.Content" xml:space="preserve">
     <value>Scripties Manager</value>
+  </data>
+  <data name="Shell_AdvancedCalculator.Content" xml:space="preserve">
+    <value>Advanced Calculator</value>
   </data>
 </root>
