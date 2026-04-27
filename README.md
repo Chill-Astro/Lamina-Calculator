@@ -50,12 +50,12 @@ For Maximum Reach, ensure to Fork the Above Mentioned Repo and I will add you to
 
 ---
 
-## Steps to Use Dynamo :
+## Steps to Use Dynamo Scriptie Loader:
 
 - Go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
 - Download your Desired Mod, a `.lamina` File.
 - Go to Menu > Add and Add the File from the Popup!
-- 
+
 ---
 
 ## A Halt on Development from v11.26100.16.0 ONWARDS :
@@ -66,11 +66,12 @@ For Maximum Reach, ensure to Fork the Above Mentioned Repo and I will add you to
 - All of this is because WinUI 3 is annoying and in return, no appreciation.
 - I am not Maintaining this Project for a Wall, I am maintaining this as an example of What UI can be.
 - She is quite Stable from v13, v14 amd v15 onwards with many of her Bugs and Trashy UI fixed.
+- v16 will Add Support for User Made Scripties.
 - I hope that you have a good UX! 👍
  
 ---
 
-## Key Features :
+## Features :
 
 - Simple and Clean GUI. ✅
 - Dozens of calculation options. ✅
@@ -112,7 +113,6 @@ v`11`.`26100`.`15`.`0`
 
 ---
 
-
 ## Installation : 
 
 1.  Download the `.msix` and `.cer` files from the [latest release.](https://github.com/Chill-Astro/Lamina/releases/latest)
@@ -134,6 +134,16 @@ v`11`.`26100`.`15`.`0`
 
 ---
 
+## Anti-Features :
+
+- Slow Updates ❌
+- Use of AI Assistance as I am learning UI and WinUI 3 with AI. ❌
+- Lack of Scientific Calculator ❌
+- Use of `Alex Brush` in Branding which will look like Alien Language for certain People. ❌
+- BUGS may Slip in because AI is Stupid, and without a Manual Audit, it's basically `AI SLOP`. ❌
+    
+---
+
 ## TRAILER on @chill-astro-sfs :
 
 <div align="center">
@@ -145,6 +155,18 @@ v`11`.`26100`.`15`.`0`
   </a>
 </kbd>
 </div>
+
+---
+
+## More Screenshots :
+
+<kbd>
+<img alt="image" src="https://github.com/user-attachments/assets/93ceb201-e3ff-4bd3-adae-1415efa5b0ae" />
+</kbd>
+
+<kbd>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/dadf0bd6-fefe-41c4-a632-004c7c0542d0" />
+</kbd>
 
 ---
 
@@ -217,38 +239,6 @@ so here's her Fictional Human Form! ヾ(^▽^*)))
 
 <br> <br>
 Well I am no Artist, but I hope that you Have a Nice Time with Her!
-
----
-
-## Pros ✅ :
-
-- Considering my Age, My UI Design Ideas are Very Humane and Passionate-looking in this World of Corporate Slop.
-- *Aesthetics* are *"Nailed it!"* in almost Every Part of the UI.
-- An Onboarding Page in a Calculator is Unique ✨, afterall most Calculator Apps look Generic.
-- She's Anti-Corporate in many parts like : *"Aww no History? Let's make Some!"* *"Oh Snap! (╯°□°）╯︵ ┻━┻ "* and *"Woohooo! ヾ(^▽^*)))"* too Make the User Experience less "It's just another Calculator".
-- Tactile Key Press Animations in Base Calculator UI.
-- Extra Power with Scripties.
-- More Lamina ✦ UI talk you can generate in your Head after trying her out!
-
-## Cons ❌ :
-
-- Slow Updates :
-    - Code is First Generated with `Gemini 3 Flash` ( after Brainstorming 🧠 ) and then the Generated Code is Rewritten to something not Cluttered with Comments.
-    - This takes time as sometimes AI is Stupid and I can't do Ctrl + C and Ctrl + V every time or the App will be Burnt Garbage.
-    - I am learning some of the More IMPORTANT Stuff this year and then Even More Next Year, so Understanding is Slow Paced.
-- Lack of Scientific Calculator : Self Explanatory. Even if She's Gorgeous, she lacks the Advanced Stuff.
-- Cursive ( For Certain People ) :
-    - `Alex Brush` is an Excellent Font, but with the Rise of Social Media, people have mostly shifted to Typing and Block Letters or Goody Ahh Hybrid of Print and Cursive.
-    - Certain UIs in this App such as `OnboardingPage`, `SettingsPage` and the **Title Bar** in `ShellPage` have used Cursive at least in Branding.
-    - If Cursive looks like Alien Language to you, Sorry! :) The Usage of `Alex Brush` is **Branding Only**!
-
-<kbd>
-<img alt="image" src="https://github.com/user-attachments/assets/93ceb201-e3ff-4bd3-adae-1415efa5b0ae" />
-</kbd>
-
-- BUGS :
-    - I am just a Teenage Boy with a Budget Laptop, and I have Studies. It's Impossible to Find and Fight all the Bugs and fix them Rapidly, when the Best I know is writing Logic JAVA for CLI ( Without BlueJ ).
-    - Sometimes Bug Slip in or I couldn't find the Logical Error in AI Code while Rewriting, leading to ODD Issues.     
 
 ---
 
