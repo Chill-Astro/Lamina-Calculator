@@ -38,13 +38,28 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 
 ---
 
+## A Halt on Development from v11.26100.16.0 ONWARDS :
+
+- I wouldn't provide updates for the next couple of months.
+- Issues will be addressed late.
+- Pull Requests may be merged late.
+- All of this is because WinUI 3 is annoying and in return, no appreciation.
+- I am not Maintaining this Project for a Wall, I am maintaining this as an example of What UI can be.
+- She is quite Stable from v13, v14 amd v15 onwards with many of her Bugs and Trashy UI fixed.
+- v16 will Add Support for User Made Scripties and an Advanced Calculator.
+- I hope that you have a good UX! 👍
+ 
+---
+
 ## WHAT IS DYNAMO???????
 
 Dynamo is a Dynamic Scriptie Loader. Think of MODS in a Game, or Magisk Modules.
 
 Yes that's right! An Importer of Math Scripts. Now you can Program her without Proper Coding Skills!
 
-Check for Details [here!](https://github.com/Chill-Astro/Lamina-Modules-Repo)
+Basically you can give an Expression for NCalc and she will parse it for you.
+
+Check for More Details [here!](https://github.com/Chill-Astro/Lamina-Modules-Repo)
 
 For Maximum Reach, ensure to Fork the Above Mentioned Repo and I will add you to my Modules!
 
@@ -58,17 +73,14 @@ For Maximum Reach, ensure to Fork the Above Mentioned Repo and I will add you to
 
 ---
 
-## A Halt on Development from v11.26100.16.0 ONWARDS :
+## Advantages of Dynamo :
 
-- I wouldn't provide updates for the next couple of months.
-- Issues will be addressed late.
-- Pull Requests may be merged late.
-- All of this is because WinUI 3 is annoying and in return, no appreciation.
-- I am not Maintaining this Project for a Wall, I am maintaining this as an example of What UI can be.
-- She is quite Stable from v13, v14 amd v15 onwards with many of her Bugs and Trashy UI fixed.
-- v16 will Add Support for User Made Scripties.
-- I hope that you have a good UX! 👍
- 
+- Very Easy to Contribute Math for Newbies.
+- No Coding Skills required.
+- Notepad is Enough to Contribute.
+- Since NCalc is NCalc and not a Compiler, the Risk of Viruses is VERY LOW.
+- NClac understands Math only, so you can't do `Remove-Item -Path C:\ -Recurse -Force`, so NOICE.
+
 ---
 
 ## Features :
