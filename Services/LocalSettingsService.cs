@@ -1,10 +1,9 @@
-﻿using Lamina.Core.Contracts.Services;
-using Lamina.Core.Helpers;
+﻿using Lamina.Contracts;
 using Lamina.Contracts.Services;
 using Lamina.Helpers;
 using Lamina.Models;
 using Microsoft.Extensions.Options;
-
+using System.Text.Json;
 using Windows.ApplicationModel;
 using Windows.Storage;
 
@@ -23,7 +22,6 @@ public class LocalSettingsService : ILocalSettingsService
     private readonly string _localsettingsFile;
 
     private IDictionary<string, object> _settings;
-
     private bool _isInitialized;
 
     public LocalSettingsService(IFileService fileService, IOptions<LocalSettingsOptions> options)
@@ -41,28 +39,28 @@ public class LocalSettingsService : ILocalSettingsService
     {
         if (!_isInitialized)
         {
-            _settings = await Task.Run(() => _fileService.Read<IDictionary<string, object>>(_applicationDataFolder, _localsettingsFile)) ?? new Dictionary<string, object>();
-
+            _settings = _fileService.Read<IDictionary<string, object>>(_applicationDataFolder, _localsettingsFile) ?? new Dictionary<string, object>();
             _isInitialized = true;
         }
+        await Task.CompletedTask;
     }
 
     public async Task<T?> ReadSettingAsync<T>(string key)
     {
         if (RuntimeHelper.IsMSIX)
         {
-            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var obj))
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var obj) && obj is string json)
             {
-                return await Json.ToObjectAsync<T>((string)obj);
+                return JsonSerializer.Deserialize<T>(json);
             }
         }
         else
         {
             await InitializeAsync();
 
-            if (_settings != null && _settings.TryGetValue(key, out var obj))
+            if (_settings != null && _settings.TryGetValue(key, out var obj) && obj is string json)
             {
-                return await Json.ToObjectAsync<T>((string)obj);
+                return JsonSerializer.Deserialize<T>(json);
             }
         }
 
@@ -71,17 +69,21 @@ public class LocalSettingsService : ILocalSettingsService
 
     public async Task SaveSettingAsync<T>(string key, T value)
     {
+        var json = JsonSerializer.Serialize(value);
+
         if (RuntimeHelper.IsMSIX)
         {
-            ApplicationData.Current.LocalSettings.Values[key] = await Json.StringifyAsync(value);
+            ApplicationData.Current.LocalSettings.Values[key] = json;
         }
         else
         {
             await InitializeAsync();
 
-            _settings[key] = await Json.StringifyAsync(value);
+            _settings[key] = json;
 
-            await Task.Run(() => _fileService.Save(_applicationDataFolder, _localsettingsFile, _settings));
+            _fileService.Save(_applicationDataFolder, _localsettingsFile, _settings);
         }
+
+        await Task.CompletedTask;
     }
 }

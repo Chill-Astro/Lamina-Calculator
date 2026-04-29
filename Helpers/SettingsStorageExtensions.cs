@@ -1,12 +1,12 @@
-﻿using Lamina.Core.Helpers;
-using Lamina.Helpers;
+﻿using System;
+using System.IO;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
 namespace Lamina.Helpers;
 
-// Use these extension methods to store and retrieve local and roaming app data
-// More details regarding storing and retrieving app data at https://docs.microsoft.com/windows/apps/design/app-settings/store-and-retrieve-app-data
 public static class SettingsStorageExtensions
 {
     private const string FileExtension = ".json";
@@ -19,41 +19,36 @@ public static class SettingsStorageExtensions
     public static async Task SaveAsync<T>(this StorageFolder folder, string name, T content)
     {
         var file = await folder.CreateFileAsync(GetFileName(name), CreationCollisionOption.ReplaceExisting);
-        var fileContent = await Json.StringifyAsync(content);
-
+        var fileContent = JsonSerializer.Serialize(content);
         await FileIO.WriteTextAsync(file, fileContent);
     }
 
     public static async Task<T?> ReadAsync<T>(this StorageFolder folder, string name)
     {
-        if (!File.Exists(Path.Combine(folder.Path, GetFileName(name))))
+        var fileName = GetFileName(name);
+        var path = Path.Combine(folder.Path, fileName);
+
+        if (!File.Exists(path))
         {
             return default;
         }
 
-        var file = await folder.GetFileAsync($"{name}.json");
+        var file = await folder.GetFileAsync(fileName);
         var fileContent = await FileIO.ReadTextAsync(file);
 
-        return await Json.ToObjectAsync<T>(fileContent);
+        return JsonSerializer.Deserialize<T>(fileContent);
     }
 
     public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
     {
-        settings.SaveString(key, await Json.StringifyAsync(value));
-    }
-
-    public static void SaveString(this ApplicationDataContainer settings, string key, string value)
-    {
-        settings.Values[key] = value;
+        settings.Values[key] = JsonSerializer.Serialize(value);
     }
 
     public static async Task<T?> ReadAsync<T>(this ApplicationDataContainer settings, string key)
     {
-        object? obj;
-
-        if (settings.Values.TryGetValue(key, out obj))
+        if (settings.Values.TryGetValue(key, out var obj) && obj is string json)
         {
-            return await Json.ToObjectAsync<T>((string)obj);
+            return JsonSerializer.Deserialize<T>(json);
         }
 
         return default;
@@ -61,15 +56,8 @@ public static class SettingsStorageExtensions
 
     public static async Task<StorageFile> SaveFileAsync(this StorageFolder folder, byte[] content, string fileName, CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
     {
-        if (content == null)
-        {
-            throw new ArgumentNullException(nameof(content));
-        }
-
-        if (string.IsNullOrEmpty(fileName))
-        {
-            throw new ArgumentException("File name is null or empty. Specify a valid file name", nameof(fileName));
-        }
+        if (content == null) throw new ArgumentNullException(nameof(content));
+        if (string.IsNullOrEmpty(fileName)) throw new ArgumentException("Invalid file name", nameof(fileName));
 
         var storageFile = await folder.CreateFileAsync(fileName, options);
         await FileIO.WriteBytesAsync(storageFile, content);
@@ -78,13 +66,12 @@ public static class SettingsStorageExtensions
 
     public static async Task<byte[]?> ReadFileAsync(this StorageFolder folder, string fileName)
     {
-        var item = await folder.TryGetItemAsync(fileName).AsTask().ConfigureAwait(false);
+        var item = await folder.TryGetItemAsync(fileName);
 
-        if ((item != null) && item.IsOfType(StorageItemTypes.File))
+        if (item != null && item.IsOfType(StorageItemTypes.File))
         {
             var storageFile = await folder.GetFileAsync(fileName);
-            var content = await storageFile.ReadBytesAsync();
-            return content;
+            return await storageFile.ReadBytesAsync();
         }
 
         return null;
@@ -107,6 +94,6 @@ public static class SettingsStorageExtensions
 
     private static string GetFileName(string name)
     {
-        return string.Concat(name, FileExtension);
+        return name.EndsWith(FileExtension) ? name : string.Concat(name, FileExtension);
     }
 }

@@ -44,10 +44,6 @@
     <PackageReference Include="ncalc" Version="1.3.8" />
     <PackageReference Include="WinUIEx" Version="2.9.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Lamina.Core\Lamina.Core.csproj" />
-  </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

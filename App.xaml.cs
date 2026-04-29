@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 using Lamina.Activation;
 using Lamina.Contracts.Services;
-using Lamina.Core.Contracts.Services;
-using Lamina.Core.Services;
-using Lamina.Models;
+using Lamina.Contracts.Services;
 using Lamina.Services;
+using Lamina.Models;
 using Lamina.ViewModels;
 using Lamina.Views;
 
