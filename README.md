@@ -211,7 +211,8 @@ https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
       git clone https://github.com/Chill-Astro/Lamina-Calculator.git
 
 - Open [Lamina.sln](/Lamina.sln) in Visual Studio.
-- Hit Deploy as shown in Screenshot. ( Building is Automatically Done while Deploying ). 
+- All the Code is Inside [src/](/src)
+- Hit Deploy as shown in Screenshot. ( Building is Automatically Done while Deploying )
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/69bff8d4-5724-4854-b558-62484ddb6bea" />
 

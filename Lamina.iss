@@ -27,7 +27,7 @@ SolidCompression=yes
 
 [Files]
 ; Include both MSIX files in the installer package
-Source: "C:\Users\Master\Chill-Astro\Lamina-Calculator\Lamina-Installer\*"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Master\Chill-Astro\Lamina-Calculator\src\Installer\*"; DestDir: "{app}"; Flags: ignoreversion
 
 [Run]
 ; 1. Install the Certificate (Universal for x64 and ARM64)

@@ -1,6 +1,6 @@
 To Export 
 
-STEP 1 : Create a Folder -> Lamina-Calculator/Lamina-Installer
+STEP 1 : Create a Folder -> Lamina-Calculator/src/Installer
 
 STEP 2 : Add the .msix and .cer files you built. ( Double Check the Names! )
 
