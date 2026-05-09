@@ -48,10 +48,17 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 - All of this is because WinUI 3 is annoying and in return, no appreciation.
 - I am not Maintaining this Project for a Wall, I am maintaining this as an example of What UI can be.
 - She is quite Stable from v13, v14 amd v15 onwards with many of her Bugs and Trashy UI fixed.
-- v16 will Add Support for User Made Scripties and an Advanced Calculator.
-- I hope that you have a good UX! 👍
+- I hope that you have a good UX in v16! 👍
  
 ---
+
+## What's Cooking Inside?
+
+Advanced Calculator & Dynamo Scripties Loader Preview. ( PROTOTYPE UI )
+
+<kbd>
+  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c87315c8-55e3-48cb-ba99-824119b4a71e" />
+</Kbd>
 
 ## WHAT IS DYNAMO???????
 
