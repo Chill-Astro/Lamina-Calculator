@@ -16,7 +16,7 @@
         VerticalScrollBarVisibility="Hidden"
         VerticalScrollMode="Auto">
 
-        <Grid Padding="0,32,0,64" HorizontalAlignment="Stretch">
+        <Grid Padding="0,0,0,0" HorizontalAlignment="Stretch">
             <StackPanel
                 MaxWidth="400"
                 HorizontalAlignment="Center"
