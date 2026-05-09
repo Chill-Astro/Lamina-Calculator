@@ -148,18 +148,16 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <!--  Dynamo Scripties Loader  -->
+                <!--  Scripties List  -->
                 <NavigationViewItemHeader x:Name="ImportedHeader" Content="Imported" />
                 <NavigationViewItem
                     x:Name="AddScriptieButton"
+                    Content="Add"
                     SelectsOnInvoked="False"
                     Tapped="OnAddScriptieTapped">
-                    <NavigationViewItem.Content>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <FontIcon Glyph="&#xE710;" />
-                            <TextBlock Text="Add" />
-                        </StackPanel>
-                    </NavigationViewItem.Content>
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE710;" />
+                    </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
 
