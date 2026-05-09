@@ -389,7 +389,7 @@
                     Grid.Column="0"
                     Command="{x:Bind ViewModel.ClearAllCommand}"
                     Content="AC"
-                    Foreground="#FFB4AB"
+                    Foreground="{ThemeResource AccentButtonBackground}"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
                     x:Name="BtnLeftBracket"
