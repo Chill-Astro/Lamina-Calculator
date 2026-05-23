@@ -23,6 +23,7 @@ public sealed partial class CalculatorPage : Page
         this.Loaded += (s, e) => this.Focus(FocusState.Programmatic);
     }
 
+    // Boring History but not from School.
     private async void OpenHistoryDialog()
     {
         if (_isDialogOpen) return;
@@ -32,15 +33,15 @@ public sealed partial class CalculatorPage : Page
         {
             var historyPage = new HistoryPage();
             historyPage.SetHistory(ViewModel.CalculationHistory.ToList());
-            historyPage.HorizontalAlignment = HorizontalAlignment.Stretch;
-            historyPage.VerticalAlignment = VerticalAlignment.Stretch;
+            historyPage.HorizontalAlignment = HorizontalAlignment.Center;
+            historyPage.VerticalAlignment = VerticalAlignment.Center;
             var dialog = new ContentDialog
             {
                 Content = historyPage,
                 CloseButtonText = "Close",
                 XamlRoot = this.XamlRoot,
                 RequestedTheme = this.RequestedTheme,
-                MaxWidth = 400
+                MaxWidth = 400,                
             };
 
             await dialog.ShowAsync();
