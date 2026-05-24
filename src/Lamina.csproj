@@ -30,6 +30,7 @@
 	  <WindowsPackageType>MSIX</WindowsPackageType>
 	  <Version>11.28000.16.0</Version>
 	  <AssemblyVersion>11.28000.16.0</AssemblyVersion>
+	  <DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Installer\**" />
