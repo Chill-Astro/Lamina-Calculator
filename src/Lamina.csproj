@@ -31,6 +31,7 @@
 	  <Version>11.28000.16.0</Version>
 	  <AssemblyVersion>11.28000.16.0</AssemblyVersion>
 	  <DefaultLanguage>en-US</DefaultLanguage>
+	  <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Installer\**" />
