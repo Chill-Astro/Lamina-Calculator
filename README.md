@@ -145,8 +145,8 @@ v`11`.`26100`.`15`.`0`
 </div>
 
 - `11` -> Target OS ( She IS for Windows 11 )
-- `26100` -> Release SDK Version ( Currently She uses 26100.xxxx Versions of Windows 11 SDK )
-- `15` -> Release Index ( Here 15 stands for the 15th Release Of Course! )
+- `28000` -> Release SDK Version ( Currently She uses 28000.xxxx Versions of Windows 11 SDK )
+- `16` -> Release Index ( Here 15 stands for the 16th Release Of Course! )
 - `0` -> Filler Number ( Package.appxmanifest doesn't allow me to edit this Number so it's there for NOTHING 💀 )
 
 ---
@@ -226,7 +226,7 @@ https://github.com/user-attachments/assets/69bcd36f-7746-40ea-ae45-64da65af73a8
   - Windows 11.
   - [XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler) is recommended for contributing.
   - .NET 10.0 Runtime LTS is must.
-  - Get the latest Windows 11 SDK [26100.xxxx].
+  - Get the latest Windows 11 SDK (28000.xxxx)
   - Community Edition is sufficient for contributing and testing. Pro and Enterprise Editions can also be used.
   - Github Copilot and Live Share can be skipped for Storage Saving.
  
