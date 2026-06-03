@@ -52,11 +52,12 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 
 ## What's Cooking Inside?
 
-Advanced Calculator & Dynamo Scripties Loader Preview. ( PROTOTYPE UI )
+Advanced Calculator Preview ( With the Now Released DSL )
 
 <kbd>
   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c87315c8-55e3-48cb-ba99-824119b4a71e" />
 </Kbd>
+<br>
 
 Want to Try this Advanced Calculator Early? ( NOTE : ITS BUGGY ) 
 
