@@ -58,6 +58,7 @@ Advanced Calculator Preview ( With the Now Released DSL )
   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c87315c8-55e3-48cb-ba99-824119b4a71e" />
 </Kbd>
 <br>
+<br>
 
 Want to Try this Advanced Calculator Early? ( NOTE : ITS BUGGY ) 
 
@@ -81,6 +82,8 @@ Want to Try this Advanced Calculator Early? ( NOTE : ITS BUGGY )
 ## WHAT IS DYNAMO???????
 
 Dynamo is a Dynamic Scriptie Loader. Think of MODS in a Game, or Magisk Modules.
+
+Didn't get it? Alright, Think of a Digital Version of a Programmable Calculator.
 
 Yes that's right! An Importer of Math Scripts. Now you can Program her without Proper Coding Skills!
 
