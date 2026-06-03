@@ -8,13 +8,11 @@
   
 Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calculator but also something called `"Scripties"`. She supports **Mensuration, Finance, Currency Conversion, Unit Conversions And More!**, making her a Very Extendable Option.
 
-Lamina ✦ `v11.28000.16.0 BETA` has Support for `Dynamo Scripties Loader For Lamina ✦` which is a Custom Scriptie Importer!
-
-`Dynamo` allows you to make your OWN Scripties and Import your `.lamina`  File Immediately!
+Lamina ✦ `v11.28000.17.0 BETA` has the NEW ADVANCED CALCULATOR!
 
 To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
   
-**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.26100.15.0**
+**Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.28000.16.0**
 
 **App Execution Aliases :** `lamina.exe` & `lmna.exe` 
 
@@ -40,7 +38,7 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 
 ---
 
-## A Halt on Development from v11.26100.16.0 ONWARDS :
+## A Halt on Development from v11.28000.17.0 ONWARDS :
 
 - I wouldn't provide updates for the next couple of months.
 - Issues will be addressed late.
@@ -59,6 +57,25 @@ Advanced Calculator & Dynamo Scripties Loader Preview. ( PROTOTYPE UI )
 <kbd>
   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c87315c8-55e3-48cb-ba99-824119b4a71e" />
 </Kbd>
+
+Want to Try this Advanced Calculator Early? ( NOTE : ITS BUGGY ) 
+
+- Get the Source Code as Instructed in README.
+- Uncomment this Part in ShellPage.xaml
+
+                <!-- Coming on v11.28000.17.0!
+
+                <NavigationViewItem x:Uid="Shell_AdvancedCalculator" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.AdvancedCalculatorViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource Lamina_Icons}" Glyph="&#xe90A;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                -->
+
+- Build from Source and Enjoy!
+
+---
 
 ## WHAT IS DYNAMO???????
 
