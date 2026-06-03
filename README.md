@@ -10,7 +10,7 @@ Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calcula
 
 Lamina ✦ `v11.28000.17.0 BETA` has the NEW ADVANCED CALCULATOR!
 
-To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
+To get User-Made Modules and Details on `Dynamo Scripties Loader (DSL)`, go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
   
 **Target OS:** **Windows 11** ONLY.  |  **Latest Stable Version:** **v11.28000.16.0**
 
