@@ -57,25 +57,6 @@ Advanced Calculator Preview ( With the Now Released DSL )
 <kbd>
   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c87315c8-55e3-48cb-ba99-824119b4a71e" />
 </Kbd>
-<br>
-<br>
-
-Want to Try this Advanced Calculator Early? ( NOTE : ITS BUGGY ) 
-
-- Get the Source Code as Instructed in README.
-- Uncomment this Part in ShellPage.xaml
-
-                <!-- Coming on v11.28000.17.0!
-
-                <NavigationViewItem x:Uid="Shell_AdvancedCalculator" helpers:NavigationHelper.NavigateTo="Lamina.ViewModels.AdvancedCalculatorViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource Lamina_Icons}" Glyph="&#xe90A;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-
-                -->
-
-- Build from Source and Enjoy!
 
 ---
 
