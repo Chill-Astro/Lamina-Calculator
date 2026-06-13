@@ -6,10 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{x:Null}"
     IsTabStop="True"
-    Loaded="CalculatorPage_Loaded"
-    PreviewKeyDown="CalculatorPage_PreviewKeyDown"
+    Loaded="AdvancedCalculatorPage_Loaded"
+    PreviewKeyDown="AdvancedCalculatorPage_PreviewKeyDown"
     mc:Ignorable="d">
 
+    <!--  Part of Main Calculator UIs  -->
+
+    <!--  Stylish Design from Fashion Brand I mean a Kid with a Laptop  -->
     <Page.Resources>
         <Style x:Key="CalculatorButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
@@ -24,6 +27,7 @@
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="VerticalAlignment" Value="Stretch" />
             <Setter Property="MinWidth" Value="55" />
+            <Setter Property="MinHeight" Value="40" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -83,19 +87,12 @@
             </Setter>
         </Style>
 
-        <Style x:Key="CalculatorToggleButtonStyle" TargetType="ToggleButton">
-            <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="VerticalAlignment" Value="Stretch" />
-            <Setter Property="Margin" Value="2" />
-            <Setter Property="CornerRadius" Value="5" />
-        </Style>
-
         <Style
             x:Key="NumberButtonStyle"
             BasedOn="{StaticResource CalculatorButtonStyle}"
             TargetType="Button" />
 
+        <!--  Think Different ( and not same )  -->
         <Style
             x:Key="AccentButtonStyle"
             BasedOn="{StaticResource CalculatorButtonStyle}"
@@ -158,6 +155,30 @@
     </Page.Resources>
 
     <Grid>
+        <!--  History Button  -->
+        <Button
+            Width="35"
+            Height="35"
+            Margin="0,-52,1,0"
+            Padding="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="HistoryButton_Click"
+            Content="&#xe81c;"
+            CornerRadius="3"
+            FontFamily="Segoe Fluent Icons"
+            FontSize="16">
+            <Button.KeyboardAccelerators>
+                <KeyboardAccelerator Key="H" Modifiers="Control" />
+            </Button.KeyboardAccelerators>
+            <ToolTipService.ToolTip>
+                <ToolTip Content="History (Ctrl + H)" />
+            </ToolTipService.ToolTip>
+        </Button>
+
+        <!--  Copy Button  -->
         <Button
             x:Name="CopyButton"
             Width="35"
@@ -181,6 +202,7 @@
             </ToolTipService.ToolTip>
         </Button>
 
+        <!--  Paste Button  -->
         <Button
             x:Name="PasteButton"
             Width="35"
@@ -204,6 +226,7 @@
             </ToolTipService.ToolTip>
         </Button>
 
+        <!--  Resizable Magic Button Grid that Sucks to Develop fr fr 🥀  -->
         <Grid
             x:Name="ContentGrid"
             HorizontalAlignment="Stretch"
@@ -216,20 +239,26 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <!--  Calculator's Display which is a Part of a Computers Display ( Displayception )  -->
             <Viewbox
                 Grid.Row="1"
                 MaxHeight="120"
                 Margin="0,-10,0,0"
                 HorizontalAlignment="Right">
-                <StackPanel
-                    x:Name="DisplayStack"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom">
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <TextBlock
+                        x:Name="OperationTextBlock"
+                        Margin="12,-2,5,-5"
+                        HorizontalAlignment="Right"
+                        FontSize="7"
+                        Opacity="0.7"
+                        Text="{x:Bind ViewModel.OperationText, Mode=OneWay}"
+                        TextAlignment="Right" />
                     <TextBlock
                         x:Name="DisplayTextBlock"
                         Margin="12,7,5,10"
                         HorizontalAlignment="Right"
-                        FontSize="28"
+                        FontSize="14"
                         FontWeight="SemiBold"
                         IsTextSelectionEnabled="True"
                         Text="{x:Bind ViewModel.DisplayText, Mode=OneWay}"
@@ -250,175 +279,75 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
+                <!--  Row 1  -->
                 <Button
-                    x:Name="BtnSqrt"
+                    x:Name="BtnPercent"
                     Grid.Row="0"
                     Grid.Column="0"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="Sqrt("
-                    Content="√"
+                    Command="{x:Bind ViewModel.PercentCommand}"
+                    Content="&#xe94c;"
+                    FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
-                    x:Name="BtnPi"
+                    x:Name="BtnCE"
                     Grid.Row="0"
                     Grid.Column="1"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="Pi"
-                    Content="π"
+                    Command="{x:Bind ViewModel.ClearEntryCommand}"
+                    Content="CE"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
-                    x:Name="BtnPow"
+                    x:Name="BtnC"
                     Grid.Row="0"
                     Grid.Column="2"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="Pow("
-                    Content="Pow("
-                    Style="{StaticResource CalculatorButtonStyle}" />
-                <Button
-                    x:Name="BtnFactorial"
-                    Grid.Row="0"
-                    Grid.Column="3"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="!"
-                    Content="!"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-
-                <Button
-                    x:Name="BtnAngleMode"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Command="{x:Bind ViewModel.CycleAngleModeCommand}"
-                    Content="{x:Bind ViewModel.AngleModeText, Mode=OneWay}"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-                <Button
-                    x:Name="BtnSin"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="{x:Bind ViewModel.SinLabel, Mode=OneWay}"
-                    Content="{x:Bind ViewModel.SinLabel, Mode=OneWay}"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-                <Button
-                    x:Name="BtnCos"
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="{x:Bind ViewModel.CosLabel, Mode=OneWay}"
-                    Content="{x:Bind ViewModel.CosLabel, Mode=OneWay}"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-                <Button
-                    x:Name="BtnTan"
-                    Grid.Row="1"
-                    Grid.Column="3"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="{x:Bind ViewModel.TanLabel, Mode=OneWay}"
-                    Content="{x:Bind ViewModel.TanLabel, Mode=OneWay}"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-
-                <ToggleButton
-                    x:Name="BtnInv"
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Content="Inv"
-                    IsChecked="{x:Bind ViewModel.IsInverse, Mode=TwoWay}"
-                    Style="{StaticResource CalculatorToggleButtonStyle}" />
-                <Button
-                    x:Name="BtnE"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="E"
-                    Content="e"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-                <Button
-                    x:Name="BtnLn"
-                    Grid.Row="2"
-                    Grid.Column="2"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="Log("
-                    Content="ln"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-                <Button
-                    x:Name="BtnLog"
-                    Grid.Row="2"
-                    Grid.Column="3"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="Log10("
-                    Content="log"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-
-                <Button
-                    x:Name="BtnReciprocal"
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Command="{x:Bind ViewModel.ReciprocalCommand}"
-                    Content="1/x"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-                <Button
-                    x:Name="BtnNegate"
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Command="{x:Bind ViewModel.NegateCommand}"
-                    Content="+/-"
-                    Style="{StaticResource CalculatorButtonStyle}" />
-                <Button
-                    x:Name="BtnCubeRoot"
-                    Grid.Row="3"
-                    Grid.Column="2"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="³√("
-                    Content="³√"
+                    Command="{x:Bind ViewModel.ClearAllCommand}"
+                    Content="C"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
                     x:Name="BtnBackspace"
-                    Grid.Row="3"
+                    Grid.Row="0"
                     Grid.Column="3"
                     Command="{x:Bind ViewModel.BackspaceCommand}"
                     Content="&#xe750;"
                     FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
 
+                <!--  Row 2  -->
                 <Button
-                    x:Name="BtnAC"
-                    Grid.Row="4"
+                    Grid.Row="1"
                     Grid.Column="0"
-                    Command="{x:Bind ViewModel.ClearAllCommand}"
-                    Content="AC"
-                    Foreground="{ThemeResource AccentButtonBackground}"
+                    Command="{x:Bind ViewModel.SquareCommand}"
+                    Content="𝑥²"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
-                    x:Name="BtnLeftBracket"
-                    Grid.Row="4"
+                    Grid.Row="1"
                     Grid.Column="1"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter="("
-                    Content="("
+                    Command="{x:Bind ViewModel.CubeRootCommand}"
+                    Content="&#xe90c;"
+                    FontFamily="/Assets/Fonts/Lamina_Fonts.ttf#Lamina_Fonts"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
-                    x:Name="BtnRightBracket"
-                    Grid.Row="4"
+                    Grid.Row="1"
                     Grid.Column="2"
-                    Command="{x:Bind ViewModel.InputNumberCommand}"
-                    CommandParameter=")"
-                    Content=")"
+                    Command="{x:Bind ViewModel.SquareRootCommand}"
+                    Content="&#xe90b;"
+                    FontFamily="/Assets/Fonts/Lamina_Fonts.ttf#Lamina_Fonts"
                     Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
                     x:Name="BtnDivide"
-                    Grid.Row="4"
+                    Grid.Row="1"
                     Grid.Column="3"
                     Command="{x:Bind ViewModel.SetOperatorCommand}"
                     CommandParameter="÷"
-                    Content="÷"
+                    Content="&#xE94A;"
+                    FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
 
+                <!--  Row 3  -->
                 <Button
                     x:Name="Btn7"
-                    Grid.Row="5"
+                    Grid.Row="2"
                     Grid.Column="0"
                     Command="{x:Bind ViewModel.InputNumberCommand}"
                     CommandParameter="7"
@@ -426,7 +355,7 @@
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
                     x:Name="Btn8"
-                    Grid.Row="5"
+                    Grid.Row="2"
                     Grid.Column="1"
                     Command="{x:Bind ViewModel.InputNumberCommand}"
                     CommandParameter="8"
@@ -434,7 +363,7 @@
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
                     x:Name="Btn9"
-                    Grid.Row="5"
+                    Grid.Row="2"
                     Grid.Column="2"
                     Command="{x:Bind ViewModel.InputNumberCommand}"
                     CommandParameter="9"
@@ -442,16 +371,18 @@
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
                     x:Name="BtnMultiply"
-                    Grid.Row="5"
+                    Grid.Row="2"
                     Grid.Column="3"
                     Command="{x:Bind ViewModel.SetOperatorCommand}"
                     CommandParameter="×"
-                    Content="×"
+                    Content="&#xE947;"
+                    FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
 
+                <!--  Row 4  -->
                 <Button
                     x:Name="Btn4"
-                    Grid.Row="6"
+                    Grid.Row="3"
                     Grid.Column="0"
                     Command="{x:Bind ViewModel.InputNumberCommand}"
                     CommandParameter="4"
@@ -459,7 +390,7 @@
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
                     x:Name="Btn5"
-                    Grid.Row="6"
+                    Grid.Row="3"
                     Grid.Column="1"
                     Command="{x:Bind ViewModel.InputNumberCommand}"
                     CommandParameter="5"
@@ -467,7 +398,7 @@
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
                     x:Name="Btn6"
-                    Grid.Row="6"
+                    Grid.Row="3"
                     Grid.Column="2"
                     Command="{x:Bind ViewModel.InputNumberCommand}"
                     CommandParameter="6"
@@ -475,16 +406,18 @@
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
                     x:Name="BtnSubtract"
-                    Grid.Row="6"
+                    Grid.Row="3"
                     Grid.Column="3"
                     Command="{x:Bind ViewModel.SetOperatorCommand}"
                     CommandParameter="-"
-                    Content="-"
+                    Content="&#xE949;"
+                    FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
 
+                <!--  Row 5  -->
                 <Button
                     x:Name="Btn1"
-                    Grid.Row="7"
+                    Grid.Row="4"
                     Grid.Column="0"
                     Command="{x:Bind ViewModel.InputNumberCommand}"
                     CommandParameter="1"
@@ -492,7 +425,7 @@
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
                     x:Name="Btn2"
-                    Grid.Row="7"
+                    Grid.Row="4"
                     Grid.Column="1"
                     Command="{x:Bind ViewModel.InputNumberCommand}"
                     CommandParameter="2"
@@ -500,7 +433,7 @@
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
                     x:Name="Btn3"
-                    Grid.Row="7"
+                    Grid.Row="4"
                     Grid.Column="2"
                     Command="{x:Bind ViewModel.InputNumberCommand}"
                     CommandParameter="3"
@@ -508,38 +441,41 @@
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
                     x:Name="BtnAdd"
-                    Grid.Row="7"
+                    Grid.Row="4"
                     Grid.Column="3"
                     Command="{x:Bind ViewModel.SetOperatorCommand}"
                     CommandParameter="+"
-                    Content="+"
+                    Content="&#xE948;"
+                    FontFamily="Segoe Fluent Icons"
                     Style="{StaticResource CalculatorButtonStyle}" />
 
+                <!--  Row 6  -->
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Command="{x:Bind ViewModel.SetOperatorCommand}"
+                    CommandParameter="^"
+                    Content="&#xE90D;"
+                    FontFamily="/Assets/Fonts/Lamina_Fonts.ttf#Lamina_Fonts"
+                    Style="{StaticResource CalculatorButtonStyle}" />
                 <Button
                     x:Name="Btn0"
-                    Grid.Row="8"
-                    Grid.Column="0"
+                    Grid.Row="5"
+                    Grid.Column="1"
                     Command="{x:Bind ViewModel.InputNumberCommand}"
                     CommandParameter="0"
                     Content="0"
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
-                    x:Name="BtnComma"
-                    Grid.Row="8"
-                    Grid.Column="1"
-                    Command="{x:Bind ViewModel.InputCommaCommand}"
-                    Content=","
-                    Style="{StaticResource NumberButtonStyle}" />
-                <Button
                     x:Name="BtnDecimal"
-                    Grid.Row="8"
+                    Grid.Row="5"
                     Grid.Column="2"
                     Command="{x:Bind ViewModel.InputDecimalCommand}"
                     Content="."
                     Style="{StaticResource NumberButtonStyle}" />
                 <Button
                     x:Name="BtnEqual"
-                    Grid.Row="8"
+                    Grid.Row="5"
                     Grid.Column="3"
                     Command="{x:Bind ViewModel.CalculateCommand}"
                     Content="&#xe94e;"
