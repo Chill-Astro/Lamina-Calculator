@@ -285,15 +285,15 @@ Well I am no Artist, but I hope that you Have a Nice Time with Her!
 
 ---
 
-## HALL OF FAME 👍 : 
+## HALL OF FAME : 
 
-// Will add Forked Repos which are genuinely good. 🤩 I will list everything Good about them.
+// Will add Forked Repos which are genuinely good. I will list everything Good about them.
 
 ---
 
-## HALL OF NEUTRALITY 😐 :
+## HALL OF NEUTRALITY :
 
-// Will add Inactive Forks. Uh yeah that's it atleast it's Forking not Cloning! 😅
+// Will add Inactive Forks. Uh yeah that's it atleast it's Forking not Cloning!
 
 - moayyaed/Lamina-Calculator
 
@@ -301,7 +301,7 @@ Well I am no Artist, but I hope that you Have a Nice Time with Her!
 
 ## HALL OF SHAME 👎 :
 
-// Includes Clones who are working against the MIT Licence and Distributing Malware. All Flaws are mentioned. 😑
+// Includes Clones who are working against the MIT Licence and Distributing Malware. All Flaws are mentioned.
 
 - She has previously Calculator has undergone Malware Attacks.
 
