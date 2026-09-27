@@ -21,17 +21,19 @@
 	  <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
 	  <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
 	  <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
-	  <GenerateTestArtifacts>True</GenerateTestArtifacts>
-	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	  <GenerateTestArtifacts>False</GenerateTestArtifacts>
+	  <WindowsAppSDKSelfContained>false</WindowsAppSDKSelfContained>
 	  <WindowsAppSDKBootstrapAutoInitializeOptions_OnNoMatch_ShowUI>false</WindowsAppSDKBootstrapAutoInitializeOptions_OnNoMatch_ShowUI>
-	  <AppxBundle>Never</AppxBundle>
+	  <WindowsAppSdkDeploymentManagerInitialize>false</WindowsAppSdkDeploymentManagerInitialize>
+	  <AppxBundle>Always</AppxBundle>
 	  <AppxPackageDir>C:\Users\Master\Downloads\</AppxPackageDir>
 	  <PlatformTarget>x64</PlatformTarget>
 	  <WindowsPackageType>MSIX</WindowsPackageType>
-	  <Version>11.28000.16.0</Version>
-	  <AssemblyVersion>11.28000.16.0</AssemblyVersion>
+	  <Version>11.28000.19.0</Version>
+	  <AssemblyVersion>11.28000.19.0</AssemblyVersion>
 	  <DefaultLanguage>en-US</DefaultLanguage>
 	  <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+	  <AppxBundlePlatforms>x64|arm64</AppxBundlePlatforms>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Installer\**" />
