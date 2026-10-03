@@ -67,9 +67,9 @@ Categories :
 - Proper History Sidebar for Large Window Sizes and Full Screen. ✅
 - Persistent History that survives App Restarts. ✅
 - Recall Expression Button for Advanced Calculator. ✅
-- Available in both Msix & Installer Variants. ✅
+- Available in both Msixbundle & Installer Variants. ✅
 - Windows 10 Icons if using Windows 10. ✅
-- Acrylic is Used by Deafult on Windows 10 and "Backdrop Setting" is Removed! ✅
+- Acrylic is Used by Default on Windows 10 and "Backdrop Setting" is Removed! ✅
 
 ---
 
