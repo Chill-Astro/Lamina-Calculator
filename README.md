@@ -10,7 +10,7 @@ Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calcula
 
 To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
   
-**Target OS:** **Windows 11** & **Windows 10** |  **Latest Stable Version:** **v11.28000.18.0**
+**Target OS:** **Windows 11** & **Windows 10** |  **Latest Stable Version:** **v11.28000.19.0**
 
 **App Execution Aliases :** `lamina.exe` & `lmna.exe` 
 
@@ -95,7 +95,7 @@ Categories :
 
 <H2>
 
-v`11`.`26100`.`17`.`0`
+v`11`.`26100`.`19`.`0`
 
 </H2>
 
@@ -103,7 +103,7 @@ v`11`.`26100`.`17`.`0`
 
 - `11` -> Target OS ( She IS for Windows 11 )
 - `28000` -> Release SDK Version ( Currently She uses 28000.xxxx Versions of Windows 11 SDK )
-- `17` -> Release Index ( Here 17 is the 17th Release Of Course! )
+- `19` -> Release Index ( Here 17 is the 19th Release Of Course! )
 - `0` -> Filler Number ( Package.appxmanifest doesn't allow me to edit this Number so it's there for NOTHING 💀 )
 
 ---
@@ -126,7 +126,7 @@ v`11`.`26100`.`17`.`0`
 
 ## Installation : 
 
-1.  Download the `.msix` and `.cer` files from the [latest release.](https://github.com/Chill-Astro/Lamina/releases/latest)
+1.  Download the `.msixbundle` and `.cer` files from the [latest release.](https://github.com/Chill-Astro/Lamina/releases/latest)
 2.  Import the `.cer` file to the `Trusted Root Certificates` Store. ( First Run ONLY! )
 
     Alternatively use this Command after Downloading `TMM.exe` from [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) :    
@@ -135,7 +135,7 @@ v`11`.`26100`.`17`.`0`
     
     Also you can Paste the Path into the Terminal Prompt or Drag the `.cer` on TMM.exe!
     
-4.  Install the `.msix` file.
+4.  Install the `.msixbundle` file.
 
 <p align="center">
   --------------------- OR ---------------------
@@ -195,7 +195,7 @@ Contributing :
 
 ---
 
-## TRAILER on @chill-astro-sfs :
+## TRAILER on @delta-v-sfs :
 
 <div align="center">
   <kbd>
