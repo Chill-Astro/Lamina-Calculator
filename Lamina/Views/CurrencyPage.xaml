@@ -54,7 +54,7 @@
                 BorderThickness="1"
                 CornerRadius="12">
 
-                <!--  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  -->
+                <!--  MONEY $ _ $  -->
                 <StackPanel Spacing="20">
                     <NumberBox
                         x:Name="InputNumberBox"
