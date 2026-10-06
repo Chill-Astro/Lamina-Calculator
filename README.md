@@ -21,6 +21,7 @@ To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chi
 | Download Channels | Get the App |
 | :--- | :--- |
 | **GitHub** | <a href="https://github.com/Chill-Astro/Lamina-Calculator/releases/latest" target="_blank"><img src="https://img.shields.io/static/v1?label=%20&message=GitHub&color=FFFFFF&labelColor=000000&style=for-the-badge&logo=github&logoColor=FFFFFF" height="40" alt="GitHub"></a> |
+| **GitLab** | <a href="https://gitlab.com/Dev-Chill-Astro/Lamina-Calculator/-/releases/permalink/latest" target="_blank"><img src="https://img.shields.io/static/v1?label=%20&message=GitLab&color=FC6D26&labelColor=000000&style=for-the-badge&logo=gitlab&logoColor=FC6D26" height="40" alt="GitLab"></a> |
 | **Uptodown** | <a href='https://lamina.en.uptodown.com/windows' title='Download Lamina - A FOSS and Memorible Calculator!' ><img src='https://stc.utdstc.com/img/mediakit/download-gio-big.png' height="40" alt='Download Lamina - A FOSS and Memorible Calculator!'></a> |
 
 </div>
