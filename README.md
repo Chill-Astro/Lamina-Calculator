@@ -77,7 +77,6 @@ Categories :
 
 - Slow Updates ❌
 - Use of AI Assistance as I am learning UI and WinUI 3 with AI. ❌
-- Lack of Scientific Calculator ( Will be Fixed ) ❌
 - Use of `Alex Brush` in Branding which may look like Alien Language for certain People. ❌
 - BUGS may Slip in because AI is Stupid, and without a Manual Audit, it's basically `AI SLOP`. ❌
     
