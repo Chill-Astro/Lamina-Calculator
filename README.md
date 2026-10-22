@@ -257,7 +257,7 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
 
 ## Art 
 
-Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ) and has many Anti-Corporate Design Choices,
+Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ) and OBJECTIFICATION ( iykyk ) IS SO LAST CENTURY!
 
 so here's her Fictional Human Form! ヾ(^▽^*)))
 
