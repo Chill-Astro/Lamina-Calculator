@@ -256,9 +256,11 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
 
 ## Art 
 
-Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ) and OBJECTIFICATION ( iykyk ) IS SO LAST CENTURY!
+Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ),
 
-so here's her Fictional Human Form! ヾ(^▽^*)))
+so here's a cute Mascot! ヾ(^▽^*)))
+
+NOTE : THIS ISN'T CODE RELATED!
 
 <details><summary><b>View Art</b></summary>
 
@@ -267,8 +269,6 @@ so here's her Fictional Human Form! ヾ(^▽^*)))
 </kbd>
 
 </details>
-
-Well I am no Artist, but I hope that you Have a Nice Time with Her!
 
 ---
 
