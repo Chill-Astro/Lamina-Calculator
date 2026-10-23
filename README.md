@@ -265,7 +265,7 @@ NOTE : THIS ISN'T CODE RELATED!
 <details><summary><b>View Art</b></summary>
 
 <kbd>
-<img alt="Art" src="https://github.com/user-attachments/assets/724831c5-0497-4a53-8be8-53e6a974412f" />
+<img width="1854" height="1854" alt="Lamina" src="https://github.com/user-attachments/assets/fe911f2f-f30a-4f0f-b10d-7434896a3cca" />
 </kbd>
 
 </details>
