@@ -4,14 +4,17 @@ using Lamina.Contracts.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using Parlot.Fluent;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using System.IO;
-using System.Text.Json;
 using Windows.ApplicationModel;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Lamina.ViewModels;
 
@@ -176,8 +179,9 @@ public partial class SettingsViewModel : ObservableRecipient
         try
         {
             // Our centralized update endpoint!
-            string jsonUrl =
-                "https://chill-astro.github.io/assets/data/repo-data.json";
+            //string jsonUrl = "https://chill-astro.github.io/assets/data/repo-data.json";
+            // Local Server
+            string jsonUrl = "http://localhost:8000/assets/data/repo-data.json";
 
             string response = await _httpClient.GetStringAsync(jsonUrl);
 
@@ -192,13 +196,24 @@ public partial class SettingsViewModel : ObservableRecipient
                 .GetProperty("setup").GetString()
                 ?? throw new Exception("Missing setup URL.");
 
+            // Only the universal Setup.exe needs a SHA-256 checksum.
+            // Fail closed: never install when the hash is absent or malformed.
+            string expectedSetupHash = lamina.GetProperty("sha256")
+                .GetProperty("setup").GetString()
+                ?? throw new InvalidDataException("Missing Setup.exe SHA-256 checksum.");
+
+            if (expectedSetupHash.Length != 64 ||
+                !System.Text.RegularExpressions.Regex.IsMatch(
+                    expectedSetupHash, @"\A[0-9a-fA-F]{64}\z"))
+                throw new InvalidDataException("Invalid Setup.exe SHA-256 checksum.");
+
             string cleanVersion = latestTag.Trim().TrimStart('v', 'V');
 
             if (!Version.TryParse(cleanVersion, out Version? latestVersion))
             {
                 await DisplayDialog(
                     "Update Check",
-                    "The server returned an invalid version number!"
+                    "The Server Returned an Invalid Version Number! ¯\\_(ツ)_ /¯"
                 );
                 return;
             }
@@ -223,12 +238,12 @@ public partial class SettingsViewModel : ObservableRecipient
                     Title = "Update Available!",
 
                     Content =
-                        $"Lamina ✦ got a NEW UPDATE! (✿◡‿◡)\n\n" +
+                        "Lamina ✦ got a NEW UPDATE! (✿◡‿◡)\n\n" +
                         $"App Version = v{currentVersion}\n" +
                         $"Latest Version = v{latestVersion}\n\n" +
                         "Hit Update to Continue! ヾ(^▽^*)))",
 
-                    CloseButtonText = "Okay",
+                    CloseButtonText = "Close",
                     PrimaryButtonText = "Update",
 
                     PrimaryButtonStyle =
@@ -242,7 +257,7 @@ public partial class SettingsViewModel : ObservableRecipient
 
                 if (result == ContentDialogResult.Primary)
                 {
-                    await DownloadAndInstallUpdate(setupUrl, latestTag);
+                    await DownloadAndInstallUpdate(setupUrl, latestTag, expectedSetupHash);
                 }
             }
             else if (latestVersion < currentVersion)
@@ -266,7 +281,7 @@ public partial class SettingsViewModel : ObservableRecipient
         {
             await DisplayDialog(
                 "Update Check",
-                $"Unable to check for updates!\n\n{ex.Message}"
+                "No Internet Connection! (×_×)"
             );
         }
         finally
@@ -275,7 +290,7 @@ public partial class SettingsViewModel : ObservableRecipient
         }
     }
 
-    private async Task DownloadAndInstallUpdate(string setupUrl, string version)
+    private async Task DownloadAndInstallUpdate(string setupUrl, string version, string expectedSetupHash)
     {
         string? downloadPath = null;
         bool completed = false;
@@ -313,6 +328,7 @@ public partial class SettingsViewModel : ObservableRecipient
             Title = "Downloading Update",
             Content = panel,
             CloseButtonText = "Cancel",
+            CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
 
@@ -331,7 +347,7 @@ public partial class SettingsViewModel : ObservableRecipient
 
             string safeVersion = version.Trim().TrimStart('v', 'V');
             if (!Version.TryParse(safeVersion, out _))
-                throw new InvalidOperationException("Invalid installer version.");
+                throw new InvalidOperationException("Invalid Installer Version. ¯\\_(ツ)_/¯");
 
             downloadPath = Path.Combine(downloadsFolder,
                 $"Lamina_{safeVersion}_Update.exe");
@@ -394,8 +410,22 @@ public partial class SettingsViewModel : ObservableRecipient
                 byte[] header = new byte[2];
                 int count = await file.ReadAsync(header.AsMemory(), cancellation.Token);
                 if (count != 2 || header[0] != 'M' || header[1] != 'Z')
-                    throw new InvalidDataException("The downloaded file is not an EXE.");
+                    throw new InvalidDataException("The Downloaded File isn't an EXE. (×_×)");
             }
+
+            cancellation.Token.ThrowIfCancellationRequested();
+            statusText.Text = "Verifying SHA-256 checksum...";
+
+            byte[] actualHash;
+            await using (FileStream hashStream = File.OpenRead(downloadPath))
+            {
+                actualHash = await SHA256.HashDataAsync(hashStream, cancellation.Token);
+            }
+
+            byte[] expectedHash = Convert.FromHexString(expectedSetupHash);
+            if (!CryptographicOperations.FixedTimeEquals(actualHash, expectedHash))
+                throw new InvalidDataException(
+                    "SHA-256 Verification Failed. (×_×)");
 
             cancellation.Token.ThrowIfCancellationRequested();
             statusText.Text = "Launching setup...";
@@ -407,7 +437,7 @@ public partial class SettingsViewModel : ObservableRecipient
                 UseShellExecute = true
             });
             if (process == null)
-                throw new InvalidOperationException("Could not launch setup.");
+                throw new InvalidOperationException("Couldn't Launch Setup. (×_×)");
 
             launched = true;
             completed = true;
@@ -418,7 +448,7 @@ public partial class SettingsViewModel : ObservableRecipient
         }
         catch (Exception ex)
         {
-            statusText.Text = $"Update failed: {ex.Message}";
+            statusText.Text = $"{ex.Message}";
         }
         finally
         {
@@ -439,7 +469,7 @@ public partial class SettingsViewModel : ObservableRecipient
             Application.Current.Exit();
         }
         else if (!cancellation.IsCancellationRequested &&
-                 statusText.Text.StartsWith("Update failed:", StringComparison.Ordinal))
+                 statusText.Text.EndsWith("(×_×)", StringComparison.Ordinal))
         {
             await DisplayDialog("Update Failed", statusText.Text);
         }
@@ -450,8 +480,10 @@ public partial class SettingsViewModel : ObservableRecipient
         var dialog = new ContentDialog
         {
             Title = title,
-            Content = content,
-            CloseButtonText = "Okay",
+            Content = title == "Update Failed" ? content : "Searching for Latest Release.... ♪(´▽｀)\n\n" + content,
+            CloseButtonText = "Close",
+            CloseButtonStyle =
+                (Style)Application.Current.Resources["AccentButtonStyle"],
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
 
