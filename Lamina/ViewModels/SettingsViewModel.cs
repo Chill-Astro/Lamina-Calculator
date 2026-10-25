@@ -39,7 +39,7 @@ public partial class SettingsViewModel : ObservableRecipient
         _micaService = micaService;
         _localSettingsService = localSettingsService;
         
-        // Index for iLikeToFryMyEyes (Light) and iAmTheLoanWolf (Dark) theme or whatever Binbows 11 says.
+        // Index for iLikeToFryMyEyes (Light) and Dark theme or whatever Binbows 11 says.
         _selectedThemeIndex = (int)_themeSelectorService.Theme;
 
         // Check Windows version and handle Windows 10 restrictions
@@ -137,7 +137,7 @@ public partial class SettingsViewModel : ObservableRecipient
                 {
                     new TextBlock
                     {
-                        Text = "Hi I am Lamina ✦ ! ヾ(^▽^*)))",
+                        Text = "Here's a Cute Art! (✿◡‿◡)",
                         TextWrapping = TextWrapping.Wrap,
                         FontSize = 14,
                         HorizontalAlignment = HorizontalAlignment.Center,
@@ -151,29 +151,14 @@ public partial class SettingsViewModel : ObservableRecipient
                         Child = new Image
                         {
                             Source = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/EasterEgg.png")), // Meet Lamina ✦ !
-                            MaxWidth = 320,
+                            MaxWidth = 300,
                             Stretch = Stretch.Uniform
                         }
-                    },
-                    new TextBlock
-                    {
-                        // Indian History Music!
-                        Text = "I like Math and Singing! ♪(´▽｀)\n\n" +
-                               "सरफ़रोशी की तमन्ना अब हमारे दिल में है,\nदेखना है ज़ोर कितना बाज़ू-ए-क़ातिल में है।\n\n" +
-                               "वक़्त आने दे बता देंगे तुझे ऐ आसमाँ,\nहम अभी से क्या बताएँ क्या हमारे दिल में है।\n\n" +
-                               "खिंच कर लाई है सब को क़त्ल होने की उम्मीद,\nआशिक़ों का आज जमघट कूचा-ए-क़ातिल में है।\n\n" +
-                               "है लिये हथियार दुश्मन ताक में बैठा उधर,\nऔर हम तैयार हैं सीना लिये अपना इधर।\n\n" +
-                               "ख़ून से खेलेंगे होली गर वतन मुश्किल में है,\nसरफ़रोशी की तमन्ना अब हमारे दिल में है।",
-                        TextWrapping = TextWrapping.Wrap,
-                        FontSize = 14,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        TextAlignment = TextAlignment.Center,
-                        Opacity = 0.8
                     }
                 }
                 }
             },
-            CloseButtonText = "वन्दे मातरम्!", // From Belur Math by Bankim Chandra Chatterjee!
+            CloseButtonText = "Cool!", // Pookie!
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
         await eggDialog.ShowAsync();
@@ -198,7 +183,7 @@ public partial class SettingsViewModel : ObservableRecipient
 
                 if (latestVersion > currentVersion)
                 {
-                    message = $"Woohooo! ヽ(✿ﾟ▽ﾟ)ノ \n\nThere's a New Release of Lamina ✦ ! 🎉\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}\n\nHit Update to Download! ヾ(^▽^*)))";
+                    message = $"Lamina ✦ got a NEW UPDATE! (✿◡‿◡)\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}\n\nHit Update to Download! ヾ(^▽^*)))";
 
                     await DisplayDialog("Update Check", message); // Use the Helper if New Version.
                     
@@ -209,21 +194,21 @@ public partial class SettingsViewModel : ObservableRecipient
                 }
                 else if (latestVersion < currentVersion)
                 {
-                    message = $"That looks a bit Unstable! (。_。) \n\nThis is a DEV. BUILD Lamina ✦ ! ⚠️\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // If using a Buggy Build.
+                    message = $"This is a DEV. BUILD Lamina ✦ ! (。_。)\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // If using a Buggy Build.
                 }
                 else
                 {
-                    message = "Woohooo! ヾ(^▽^*))) \n\nLamina ✦ is UP TO DATE! 🎉"; // If using the Latest and Greatest!
+                    message = "Lamina ✦ is UP TO DATE! ヾ(^▽^*)))"; // If using the Latest and Greatest!
                 }
             }
             else
             {
-                message = "Is the Server confused or me? ¯\\_(ツ)_/¯ \n\nThe Server Returned an Invalid Version Number! ❌"; // If the Server is like 67 Kid.
+                message = "The Server Returned an Invalid Version Number! ¯\\_(ツ)_/¯"; // If the Server is like 67 Kid.
             }
         }
         catch
         {
-            message = "Oh Snap! (╯°□°）╯︵ ┻━┻ \n\nPlease Verify your Internet Connection! ❌"; // If ur WiFi is as bad as your Reels Feed.
+            message = "No Internet Connection! (×_×)"; // If ur WiFi is as bad as your Reels Feed.
         }
 
         // Show the dialog for everything EXCEPT the "New Release"
@@ -247,7 +232,7 @@ public partial class SettingsViewModel : ObservableRecipient
         await dialog.ShowAsync();
     }
 
-    public bool IsSplashEnabled // No for Reel Scrollers and Serious Mathematicians, but Yes for UI Design Lovers (like me).
+    public bool IsSplashEnabled // Now you have the choice!
     {
         get
         {

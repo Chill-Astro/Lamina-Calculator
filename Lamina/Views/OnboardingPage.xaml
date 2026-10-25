@@ -168,10 +168,10 @@
                 Spacing="32"
                 Visibility="Collapsed">
                 <FontIcon
-                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                    FontFamily="/Assets/Fonts/Lamina_Fonts.ttf#Lamina_Fonts"
                     FontSize="100"
                     Foreground="{ThemeResource AccentButtonBackground}"
-                    Glyph="&#xEB51;" />
+                    Glyph="&#xE90E;" />
                 <TextBlock
                     HorizontalAlignment="Center"
                     FontFamily="ms-appx:///Assets/Fonts/AlexBrush-Regular.ttf#Alex Brush"
