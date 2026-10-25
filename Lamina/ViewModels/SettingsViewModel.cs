@@ -29,7 +29,7 @@ public partial class SettingsViewModel : ObservableRecipient
     static PackageVersion pv = Package.Current.Id.Version;
     private readonly string CurrentAppVersion = $"{pv.Major}.{pv.Minor}.{pv.Build}.{pv.Revision}";
 
-    private bool _isCheckingUpdates; // No
+    private static bool _isCheckingUpdates; // No
     private int _tapCount = 0; // 3435 is My Favorite Number because, 3^3 + 4^4 + 3^3 + 5^5 = 3435! :)
 
     [ObservableProperty] private string _appVersionText;
@@ -171,7 +171,12 @@ public partial class SettingsViewModel : ObservableRecipient
 
 
     [RelayCommand]
-    private async Task CheckForUpdates()
+    private Task CheckForUpdates() => CheckForUpdatesAsync(false);
+
+    public Task CheckForUpdatesOnStartupAsync() =>
+        IsUpdateCheckEnabled ? CheckForUpdatesAsync(true) : Task.CompletedTask;
+
+    private async Task CheckForUpdatesAsync(bool isStartupCheck)
     {
         if (_isCheckingUpdates) return;
         _isCheckingUpdates = true;
@@ -179,9 +184,9 @@ public partial class SettingsViewModel : ObservableRecipient
         try
         {
             // Our centralized update endpoint!
-            string jsonUrl = "https://chill-astro.github.io/assets/data/repo-data.json";
+            //string jsonUrl = "https://chill-astro.github.io/assets/data/repo-data.json";
             // Local Server
-            //string jsonUrl = "http://localhost:8000/assets/data/repo-data.json";
+            string jsonUrl = "http://localhost:8000/assets/data/repo-data.json";
 
             string response = await _httpClient.GetStringAsync(jsonUrl);
 
@@ -211,6 +216,7 @@ public partial class SettingsViewModel : ObservableRecipient
 
             if (!Version.TryParse(cleanVersion, out Version? latestVersion))
             {
+                if (isStartupCheck) return;
                 await DisplayDialog(
                     "Update Check",
                     "The Server Returned an Invalid Version Number! ¯\\_(ツ)_ /¯"
@@ -260,7 +266,7 @@ public partial class SettingsViewModel : ObservableRecipient
                     await DownloadAndInstallUpdate(setupUrl, latestTag, expectedSetupHash);
                 }
             }
-            else if (latestVersion < currentVersion)
+            else if (!isStartupCheck && latestVersion < currentVersion)
             {
                 await DisplayDialog(
                     "Update Check",
@@ -269,7 +275,7 @@ public partial class SettingsViewModel : ObservableRecipient
                     $"Latest Version = v{latestVersion}"
                 );
             }
-            else
+            else if (!isStartupCheck)
             {
                 await DisplayDialog(
                     "Update Check",
@@ -279,6 +285,11 @@ public partial class SettingsViewModel : ObservableRecipient
         }
         catch (Exception ex)
         {
+            if (isStartupCheck)
+            {
+                Debug.WriteLine($"Startup update check failed: {ex.Message}");
+                return;
+            }
             await DisplayDialog(
                 "Update Check",
                 "No Internet Connection! (×_×)"
@@ -490,6 +501,16 @@ public partial class SettingsViewModel : ObservableRecipient
         await dialog.ShowAsync();
     }
 
+
+    public bool IsUpdateCheckEnabled
+    {
+        get => Windows.Storage.ApplicationData.Current.LocalSettings.Values["CheckForUpdatesOnStartup"] as bool? ?? true;
+        set
+        {
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values["CheckForUpdatesOnStartup"] = value;
+            OnPropertyChanged(nameof(IsUpdateCheckEnabled));
+        }
+    }
 
     public bool IsSplashEnabled // Now you have the choice!
     {

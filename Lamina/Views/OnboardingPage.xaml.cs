@@ -42,12 +42,11 @@ public sealed partial class OnboardingPage : Page // The 1st Backend for Onboard
         else if (_currentIndex == 1) AnimateTo(Slide2, Slide3, 2);
     }
 
-    private void AnimateTo(StackPanel current, StackPanel next, int index)
+    private void AnimateTo(FrameworkElement current, FrameworkElement next, int index)
     {
         current.Visibility = Visibility.Collapsed;
         next.Visibility = Visibility.Visible;
         _currentIndex = index;
-        OnboardingPipsPager.SelectedPageIndex = _currentIndex;
 
         var sb = new Storyboard();
         var slide = new DoubleAnimation { From = 300, To = 0, Duration = new Duration(TimeSpan.FromMilliseconds(400)) };

@@ -15,6 +15,7 @@ namespace Lamina.Views;
 public sealed partial class ShellPage : Page
 {
     public ShellViewModel ViewModel { get; }
+    private static bool _startupUpdateCheckStarted;
 
     public ShellPage(ShellViewModel viewModel)
     {
@@ -35,11 +36,17 @@ public sealed partial class ShellPage : Page
         App.MainWindow.Activated += MainWindow_Activated;
     }
 
-    private void OnLoaded(object sender, RoutedEventArgs e)
+    private async void OnLoaded(object sender, RoutedEventArgs e)
     {
         TitleBarHelper.UpdateTitleBar(RequestedTheme);
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
+
+        if (!_startupUpdateCheckStarted)
+        {
+            _startupUpdateCheckStarted = true;
+            await App.GetService<SettingsViewModel>().CheckForUpdatesOnStartupAsync();
+        }
     }
 
     private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)

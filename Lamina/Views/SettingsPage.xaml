@@ -1,4 +1,4 @@
-<Page
+﻿<Page
     x:Class="Lamina.Views.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -218,6 +218,34 @@
                                 Margin="0,-6,0,-6"
                                 VerticalAlignment="Center"
                                 IsOn="{x:Bind ViewModel.IsSplashEnabled, Mode=TwoWay}"
+                                OffContent=""
+                                OnContent="" />
+                        </Grid>
+                    </Border>
+                <Border
+                        Padding="16"
+                        HorizontalAlignment="Stretch"
+                        Background="{ThemeResource CardBackgroundFillColorDefault}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefault}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <FontIcon
+                                Margin="0,0,12,0"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                FontSize="16"
+                                Glyph="&#xE895;" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="Check for Updates" />
+                            <ToggleSwitch
+                                Grid.Column="2"
+                                MinWidth="0"
+                                Margin="0,-6,0,-6"
+                                VerticalAlignment="Center"
+                                IsOn="{x:Bind ViewModel.IsUpdateCheckEnabled, Mode=TwoWay}"
                                 OffContent=""
                                 OnContent="" />
                         </Grid>

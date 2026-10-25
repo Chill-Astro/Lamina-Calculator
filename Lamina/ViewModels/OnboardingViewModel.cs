@@ -54,6 +54,16 @@ public partial class OnboardingViewModel : ObservableRecipient // The BEAUTIFUL 
     }
 
     // Property for the ToggleSwitch in Slide 2
+    public bool IsUpdateCheckEnabled
+    {
+        get => Windows.Storage.ApplicationData.Current.LocalSettings.Values["CheckForUpdatesOnStartup"] as bool? ?? true;
+        set
+        {
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values["CheckForUpdatesOnStartup"] = value;
+            OnPropertyChanged(nameof(IsUpdateCheckEnabled));
+        }
+    }
+
     public bool IsSplashEnabled // No
     {
         get => Windows.Storage.ApplicationData.Current.LocalSettings.Values["ShowSplash"] as bool? ?? true;
