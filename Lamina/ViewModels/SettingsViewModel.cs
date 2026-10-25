@@ -184,9 +184,9 @@ public partial class SettingsViewModel : ObservableRecipient
         try
         {
             // Our centralized update endpoint!
-            //string jsonUrl = "https://chill-astro.github.io/assets/data/repo-data.json";
+            string jsonUrl = "https://chill-astro.github.io/assets/data/repo-data.json";
             // Local Server
-            string jsonUrl = "http://localhost:8000/assets/data/repo-data.json";
+            //string jsonUrl = "http://localhost:8000/assets/data/repo-data.json";
 
             string response = await _httpClient.GetStringAsync(jsonUrl);
 
