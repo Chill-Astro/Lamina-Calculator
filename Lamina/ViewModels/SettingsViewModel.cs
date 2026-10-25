@@ -190,11 +190,11 @@ public partial class SettingsViewModel : ObservableRecipient
             JsonElement lamina = document.RootElement.GetProperty("lamina");
 
             string latestTag = lamina.GetProperty("tag").GetString()
-                ?? throw new Exception("Missing version tag.");
+                ?? throw new Exception("Missing version tag. (×_×)");
 
             string setupUrl = lamina.GetProperty("downloads")
                 .GetProperty("setup").GetString()
-                ?? throw new Exception("Missing setup URL.");
+                ?? throw new Exception("Missing setup URL. (×_×)");
 
             // Only the universal Setup.exe needs a SHA-256 checksum.
             // Fail closed: never install when the hash is absent or malformed.
