@@ -5,10 +5,12 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System;
+using System.Diagnostics;
 using System.Net.Http;
-using System.Reflection;
-using System.Security.Principal;
+using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
+using System.Text.Json;
 using Windows.ApplicationModel;
 
 namespace Lamina.ViewModels;
@@ -22,8 +24,8 @@ public partial class SettingsViewModel : ObservableRecipient
 
     // Automatically gets App Version so I don't have to Increment EVERYTIME. Yaaaaaay! 🎉
     static PackageVersion pv = Package.Current.Id.Version;
-    private readonly string CurrentAppVersion = $"{pv.Major}.{pv.Minor}.{pv.Build}.{pv.Revision}";    
-    
+    private readonly string CurrentAppVersion = $"{pv.Major}.{pv.Minor}.{pv.Build}.{pv.Revision}";
+
     private bool _isCheckingUpdates; // No
     private int _tapCount = 0; // 3435 is My Favorite Number because, 3^3 + 4^4 + 3^3 + 5^5 = 3435! :)
 
@@ -38,7 +40,7 @@ public partial class SettingsViewModel : ObservableRecipient
         _themeSelectorService = themeSelectorService;
         _micaService = micaService;
         _localSettingsService = localSettingsService;
-        
+
         // Index for iLikeToFryMyEyes (Light) and Dark theme or whatever Binbows 11 says.
         _selectedThemeIndex = (int)_themeSelectorService.Theme;
 
@@ -49,7 +51,7 @@ public partial class SettingsViewModel : ObservableRecipient
         Task.Run(async () => {
             var savedIndex = await _localSettingsService.ReadSettingAsync<int?>("AppBackdropIndex") ?? 0;
             var finalIndex = isWindows10 ? 2 : savedIndex;
-            App.MainWindow.DispatcherQueue.TryEnqueue(() => { 
+            App.MainWindow.DispatcherQueue.TryEnqueue(() => {
                 SelectedBackdropIndex = finalIndex;
                 // Apply the backdrop immediately on UI thread
                 _micaService.SetBackdrop(finalIndex);
@@ -72,7 +74,7 @@ public partial class SettingsViewModel : ObservableRecipient
             _ = _micaService.SaveMicaSettingAsync(2);
             return;
         }
-        
+
         _micaService.SetBackdrop(value);
         _ = _micaService.SaveMicaSettingAsync(value);
     }
@@ -117,14 +119,14 @@ public partial class SettingsViewModel : ObservableRecipient
             await ShowEasterEgg();
         }
     }
-    
+
     [RelayCommand]
     private async Task ShowEasterEgg()
     {
         var eggDialog = new ContentDialog
         {
             Title = "✦ Easter Egg! ✦",
-            CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],            
+            CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
             Content = new ScrollViewer
             {
                 VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
@@ -132,7 +134,7 @@ public partial class SettingsViewModel : ObservableRecipient
                 Content = new StackPanel
                 {
                     Spacing = 10,
-                    Padding = new Thickness(0, 0, 10, 0), 
+                    Padding = new Thickness(0, 0, 10, 0),
                     Children =
                 {
                     new TextBlock
@@ -146,7 +148,7 @@ public partial class SettingsViewModel : ObservableRecipient
                     },
                     new Border
                     {
-                        CornerRadius = new CornerRadius(5), 
+                        CornerRadius = new CornerRadius(5),
                         HorizontalAlignment = HorizontalAlignment.Center,
                         Child = new Image
                         {
@@ -164,73 +166,298 @@ public partial class SettingsViewModel : ObservableRecipient
         await eggDialog.ShowAsync();
     }
 
+
     [RelayCommand]
     private async Task CheckForUpdates()
     {
         if (_isCheckingUpdates) return;
         _isCheckingUpdates = true;
 
-        string message = "";
         try
         {
-            string gistUrl = $"https://gist.githubusercontent.com/Chill-Astro/ac961f2e3f9a2de6b358de9be9a2bfc1/raw/LMNA_V?t={DateTime.Now.Ticks}";
-            string response = await _httpClient.GetStringAsync(gistUrl);
-            string cleanResponse = response.Trim().ToLower().Replace("v", "");
+            // Our centralized update endpoint!
+            string jsonUrl =
+                "https://chill-astro.github.io/assets/data/repo-data.json";
 
-            if (Version.TryParse(cleanResponse, out var latestVersion))
+            string response = await _httpClient.GetStringAsync(jsonUrl);
+
+            using JsonDocument document = JsonDocument.Parse(response);
+
+            JsonElement lamina = document.RootElement.GetProperty("lamina");
+
+            string latestTag = lamina.GetProperty("tag").GetString()
+                ?? throw new Exception("Missing version tag.");
+
+            string setupUrl = lamina.GetProperty("downloads")
+                .GetProperty("setup").GetString()
+                ?? throw new Exception("Missing setup URL.");
+
+            string cleanVersion = latestTag.Trim().TrimStart('v', 'V');
+
+            if (!Version.TryParse(cleanVersion, out Version? latestVersion))
             {
-                Version currentVersion = Version.Parse(CurrentAppVersion);
+                await DisplayDialog(
+                    "Update Check",
+                    "The server returned an invalid version number!"
+                );
+                return;
+            }
 
-                if (latestVersion > currentVersion)
-                {
-                    message = $"Lamina ✦ got a NEW UPDATE! (✿◡‿◡)\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}\n\nHit Update to Download! ヾ(^▽^*)))";
+            Version currentVersion = Version.Parse(CurrentAppVersion);
 
-                    await DisplayDialog("Update Check", message); // Use the Helper if New Version.
-                    
-                    await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Chill-Astro/Lamina-Calculator/releases/latest"));
+            if (latestVersion > currentVersion)
+            {
+                // Make sure the installer URL points to our GitHub releases.
+                if (!Uri.TryCreate(setupUrl, UriKind.Absolute, out Uri? uri)
+                    || uri.Scheme != Uri.UriSchemeHttps
+                    || uri.Host != "github.com"
+                    || !uri.AbsolutePath.StartsWith(
+                        "/Chill-Astro/Lamina-Calculator/releases/download/",
+                        StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new Exception("Invalid installer URL.");
+                }
 
-                    _isCheckingUpdates = false;
-                    return;
-                }
-                else if (latestVersion < currentVersion)
+                var dialog = new ContentDialog
                 {
-                    message = $"This is a DEV. BUILD Lamina ✦ ! (。_。)\n\nApp Version = v{currentVersion}\nLatest Version = v{latestVersion}"; // If using a Buggy Build.
-                }
-                else
+                    Title = "Update Available!",
+
+                    Content =
+                        $"Lamina ✦ got a NEW UPDATE! (✿◡‿◡)\n\n" +
+                        $"App Version = v{currentVersion}\n" +
+                        $"Latest Version = v{latestVersion}\n\n" +
+                        "Hit Update to Continue! ヾ(^▽^*)))",
+
+                    CloseButtonText = "Okay",
+                    PrimaryButtonText = "Update",
+
+                    PrimaryButtonStyle =
+                        (Style)Application.Current.Resources["AccentButtonStyle"],
+
+                    DefaultButton = ContentDialogButton.Primary,
+                    XamlRoot = App.MainWindow.Content.XamlRoot
+                };
+
+                ContentDialogResult result = await dialog.ShowAsync();
+
+                if (result == ContentDialogResult.Primary)
                 {
-                    message = "Lamina ✦ is UP TO DATE! ヾ(^▽^*)))"; // If using the Latest and Greatest!
+                    await DownloadAndInstallUpdate(setupUrl, latestTag);
                 }
+            }
+            else if (latestVersion < currentVersion)
+            {
+                await DisplayDialog(
+                    "Update Check",
+                    $"This is a DEV. BUILD Lamina ✦ ! (。_。)\n\n" +
+                    $"App Version = v{currentVersion}\n" +
+                    $"Latest Version = v{latestVersion}"
+                );
             }
             else
             {
-                message = "The Server Returned an Invalid Version Number! ¯\\_(ツ)_/¯"; // If the Server is like 67 Kid.
+                await DisplayDialog(
+                    "Update Check",
+                    "Lamina ✦ is UP TO DATE! ヾ(^▽^*)))"
+                );
             }
         }
-        catch
+        catch (Exception ex)
         {
-            message = "No Internet Connection! (×_×)"; // If ur WiFi is as bad as your Reels Feed.
+            await DisplayDialog(
+                "Update Check",
+                $"Unable to check for updates!\n\n{ex.Message}"
+            );
+        }
+        finally
+        {
+            _isCheckingUpdates = false;
+        }
+    }
+
+    private async Task DownloadAndInstallUpdate(string setupUrl, string version)
+    {
+        string? downloadPath = null;
+        bool completed = false;
+        bool launched = false;
+
+        using var cancellation = new CancellationTokenSource();
+
+        var progressBar = new ProgressBar
+        {
+            Minimum = 0,
+            Maximum = 100,
+            Value = 0,
+            IsIndeterminate = true
+        };
+
+        var statusText = new TextBlock
+        {
+            Text = "Connecting to the download server...",
+            TextWrapping = TextWrapping.Wrap
+        };
+
+        var progressText = new TextBlock
+        {
+            Text = "Preparing download...",
+            TextWrapping = TextWrapping.Wrap
+        };
+
+        var panel = new StackPanel { Spacing = 12 };
+        panel.Children.Add(statusText);
+        panel.Children.Add(progressBar);
+        panel.Children.Add(progressText);
+
+        var progressDialog = new ContentDialog
+        {
+            Title = "Downloading Update",
+            Content = panel,
+            CloseButtonText = "Cancel",
+            XamlRoot = App.MainWindow.Content.XamlRoot
+        };
+
+        progressDialog.CloseButtonClick += (_, _) => cancellation.Cancel();
+
+        // Start showing the dialog without waiting for it to close.
+        // Downloading continues asynchronously while the dialog is visible.
+        Task<ContentDialogResult> dialogTask = progressDialog.ShowAsync().AsTask();
+
+        try
+        {
+            string downloadsFolder = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                "Downloads");
+            Directory.CreateDirectory(downloadsFolder);
+
+            string safeVersion = version.Trim().TrimStart('v', 'V');
+            if (!Version.TryParse(safeVersion, out _))
+                throw new InvalidOperationException("Invalid installer version.");
+
+            downloadPath = Path.Combine(downloadsFolder,
+                $"Lamina_{safeVersion}_Update.exe");
+
+            using HttpResponseMessage response = await _httpClient.GetAsync(
+                setupUrl,
+                HttpCompletionOption.ResponseHeadersRead,
+                cancellation.Token);
+            response.EnsureSuccessStatusCode();
+
+            long? totalBytes = response.Content.Headers.ContentLength;
+            progressBar.IsIndeterminate = !totalBytes.HasValue || totalBytes.Value <= 0;
+            statusText.Text = "Downloading setup...";
+
+            await using Stream source = await response.Content.ReadAsStreamAsync(
+                cancellation.Token);
+            await using (FileStream destination = new FileStream(
+                downloadPath, FileMode.Create, FileAccess.Write,
+                FileShare.None, 81920, useAsync: true))
+            {
+                byte[] buffer = new byte[81920];
+                long downloadedBytes = 0;
+                int bytesRead;
+
+                while ((bytesRead = await source.ReadAsync(
+                    buffer.AsMemory(), cancellation.Token)) > 0)
+                {
+                    await destination.WriteAsync(
+                        buffer.AsMemory(0, bytesRead), cancellation.Token);
+                    downloadedBytes += bytesRead;
+
+                    double downloadedMB = downloadedBytes / 1048576.0;
+                    if (totalBytes is > 0)
+                    {
+                        double percent = Math.Min(100,
+                            downloadedBytes * 100.0 / totalBytes.Value);
+                        progressBar.Value = percent;
+                        progressText.Text =
+                            $"{percent:F0}%  •  {downloadedMB:F1} MB / " +
+                            $"{totalBytes.Value / 1048576.0:F1} MB";
+                    }
+                    else
+                    {
+                        progressText.Text = $"{downloadedMB:F1} MB downloaded";
+                    }
+                }
+
+                await destination.FlushAsync(cancellation.Token);
+
+                if (totalBytes.HasValue && downloadedBytes != totalBytes.Value)
+                    throw new IOException("The download was incomplete.");
+            }
+
+            cancellation.Token.ThrowIfCancellationRequested();
+            statusText.Text = "Checking installer...";
+
+            // This checks the EXE header only, not its authenticity.
+            await using (FileStream file = File.OpenRead(downloadPath))
+            {
+                byte[] header = new byte[2];
+                int count = await file.ReadAsync(header.AsMemory(), cancellation.Token);
+                if (count != 2 || header[0] != 'M' || header[1] != 'Z')
+                    throw new InvalidDataException("The downloaded file is not an EXE.");
+            }
+
+            cancellation.Token.ThrowIfCancellationRequested();
+            statusText.Text = "Launching setup...";
+
+            Process? process = Process.Start(new ProcessStartInfo
+            {
+                FileName = downloadPath,
+                WorkingDirectory = downloadsFolder,
+                UseShellExecute = true
+            });
+            if (process == null)
+                throw new InvalidOperationException("Could not launch setup.");
+
+            launched = true;
+            completed = true;
+        }
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested)
+        {
+            // User cancelled. Keep Lamina open.
+        }
+        catch (Exception ex)
+        {
+            statusText.Text = $"Update failed: {ex.Message}";
+        }
+        finally
+        {
+            if (!completed && downloadPath != null)
+            {
+                try { File.Delete(downloadPath); }
+                catch (IOException) { }
+                catch (UnauthorizedAccessException) { }
+            }
+
+            // Close progress dialog before displaying another dialog or exiting.
+            progressDialog.Hide();
+            await dialogTask;
         }
 
-        // Show the dialog for everything EXCEPT the "New Release"
-        if (!string.IsNullOrEmpty(message))
+        if (launched)
         {
-            await DisplayDialog("Update Check", message);
+            Application.Current.Exit();
         }
+        else if (!cancellation.IsCancellationRequested &&
+                 statusText.Text.StartsWith("Update failed:", StringComparison.Ordinal))
+        {
+            await DisplayDialog("Update Failed", statusText.Text);
+        }
+    }
 
-        _isCheckingUpdates = false;
-    }  
     private async Task DisplayDialog(string title, string content)
     {
         var dialog = new ContentDialog
         {
             Title = title,
-            Content = "Searching for Latest Release.... ♪(´▽｀)\n\n" + content,
-            CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
-            CloseButtonText = content.Contains("New Release") ? "Update" : "Close",
+            Content = content,
+            CloseButtonText = "Okay",
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
+
         await dialog.ShowAsync();
     }
+
 
     public bool IsSplashEnabled // Now you have the choice!
     {
