@@ -104,8 +104,13 @@
                         Height="40"
                         HorizontalAlignment="Stretch"
                         Click="Convert_Click"
-                        Content="Convert"
-                        Style="{StaticResource AccentButtonStyle}" />
+                        Style="{StaticResource AccentButtonStyle}"
+                        AutomationProperties.Name="Convert">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE8AB;" />
+                            <TextBlock VerticalAlignment="Center" Text="Convert" />
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
             </Border>
 

@@ -95,7 +95,7 @@ public sealed partial class CalculatorPage : Page
                 MinHeight = 300,
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
+                CloseButtonStyle = (Style)Application.Current.Resources["AccentDismissDialogButtonStyle"],
                 Padding = new Thickness(20),
             };
 

@@ -712,10 +712,15 @@
                                             Margin="5"
                                             Padding="8,4"
                                             Click="UseHistorySidebarButton_Click"
-                                            Content="Use"
                                             FontSize="11"
                                             Style="{StaticResource AccentButtonStyle}"
-                                            Tag="{Binding}" />
+                                            Tag="{Binding}"
+                                            AutomationProperties.Name="Use">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE8E5;" />
+                                                <TextBlock VerticalAlignment="Center" Text="Use" />
+                                            </StackPanel>
+                                        </Button>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

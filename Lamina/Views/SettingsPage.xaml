@@ -116,18 +116,28 @@
                         Height="40"
                         HorizontalAlignment="Stretch"
                         Command="{x:Bind ViewModel.OpenRepoCommand}"
-                        Content="Repository"
                         CornerRadius="8"
-                        Style="{StaticResource AccentButtonStyle}" />
+                        Style="{StaticResource AccentButtonStyle}"
+                        AutomationProperties.Name="Repository">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE943;" />
+                            <TextBlock VerticalAlignment="Center" Text="Repository" />
+                        </StackPanel>
+                    </Button>
 
                     <Button
                         Grid.Column="1"
                         Height="40"
                         HorizontalAlignment="Stretch"
                         Command="{x:Bind ViewModel.ShowLicenseCommand}"
-                        Content="MIT License"
                         CornerRadius="8"
-                        Style="{StaticResource AccentButtonStyle}" />
+                        Style="{StaticResource AccentButtonStyle}"
+                        AutomationProperties.Name="MIT License">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE8A5;" />
+                            <TextBlock VerticalAlignment="Center" Text="MIT License" />
+                        </StackPanel>
+                    </Button>
                 </Grid>
 
                 <StackPanel HorizontalAlignment="Stretch" Spacing="4">
@@ -173,7 +183,7 @@
                         Visibility="{x:Bind ViewModel.IsBackdropCardDisabled, Mode=OneWay, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                         <StackPanel Spacing="8">
                             <Grid ColumnDefinitions="Auto,*,Auto">
-                                <FontIcon
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                     Margin="0,0,12,0"
                                     VerticalAlignment="Center"
                                     FontSize="16"
@@ -257,9 +267,14 @@
                         Padding="30,10"
                         HorizontalAlignment="Center"
                         Command="{x:Bind ViewModel.CheckForUpdatesCommand}"
-                        Content="Check for Updates"
                         CornerRadius="8"
-                        Style="{StaticResource AccentButtonStyle}" />
+                        Style="{StaticResource AccentButtonStyle}"
+                        AutomationProperties.Name="Check for Updates">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE895;" />
+                            <TextBlock VerticalAlignment="Center" Text="Check for Updates" />
+                        </StackPanel>
+                    </Button>
 
                     <!--  Please Star my Repo! :)  -->
                     <TextBlock

@@ -81,6 +81,7 @@ public sealed partial class DyNamoMangerPage : Page
                 Title = "Remove Confirmation",
                 Content = $"Strike off {script.Metadata.Name}?",
                 PrimaryButtonText = "Remove",
+                CloseButtonStyle = (Style)Application.Current.Resources["DismissDialogButtonStyle"],
                 CloseButtonText = "Cancel",
                 DefaultButton = ContentDialogButton.Close,
                 XamlRoot = this.XamlRoot

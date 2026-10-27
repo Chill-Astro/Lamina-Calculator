@@ -94,7 +94,7 @@ public partial class SettingsViewModel : ObservableRecipient
         var licenseDialog = new ContentDialog
         {
             Title = "MIT License", // Boring Legal Stuff if you are curious.
-            CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
+            CloseButtonStyle = (Style)Application.Current.Resources["AccentDismissDialogButtonStyle"],
             Content = new ScrollViewer
             {
                 MaxHeight = 200,
@@ -129,7 +129,7 @@ public partial class SettingsViewModel : ObservableRecipient
         var eggDialog = new ContentDialog
         {
             Title = "✦ Easter Egg! ✦",
-            CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
+            CloseButtonStyle = (Style)Application.Current.Resources["AccentDismissDialogButtonStyle"],
             Content = new ScrollViewer
             {
                 VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
@@ -249,11 +249,13 @@ public partial class SettingsViewModel : ObservableRecipient
                         $"Latest Version = v{latestVersion}\n\n" +
                         "Hit Update to Continue! ヾ(^▽^*)))",
 
+                    CloseButtonStyle = (Style)Application.Current.Resources["DismissDialogButtonStyle"],
+
                     CloseButtonText = "Close",
                     PrimaryButtonText = "Update",
 
                     PrimaryButtonStyle =
-                        (Style)Application.Current.Resources["AccentButtonStyle"],
+                        (Style)Application.Current.Resources["UpdateDialogButtonStyle"],
 
                     DefaultButton = ContentDialogButton.Primary,
                     XamlRoot = App.MainWindow.Content.XamlRoot
@@ -339,7 +341,7 @@ public partial class SettingsViewModel : ObservableRecipient
             Title = "Downloading Update",
             Content = panel,
             CloseButtonText = "Cancel",
-            CloseButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"],
+            CloseButtonStyle = (Style)Application.Current.Resources["AccentDismissDialogButtonStyle"],
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
 
@@ -494,7 +496,7 @@ public partial class SettingsViewModel : ObservableRecipient
             Content = title == "Update Failed" ? content : "Searching for Latest Release.... ♪(´▽｀)\n\n" + content,
             CloseButtonText = "Close",
             CloseButtonStyle =
-                (Style)Application.Current.Resources["AccentButtonStyle"],
+                (Style)Application.Current.Resources["AccentDismissDialogButtonStyle"],
             XamlRoot = App.MainWindow.Content.XamlRoot
         };
 

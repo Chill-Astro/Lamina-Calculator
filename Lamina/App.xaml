@@ -14,6 +14,28 @@
                 <ResourceDictionary Source="/Styles/TextBlock.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <DataTemplate x:Key="DismissButtonContentTemplate">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE711;" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding}" />
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="UpdateButtonContentTemplate">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE895;" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding}" />
+                </StackPanel>
+            </DataTemplate>
+            <Style x:Key="DismissDialogButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="ContentTemplate" Value="{StaticResource DismissButtonContentTemplate}" />
+            </Style>
+            <Style x:Key="AccentDismissDialogButtonStyle" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
+                <Setter Property="ContentTemplate" Value="{StaticResource DismissButtonContentTemplate}" />
+            </Style>
+            <Style x:Key="UpdateDialogButtonStyle" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
+                <Setter Property="ContentTemplate" Value="{StaticResource UpdateButtonContentTemplate}" />
+            </Style>
+
             <!--  Converters  -->
             <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
             <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter" />

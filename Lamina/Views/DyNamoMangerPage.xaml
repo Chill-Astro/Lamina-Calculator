@@ -42,25 +42,40 @@
                         Orientation="Horizontal"
                         Spacing="6">
                         <Button
-                            Padding="20,8"
+                            Padding="8,8"
                             Click="Download_Click"
-                            Content="Download"
                             CornerRadius="8"
-                            Style="{StaticResource AccentButtonStyle}" />
+                            Style="{StaticResource AccentButtonStyle}"
+                            AutomationProperties.Name="Download">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE896;" />
+                                <TextBlock VerticalAlignment="Center" Text="Download" />
+                            </StackPanel>
+                        </Button>
 
                         <Button
-                            Padding="20,8"
+                            Padding="8,8"
                             Click="Add_Click"
-                            Content="Install"
                             CornerRadius="8"
-                            Style="{StaticResource AccentButtonStyle}" />
+                            Style="{StaticResource AccentButtonStyle}"
+                            AutomationProperties.Name="Install">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE710;" />
+                                <TextBlock VerticalAlignment="Center" Text="Install" />
+                            </StackPanel>
+                        </Button>
 
                         <Button
-                            Padding="20,8"
+                            Padding="8,8"
                             Click="Contribute_Click"
-                            Content="Contribute"
                             CornerRadius="8"
-                            Style="{StaticResource AccentButtonStyle}" />
+                            Style="{StaticResource AccentButtonStyle}"
+                            AutomationProperties.Name="Contribute">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE716;" />
+                                <TextBlock VerticalAlignment="Center" Text="Contribute" />
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </StackPanel>
 

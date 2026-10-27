@@ -48,9 +48,13 @@
                     x:Name="CalculateBtn"
                     HorizontalAlignment="Center"
                     Click="Calculate_Click"
-                    Content="Calculate"
                     CornerRadius="8"
-                    Style="{StaticResource AccentButtonStyle}">
+                    Style="{StaticResource AccentButtonStyle}"
+                    AutomationProperties.Name="Calculate">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE8EF;" />
+                        <TextBlock VerticalAlignment="Center" Text="Calculate" />
+                    </StackPanel>
                     <Button.KeyboardAccelerators>
                         <KeyboardAccelerator Key="Enter" />
                     </Button.KeyboardAccelerators>
@@ -63,6 +67,7 @@
             Title="Result"
             CornerRadius="8"
             DefaultButton="Primary"
+            PrimaryButtonStyle="{StaticResource AccentDismissDialogButtonStyle}"
             PrimaryButtonText="Close">
             <StackPanel Spacing="4">
                 <TextBlock

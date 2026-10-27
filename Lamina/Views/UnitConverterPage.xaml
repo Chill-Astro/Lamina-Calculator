@@ -94,8 +94,13 @@
                             Height="40"
                             HorizontalAlignment="Stretch"
                             Click="Convert_Click"
-                            Content="Convert"
-                            Style="{StaticResource AccentButtonStyle}" />
+                            Style="{StaticResource AccentButtonStyle}"
+                            AutomationProperties.Name="Convert">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Glyph="&#xE8AB;" />
+                                <TextBlock VerticalAlignment="Center" Text="Convert" />
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -105,6 +110,7 @@
             x:Name="ResultDialog"
             Title="Conversion Result"
             DefaultButton="Primary"
+            PrimaryButtonStyle="{StaticResource AccentDismissDialogButtonStyle}"
             PrimaryButtonText="Close">
             <StackPanel Margin="0,10,0,0" Spacing="8">
                 <TextBlock
@@ -134,7 +140,7 @@
                         VerticalAlignment="Center"
                         Click="CopyButton_Click"
                         Style="{StaticResource SubtleButtonStyle}">
-                        <FontIcon Glyph="&#xE8C8;" />
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8C8;" />
                         <ToolTipService.ToolTip>
                             <ToolTip Content="Copy to clipboard" />
                         </ToolTipService.ToolTip>
