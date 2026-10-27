@@ -10,7 +10,7 @@ Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calcula
 
 To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
   
-**Target OS:** **Windows 11** & **Windows 10** |  **Latest Stable Version:** **v11.28000.19.0**
+**Target OS:** **Windows 11** & **Windows 10** |  **Latest Stable Version:** **v11.28000.20.0**
 
 **App Execution Aliases :** `lamina.exe` & `lmna.exe` 
 
@@ -60,10 +60,10 @@ Categories :
 - Modern UI with Fluid Animations and Transitions. ✅
 - History Support for Basic and Advanced Calculator. ✅
 - Theme switching built in. ✅
-- Backdrop switching betwwen Mica Alt, Mica and Acrylic! ( WINDOWS 11 ONLY ) ✅
+- Backdrop switching between Mica Alt, Mica and Acrylic! ( WINDOWS 11 ONLY ) ✅
 - Eggcelent Looking Splash Screen that can be toggled OFF. ✅
 - FULL Power of NCalc in Advanced Calculator. ✅
-- Expression Editor for Advanced Calculations ( Yes ur OWN MATH! ). ✅
+- Expression Editor for Advanced Calculations ( Yes your OWN MATH! ). ✅
 - Proper History Sidebar for Large Window Sizes and Full Screen. ✅
 - Persistent History that survives App Restarts. ✅
 - Recall Expression Button for Advanced Calculator. ✅
@@ -94,7 +94,7 @@ Categories :
 
 <H2>
 
-v`11`.`26100`.`19`.`0`
+v`11`.`26100`.`20`.`0`
 
 </H2>
 
@@ -102,24 +102,16 @@ v`11`.`26100`.`19`.`0`
 
 - `11` -> Target OS ( She IS for Windows 11 )
 - `28000` -> Release SDK Version ( Currently She uses 28000.xxxx Versions of Windows 11 SDK )
-- `19` -> Release Index ( Here 17 is the 19th Release Of Course! )
+- `20` -> Release Index ( Here 20 is the 20th Release Of Course! )
 - `0` -> Filler Number ( Package.appxmanifest doesn't allow me to edit this Number so it's there for NOTHING 💀 )
 
 ---
 
-## More Screenshots :
-
-<details><summary><b>View Screenshots</b></summary>
-
-<kbd>
-<img alt="image" src="https://github.com/user-attachments/assets/93ceb201-e3ff-4bd3-adae-1415efa5b0ae" />
-</kbd>
+## Built in Scripties :
 
 <kbd>
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/dadf0bd6-fefe-41c4-a632-004c7c0542d0" />
 </kbd>
-
-</details>
 
 ---
 
