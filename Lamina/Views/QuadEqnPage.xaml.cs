@@ -39,42 +39,47 @@ public sealed partial class QuadEqnPage : Page
             else
             {
                 double root = -c / b;
-                temp = root.ToString("F2");
+                temp = root.ToString("0.##");
                 await ShowResultPopup("Linear Result", $"x = {temp}", true);
             }
             return;
         }
         
-        // Checking if your Inputs Actually Produce a Real Number
+        // Checking Which Kind of Roots your Inputs Produce
         double discriminant = (b * b) - (4 * a * c);
         // MATHING TIME! Btw this Formula is Indian! 
         if (discriminant > 0)
         {
             double r1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
             double r2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
-            temp = $"{r1:F2}, {r2:F2}";
+            temp = $"{r1:0.##}, {r2:0.##}";
             await ShowResultPopup("Two Real Roots", temp, true);
         }
         else if (discriminant == 0)
         {
             double r = -b / (2 * a);
-            temp = r.ToString("F2");
+            temp = r.ToString("0.##");
             await ShowResultPopup("One Real Root", $"x = {temp}", true);
         }
         else
         {
-            temp = ""; // No real number to copy
-            await ShowResultPopup("No Real Roots", "D is -ve.", false);
+            double realPart = -b / (2 * a);
+            double imaginaryPart = Math.Sqrt(-discriminant) / (2 * Math.Abs(a));
+            temp = $"{realPart:0.##} + {imaginaryPart:0.##}i, {realPart:0.##} - {imaginaryPart:0.##}i";
+            await ShowResultPopup("Two Imaginary Roots", temp, true, true);
         }
     }
 
-    private async System.Threading.Tasks.Task ShowResultPopup(string contextText, string actualValue, bool isSuccess)
+    private async System.Threading.Tasks.Task ShowResultPopup(string contextText, string actualValue, bool isSuccess, bool isImaginary = false)
     {      
         ResultLabel.Text = contextText;    
         ResultValueText.Text = actualValue; 
 
         // Visuals
         CopyButton.Visibility = isSuccess ? Visibility.Visible : Visibility.Collapsed;
+        ResultLabel.Foreground = isImaginary
+            ? (Brush)Application.Current.Resources["SystemFillColorCriticalBrush"]
+            : (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"];
 
         ResultValueText.Foreground = isSuccess
             ? (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
