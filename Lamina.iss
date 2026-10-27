@@ -1,5 +1,5 @@
 #define MyAppName "Lamina ✦"
-#define MyAppVersion "11.28000.19.0"
+#define MyAppVersion "11.28000.20.0"
 #define MyAppPublisher "Chill-Astro Software"
 #define MyAppURL "https://github.com/Chill-Astro/Lamina-Calculator"
 
