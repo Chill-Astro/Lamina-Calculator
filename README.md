@@ -44,31 +44,22 @@ Categories :
 
 ## Features :
 
-- Simple and Clean GUI. ✅
-- Dozens of calculation options. ✅
-- Programmable using JSON-based Logic. ✅
-- Fast and Error-Proof Calculations. ✅
-- High Precision for decimals. ✅
-- Modern UI with Fluid Animations and Transitions. ✅
-- History Support for Basic and Advanced Calculator. ✅
-- Theme switching built in. ✅
-- Backdrop switching between Mica Alt, Mica and Acrylic! ( WINDOWS 11 ONLY ) ✅
-- Eggcelent Looking Splash Screen that can be toggled OFF. ✅
-- FULL Power of NCalc in Advanced Calculator. ✅
-- Expression Editor for Advanced Calculations ( Yes your OWN MATH! ). ✅
-- Proper History Sidebar for Large Window Sizes and Full Screen. ✅
-- Persistent History that survives App Restarts. ✅
-- Recall Expression Button for Advanced Calculator. ✅
-- Available in both Msixbundle & Installer Variants. ✅
-- Windows 10 Icons if using Windows 10. ✅
-- Acrylic is Used by Default on Windows 10 and "Backdrop Setting" is Removed! ✅
+- A **Standard Calculator** Powered by *C#*  & an **Advanced Calculator** Powered by *NCalc*! ✅
+- **DOZENS** of **Built-In** *Scripties*! ✅
+- Support for **User-Made** *Scripties* powered by `Dynamo` & `NCalc`!  ✅
+- **Modern & Fluent UI** based on `Windows 11`! ✅
+- **Persistent History** for Basic and Advanced Calculator with **Sidebar Mode** for Large Windows! ✅
+- **Multiple Customization Options** from **Switching b/w Light & Dark Themes**, **Backdrop Switching ( WINDOWS 11 ONLY )**, **Disabling Splash Screen** and **Disabling Update Checks on Startup**! ✅
+- **Built-in Expression Editor** for **Advanced Calculator**! ✅
+- **QOL Features** such as `Copy`, `Paste` and `Recall Last Expression` for Ease of Use! ✅
+- **Built-in SELF-UPDATER** that **Notifies & Updates the App** based on User's Consent! ✅
 
 ---
 
 ## Anti-Features :
 
 - Slow Updates ❌
-- Use of AI Assistance as I am learning UI and WinUI 3 with AI. ❌
+- Use of AI Assistance. ❌
 - Use of `Alex Brush` in Branding which may look like Alien Language for certain People. ❌
 - BUGS may Slip in because AI is Stupid, and without a Manual Audit, it's basically `AI SLOP`. ❌
     
