@@ -6,15 +6,13 @@
 
 <div align="center">
   
-Lamina ✦ is a `WinUI 3 calculator` that is not only includes a Regular Calculator but also something called `"Scripties"`. She supports **Mensuration, Finance, Currency Conversion, Unit Conversions And More!**, making her a Very Extendable Option.
-
-To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
+Lamina ✦ is an **Open-source WinUI 3 Calculator** for **Windows 11** AND **Windows 10** featuring a **Standard Calculator**, An **NCalc-Based Advanced Calculator**, **Persistent History**, **Customization**, and having support **Built-in** & **User-made**  `"Scripties"`.
   
 **Target OS:** **Windows 11** & **Windows 10** |  **Latest Stable Version:** **v11.28000.20.0**
 
 **App Execution Aliases :** `lamina.exe` & `lmna.exe` 
 
-**Codename** : `LMNA`, formerly `Calc+ ( till v11 )` & `CalcX-11 ( Pre-Alpha )`
+**Codename** : `LMNA`
 
 *- TRUSTED SOURCES -*
 
@@ -25,11 +23,6 @@ To get User-Made Modules, go to [Lamina ✦ Modules Repo](https://github.com/Chi
 
 </div>
 
-> [!NOTE]
-> Project [Trust My Msix!](https://github.com/Chill-Astro/Trust-My-Msix) can be used to Import the Self-Signed Certificate of the `.msix ` Version of Lamina ✦. A Copy is given in [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) for Usage.
-
----
-
 ## What are Scripties?
 
 Scripties are High Performance GUI equivalents of Console Scripts, that are Reliable and Easy to Make. 
@@ -37,17 +30,16 @@ Scripties are High Performance GUI equivalents of Console Scripts, that are Reli
 Categories :
 
 - Built-In Scripties - Made in XAML & C# and Compiled. ( Static )
-- User Made Scripties - Made in JSON and loaded by my Interpereter `Dynamo`. ( Dynamic )
+- User Made Scripties - Made in JSON and loaded by my Interpreter `Dynamo`. ( Dynamic )
 
 ---
 
-## A Temporary Halt on Development :
+## How do I Install Scripties?
 
-- I wouldn't provide updates for the next couple of months.
-- Issues will be addressed  and Pull Requests may be merged a bit late.
-- All of this is because WinUI 3 is annoying and in return, no appreciation.
-- I am not Maintaining this Project for a Wall, I am maintaining this as an example of What UI can be.
- 
+- Go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
+- Download your Desired Mod, a `.lamina` File.
+- Go to Menu > Press `+ Add` and Add the File from the Popup!
+
 ---
 
 ## Features :
@@ -88,36 +80,12 @@ Categories :
 
 ---
 
-## Version Structure :
-
-<div align="center">
-
-<H2>
-
-v`11`.`26100`.`20`.`0`
-
-</H2>
-
-</div>
-
-- `11` -> Target OS ( She IS for Windows 11 )
-- `28000` -> Release SDK Version ( Currently She uses 28000.xxxx Versions of Windows 11 SDK )
-- `20` -> Release Index ( Here 20 is the 20th Release Of Course! )
-- `0` -> Filler Number ( Package.appxmanifest doesn't allow me to edit this Number so it's there for NOTHING 💀 )
-
----
-
-## Built in Scripties :
-
-<kbd>
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/dadf0bd6-fefe-41c4-a632-004c7c0542d0" />
-</kbd>
-
----
-
 ## Installation : 
 
-1.  Download the `.msixbundle` and `.cer` files from the [latest release.](https://github.com/Chill-Astro/Lamina/releases/latest)
+> [!NOTE]
+> Project [Trust My Msix!](https://github.com/Chill-Astro/Trust-My-Msix) can be used to Import the Self-Signed Certificate of the `.msix ` Version of Lamina ✦. A Copy is given in [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) for Usage.
+
+1.  Download the `.msixbundle` and `.cer` files from the [latest release](https://github.com/Chill-Astro/Lamina/releases/latest).
 2.  Import the `.cer` file to the `Trusted Root Certificates` Store. ( First Run ONLY! )
 
     Alternatively use this Command after Downloading `TMM.exe` from [Releases](https://github.com/Chill-Astro/Lamina/releases/latest) :    
@@ -133,6 +101,25 @@ v`11`.`26100`.`20`.`0`
 </p>
 
 -  Download the `Setup.exe` that does the Importing and Installation FOR YOU!
+
+---
+
+## Version Structure :
+
+<div align="center">
+
+<H2>
+
+v`11`.`26100`.`20`.`0`
+
+</H2>
+
+</div>
+
+- `11` -> Target OS is Windows 11
+- `28000` -> Release SDK Version ( 28000.xxxx Versions of Windows 11 SDK )
+- `20` -> Release Index
+- `0` -> Filler Number I couldn't Edit. 💀
 
 ---
 
@@ -172,13 +159,9 @@ Features :
 - Thus, a `Massive Time Saver` and `Low Barrier to Entry` as one can make modules in Notepad.
 - Since NCalc is NCalc and not a Compiler, the Risk of Malicious Mods is VERY LOW.
 
-Steps to Use Dynamo Scriptie Loader:
+---
 
-- Go to [Lamina ✦ Modules Repo](https://github.com/Chill-Astro/Lamina-Modules-Repo).
-- Download your Desired Mod, a `.lamina` File.
-- Go to Menu > Press `+ Add` and Add the File from the Popup!
-
-Contributing :
+## Contributing Mods :
 
 - Fork [Lamina ✦ Modules Template](https://github.com/Chill-Astro/Lamina-Modules-Template).
 - Sample Code is Given. Modify as you Need.
@@ -276,63 +259,8 @@ NOTE : THIS ISN'T CODE RELATED!
 
 ---
 
-## HALL OF FAME : 
-
-// Will add Forked Repos which are genuinely good. I will list everything Good about them.
-
----
-
-## HALL OF NEUTRALITY :
-
-// Will add Inactive Forks. Uh yeah that's it atleast it's Forking not Cloning!
-
-- moayyaed/Lamina-Calculator
-
----
-
-## HALL OF SHAME 👎 :
-
-// Includes Clones who are working against the MIT Licence and Distributing Malware. All Flaws are mentioned.
-
-- She has previously Calculator has undergone Malware Attacks.
-
----
-
-## ⚠️ IMPORTANT NOTICE ⚠️
-
-Please be aware: There are fraudulent repositories on GitHub that are cloning this project's name and using AI-generated readmes, but they contain **completely random and unrelated files in each release**. These are NOT official versions of this project.
-
-**ALWAYS ensure you are downloading or cloning this project ONLY from its official and legitimate source:**
-`https://github.com/Chill-Astro/Lamina-Calculator`
-
-I am trying my best to report these people.
-
----
-
-## ⚠️ Smoking Gun for Danger :
-
-> [!CAUTION]
-> **MALWARE ALERT:** If your downloaded folder looks like the images below, **DO NOT OPEN** any files. Format the drive or delete the folder immediately. Official releases are ONLY `.msix` files or an Inno Setup `.exe`.
-
-<details>
-<summary><b>View Details</b></summary>
-  
-* **Suspicious Windows Executables:** Files ending in `.exe`, `.bat`, or `.dll` (e.g., `luau.exe`, `StartApp.bat`).
-* **Compressed Archives:** This project is distributed as an **MSIX**, never as a `.zip` or `.7z` containing Windows binaries.
-* **Hidden Scripts:** Text files like `asm.txt` used to execute malicious code on your PC.
-* The Following Folder Structure is used by Malware (Shown in a VM) :
-
-![Screenshot_2026-03-01-18-52-39-337_com clone android dual space](https://github.com/user-attachments/assets/be691c9f-7def-4e8b-982c-c7ca2e9a067d)
-
-![Screenshot_2026-03-01-18-53-09-759_com clone android dual space](https://github.com/user-attachments/assets/1c75031d-95be-4716-9347-b762e3dad5b8)
-
-</details>
-
----
-
-
 ## Note from Developer :
 
-Appreciate my effort? Why not leave a Star ⭐ ! Also if forked, please credit me for my effort and thanks if you do! :)
+A Star ⭐ will be Appreciated to Support this Project! :)
 
 ---
