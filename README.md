@@ -110,7 +110,7 @@ Categories :
 
 <H2>
 
-v`11`.`26100`.`20`.`0`
+v`11`.`28000`.`20`.`0`
 
 </H2>
 
@@ -169,21 +169,10 @@ Features :
 
 ---
 
-## TRAILER on @delta-v-sfs :
-
-<div align="center">
-  <kbd>
-  <a href="https://www.youtube.com/watch?v=AWq2MTEJa0I">
-    <img src="https://img.youtube.com/vi/AWq2MTEJa0I/maxresdefault.jpg" alt="Watch the Lamina Trailer"style="border-radius:10px;">
-    <br>
-    <b><h3>▶ Click to Watch the Official Trailer</h3></b>
-  </a>
-</kbd>
-</div>
-
----
-
 ## Building from Source :
+
+<details>
+  <summary>Very Long Stuff for Developers 😴</summary>
 
 - Install Visual Studio 2026 with **WinUI Application Development** and **.NET Desktop Development** workloads.
   - Windows 11 or Windows 10.
@@ -192,7 +181,7 @@ Features :
   - Get the latest Windows 11 SDK (28000.xxxx)
   - Community Edition is sufficient for contributing and testing. Pro and Enterprise Editions can also be used.
   - Github Copilot and Live Share can be skipped for Storage Saving.
- 
+  
 <img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/1f2705e2-de7d-41d5-8dbd-8138d1812730" />
 
 - Get the Code :
@@ -208,6 +197,8 @@ Features :
 Lamina ✦ is now Deployed and now she shall appear in the Start Menu. Enjoy! :)
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/65cc1ddb-da33-472c-941b-3a3e55c5073e" />
+
+</details>
 
 ---
 
@@ -229,7 +220,7 @@ Lamina ✦ uses [ExchangeRate-API](https://app.exchangerate-api.com) for Currenc
 
 ---
 
-## Art 
+## Mascot Art 
 
 Since Lamina ✦ is Personified as `"She"` ( Because Computers are She ),
 
@@ -244,6 +235,20 @@ NOTE : THIS ISN'T CODE RELATED!
 </kbd>
 
 </details>
+
+---
+
+## TRAILER on @delta-v-sfs :
+
+<div align="center">
+  <kbd>
+  <a href="https://www.youtube.com/watch?v=AWq2MTEJa0I">
+    <img src="https://img.youtube.com/vi/AWq2MTEJa0I/maxresdefault.jpg" alt="Watch the Lamina Trailer"style="border-radius:10px;">
+    <br>
+    <b><h3>▶ Click to Watch the Official Trailer</h3></b>
+  </a>
+</kbd>
+</div>
 
 ---
 
