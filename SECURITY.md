@@ -11,7 +11,7 @@
 > 
 > `https://github.com/Chill-Astro/Lamina-Calculator`
 >
-> Check [here](https://github.com/Chill-Astro/FOSS-Root-Checker/issues/1) for more details. I am trying my best to report these people.
+> I am trying my best to report these people.
 
 ---
 
@@ -23,7 +23,7 @@
 **If your download contains any of the following, DELETE IT IMMEDIATELY:**
 
 * **Suspicious Windows Executables:** Files ending in `.exe`, `.bat`, or `.dll` (e.g., `luau.exe`, `StartApp.bat`).
-* **Compressed Archives:** This project is distributed as an **APK**, never as a `.zip` or `.7z` containing Windows binaries.
+* **Compressed Archives:** This project is distributed as an **MSIX**, never as a `.zip` or `.7z` containing Windows binaries.
 * **Hidden Scripts:** Text files like `asm.txt` used to execute malicious code on your PC.
 * The Following Folder Structure is used by Malware (Shown in a VM) :
 
